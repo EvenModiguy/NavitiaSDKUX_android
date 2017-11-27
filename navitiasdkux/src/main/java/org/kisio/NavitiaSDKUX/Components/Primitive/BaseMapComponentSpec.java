@@ -1,6 +1,5 @@
 package org.kisio.NavitiaSDKUX.Components.Primitive;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import com.facebook.litho.ComponentContext;
@@ -8,7 +7,6 @@ import com.facebook.litho.annotations.MountSpec;
 import com.facebook.litho.annotations.OnCreateMountContent;
 import com.facebook.litho.annotations.OnMount;
 import com.facebook.litho.annotations.Prop;
-import com.facebook.litho.annotations.PropDefault;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;

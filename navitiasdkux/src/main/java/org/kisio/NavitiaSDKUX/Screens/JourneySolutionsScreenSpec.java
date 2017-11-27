@@ -21,11 +21,15 @@ import org.kisio.NavitiaSDK.invokers.ApiException;
 import org.kisio.NavitiaSDK.models.Journey;
 import org.kisio.NavitiaSDK.models.Journeys;
 import org.kisio.NavitiaSDKUX.Components.AlertComponent;
+import org.kisio.NavitiaSDKUX.Components.ContainerComponent;
+import org.kisio.NavitiaSDKUX.Components.DateTimeButtonComponent;
 import org.kisio.NavitiaSDKUX.Components.HorizontalContainerComponent;
+import org.kisio.NavitiaSDKUX.Components.Journey.Results.FormComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Results.Solution.LoadingComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Results.SolutionComponent;
 import org.kisio.NavitiaSDKUX.Components.JourneyMapComponent;
 import org.kisio.NavitiaSDKUX.Components.ListViewComponent;
+import org.kisio.NavitiaSDKUX.Components.ScreenHeaderComponent;
 import org.kisio.NavitiaSDKUX.Components.ScrollViewComponent;
 import org.kisio.NavitiaSDKUX.Components.TextComponent;
 import org.kisio.NavitiaSDKUX.Components.ViewComponent;
@@ -97,14 +101,10 @@ public class JourneySolutionsScreenSpec {
         Component<?>[] journeyComponent;
         Component mapComponent = TextComponent.create(c).styles(mapStyles).text("Loading map...").build();
         if (journeys != null) {
-            mapComponent = HorizontalContainerComponent.create(c)
-                .styles(mapContainerStyles)
-                .children(new Component<?>[] {
-                    JourneyMapComponent.create(c)
-                        .styles(mapStyles)
-                        .journey(journeys.getJourneys().get(0))
-                        .build()
-            }).build();
+            mapComponent = JourneyMapComponent.create(c)
+                .styles(mapStyles)
+                .journey(journeys.getJourneys().get(0))
+                .build();
             journeyComponent = getJourneyComponent(c, journeys);
         } else if (error){
             journeyComponent = new Component<?>[]{
@@ -122,7 +122,7 @@ public class JourneySolutionsScreenSpec {
         }
 
         return ViewComponent.create(c).children(new Component<?>[] {
-            /*ScreenHeaderComponent.create(c)
+            ScreenHeaderComponent.create(c)
                 .styles(headerStyles)
                 .children(new Component<?>[]{
                     ContainerComponent.create(c)
@@ -137,7 +137,7 @@ public class JourneySolutionsScreenSpec {
                         })
                         .build()
                 })
-                .build(),*/
+                .build(),
             mapComponent,
             ScrollViewComponent.create(c)
                 .children(new Component<?>[] {
@@ -173,24 +173,15 @@ public class JourneySolutionsScreenSpec {
         headerStyles.put("backgroundColor", Configuration.colors.getTertiary());
     }
 
-    static Map<String, Object> mapContainerStyles = new HashMap<>();
-    static {
-        mapContainerStyles.put("backgroundColor", Color.getColorFromHexadecimal("FF0000"));
-        mapContainerStyles.put("position", YogaPositionType.ABSOLUTE);
-        mapContainerStyles.put("top", 0);
-    }
-
     static Map<String, Object> mapStyles = new HashMap<>();
     static {
         mapStyles.put("height", 200);
-        mapStyles.put("width", 200);
+        mapStyles.put("marginBottom", -200);
     }
 
     static Map<String, Object> journeysContainerStyles = new HashMap<>();
     static {
-        journeysContainerStyles.put("backgroundColor", Color.getColorFromHexadecimal("FFFFFF"));
         journeysContainerStyles.put("paddingTop", 200);
-        journeysContainerStyles.put("flex", 1);
     }
 
     // State Update
