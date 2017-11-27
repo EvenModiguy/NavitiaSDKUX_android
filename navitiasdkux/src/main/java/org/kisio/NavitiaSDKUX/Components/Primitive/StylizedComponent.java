@@ -12,6 +12,8 @@ import com.facebook.yoga.YogaEdge;
 import com.facebook.yoga.YogaJustify;
 import com.facebook.yoga.YogaPositionType;
 
+import org.kisio.NavitiaSDKUX.Components.MapComponent;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -189,6 +191,12 @@ public class StylizedComponent {
                 notHandledStyles.remove(key);
             }
         }
+
+        return StylizedComponent.applyStyles(builder.withLayout(), notHandledStyles);
+    }
+
+    public static ComponentLayout.Builder applyStyles(BaseMapComponent.Builder builder, Map<String, Object> styles) {
+        Map<String, Object> notHandledStyles = new HashMap<>(styles);
 
         return StylizedComponent.applyStyles(builder.withLayout(), notHandledStyles);
     }

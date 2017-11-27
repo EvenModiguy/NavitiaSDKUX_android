@@ -31,7 +31,7 @@ public class ListViewComponentSpec {
         @Prop(optional = true) Map<String, Object> styles,
         @Prop Component<?>[] children) {
 
-        final ContainerComponent.Builder builder = ContainerComponent.create(c);
+        final ViewComponent.Builder builder = ViewComponent.create(c);
         builder.children(children);
         final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder.withLayout(), styles);
         return styledBuilder.build();

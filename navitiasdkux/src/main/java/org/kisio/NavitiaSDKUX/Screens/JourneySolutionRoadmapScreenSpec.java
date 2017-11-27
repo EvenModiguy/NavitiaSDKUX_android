@@ -53,9 +53,11 @@ public class JourneySolutionRoadmapScreenSpec {
                         .build()})
                 .build()
         ).child(
-            ScrollViewComponent.create(c).child(ListViewComponent.create(c).children(
-                getJourneySectionComponents(c, journey, disruptions)
-            ).build())
+            ScrollViewComponent.create(c).children(new Component<?>[] {
+                ListViewComponent.create(c).children(
+                    getJourneySectionComponents(c, journey, disruptions)
+                ).build()
+            })
         ).build();
     }
 

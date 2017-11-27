@@ -11,32 +11,29 @@ import com.facebook.litho.annotations.OnUpdateState;
 import com.facebook.litho.annotations.Param;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.State;
+import com.facebook.yoga.YogaPositionType;
 
 import org.joda.time.DateTime;
 import org.kisio.NavitiaSDK.NavitiaConfiguration;
 import org.kisio.NavitiaSDK.NavitiaSDK;
 import org.kisio.NavitiaSDK.invokers.ApiCallback;
 import org.kisio.NavitiaSDK.invokers.ApiException;
-import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Journey;
 import org.kisio.NavitiaSDK.models.Journeys;
-import org.kisio.NavitiaSDKUX.BusinessLogic.DisruptionMatcher;
-import org.kisio.NavitiaSDKUX.BusinessLogic.SectionMatcher;
 import org.kisio.NavitiaSDKUX.Components.AlertComponent;
-import org.kisio.NavitiaSDKUX.Components.ContainerComponent;
-import org.kisio.NavitiaSDKUX.Components.DateTimeButtonComponent;
-import org.kisio.NavitiaSDKUX.Components.Journey.Results.FormComponent;
+import org.kisio.NavitiaSDKUX.Components.HorizontalContainerComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Results.Solution.LoadingComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Results.SolutionComponent;
+import org.kisio.NavitiaSDKUX.Components.JourneyMapComponent;
 import org.kisio.NavitiaSDKUX.Components.ListViewComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
-import org.kisio.NavitiaSDKUX.Components.ScreenHeaderComponent;
 import org.kisio.NavitiaSDKUX.Components.ScrollViewComponent;
+import org.kisio.NavitiaSDKUX.Components.TextComponent;
+import org.kisio.NavitiaSDKUX.Components.ViewComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.R;
+import org.kisio.NavitiaSDKUX.Util.Color;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,7 +95,16 @@ public class JourneySolutionsScreenSpec {
         @State Boolean error) {
 
         Component<?>[] journeyComponent;
+        Component mapComponent = TextComponent.create(c).styles(mapStyles).text("Loading map...").build();
         if (journeys != null) {
+            mapComponent = HorizontalContainerComponent.create(c)
+                .styles(mapContainerStyles)
+                .children(new Component<?>[] {
+                    JourneyMapComponent.create(c)
+                        .styles(mapStyles)
+                        .journey(journeys.getJourneys().get(0))
+                        .build()
+            }).build();
             journeyComponent = getJourneyComponent(c, journeys);
         } else if (error){
             journeyComponent = new Component<?>[]{
@@ -115,13 +121,12 @@ public class JourneySolutionsScreenSpec {
             };
         }
 
-        return BaseViewComponent.create(c)
-            .child(
-                ScreenHeaderComponent.create(c)
-                    .styles(headerStyles)
-                    .children(new Component<?>[]{
-                        ContainerComponent.create(c)
-                            .children(new Component<?>[]{
+        return ViewComponent.create(c).children(new Component<?>[] {
+            /*ScreenHeaderComponent.create(c)
+                .styles(headerStyles)
+                .children(new Component<?>[]{
+                    ContainerComponent.create(c)
+                        .children(new Component<?>[]{
                             FormComponent.create(c)
                                 .origin(origin.isEmpty()? originId : origin)
                                 .destination(destination.isEmpty()? destinationId : destination)
@@ -129,23 +134,26 @@ public class JourneySolutionsScreenSpec {
                             DateTimeButtonComponent.create(c)
                                 .datetime(datetime)
                                 .build(),
-                        }).build()
-                    })
-            )
-            .child(
-                ScrollViewComponent.create(c)
-                    .child(
-                        ListViewComponent.create(c)
-                            .children(journeyComponent)
-                    )
-            )
-            .build()
-        ;
+                        })
+                        .build()
+                })
+                .build(),*/
+            mapComponent,
+            ScrollViewComponent.create(c)
+                .children(new Component<?>[] {
+                    ListViewComponent.create(c)
+                        .styles(journeysContainerStyles)
+                        .children(journeyComponent)
+                        .build()
+                })
+                .build()
+        }).buildWithLayout();
     }
 
     static Component<?>[] getJourneyComponent(ComponentContext c, Journeys journeys) {
         List<Component<?>> components = new ArrayList<>();
-        Integer index = 1;
+        Integer index = 0;
+
         for (Journey journey : journeys.getJourneys()) {
             components.add(
                 SolutionComponent.create(c)
@@ -157,13 +165,32 @@ public class JourneySolutionsScreenSpec {
             );
             index++;
         }
-
         return components.toArray(new Component<?>[components.size()]);
     }
 
     static Map<String, Object> headerStyles = new HashMap<>();
     static {
         headerStyles.put("backgroundColor", Configuration.colors.getTertiary());
+    }
+
+    static Map<String, Object> mapContainerStyles = new HashMap<>();
+    static {
+        mapContainerStyles.put("backgroundColor", Color.getColorFromHexadecimal("FF0000"));
+        mapContainerStyles.put("position", YogaPositionType.ABSOLUTE);
+        mapContainerStyles.put("top", 0);
+    }
+
+    static Map<String, Object> mapStyles = new HashMap<>();
+    static {
+        mapStyles.put("height", 200);
+        mapStyles.put("width", 200);
+    }
+
+    static Map<String, Object> journeysContainerStyles = new HashMap<>();
+    static {
+        journeysContainerStyles.put("backgroundColor", Color.getColorFromHexadecimal("FFFFFF"));
+        journeysContainerStyles.put("paddingTop", 200);
+        journeysContainerStyles.put("flex", 1);
     }
 
     // State Update
@@ -201,8 +228,8 @@ public class JourneySolutionsScreenSpec {
                 .withFrom(originId)
                 .withTo(destinationId)
                 .withDatetime(datetime)
-                .withFirstSectionMode(Arrays.asList("bss", "bike", "car", "walking"))
-                .withLastSectionMode(Arrays.asList("bss", "bike", "car", "walking"))
+                //.withFirstSectionMode(Arrays.asList("bss", "bike", "car", "walking"))
+                //.withLastSectionMode(Arrays.asList("bss", "bike", "car", "walking"))
                 .get(new ApiCallback<Journeys>() {
                     @Override
                     public void onFailure(ApiException e, int statusCode, Map<String, List<String>> responseHeaders) {

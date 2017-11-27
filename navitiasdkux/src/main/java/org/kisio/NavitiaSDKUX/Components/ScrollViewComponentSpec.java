@@ -29,10 +29,16 @@ public class ScrollViewComponentSpec {
     static ComponentLayout onCreateLayout(
         ComponentContext c,
         @Prop(optional = true) Map<String, Object> styles,
-        @Prop Component<?> child) {
+        @Prop(optional = true) Component<?>[] children) {
 
         final VerticalScroll.Builder builder = VerticalScroll.create(c);
-        builder.childComponent(child);
+
+        if (children != null) {
+            for (Component<?> child : children) {
+                builder.childComponent(child);
+            }
+        }
+
         final Map<String, Object> computedStyles = StylizedComponent.mergeStyles(scrollViewStyles, styles);
         final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder.withLayout(), computedStyles);
         return styledBuilder.build();

@@ -9,9 +9,7 @@ import com.facebook.litho.annotations.PropDefault;
 
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Section;
-import org.kisio.NavitiaSDKUX.Components.LineCodeComponent;
 import org.kisio.NavitiaSDKUX.Components.LineCodeWithDisruptionStatusComponent;
-import org.kisio.NavitiaSDKUX.Components.LineCodeWithDisruptionStatusComponentSpec;
 import org.kisio.NavitiaSDKUX.Components.ModeComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.HorizontalViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
