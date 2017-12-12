@@ -6,8 +6,6 @@ import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
-import com.facebook.litho.annotations.PropDefault;
-import com.facebook.yoga.YogaAlign;
 import com.facebook.yoga.YogaJustify;
 
 import org.kisio.NavitiaSDKUX.Components.HorizontalContainerComponent;
@@ -57,7 +55,7 @@ public class WaitingComponentSpec {
 
     static Map<String, Object> containerStyles = new HashMap<>();
     static {
-        containerStyles.put("marginTop", 8);
+        containerStyles.put("marginTop", Configuration.metrics.margin);
     }
 
     static Map<String, Object> iconContainerStyles = new HashMap<>();
@@ -73,7 +71,7 @@ public class WaitingComponentSpec {
 
     static Map<String, Object> labelStyles = new HashMap<>();
     static {
-        labelStyles.put("fontSize", 13);
+        labelStyles.put("fontSize", Configuration.metrics.textS);
         labelStyles.put("color", Configuration.colors.getGray());
         labelStyles.put("padding", 6);
     }

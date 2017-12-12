@@ -12,13 +12,13 @@ import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
-import com.facebook.litho.annotations.PropDefault;
 import com.facebook.yoga.YogaAlign;
 
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.BusinessLogic.Modes;
 import org.kisio.NavitiaSDKUX.BusinessLogic.SectionStopPointType;
+import org.kisio.NavitiaSDKUX.Components.CardComponent;
 import org.kisio.NavitiaSDKUX.Components.ContainerComponent;
 import org.kisio.NavitiaSDKUX.Components.HorizontalContainerComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Roadmap2ColumnsLayout;
@@ -41,67 +41,64 @@ import java.util.Map;
 
 @LayoutSpec
 public class PublicTransportComponentSpec {
-    @PropDefault static final Map<String, Object> styles = new HashMap<>();
-
     @OnCreateLayout
     static ComponentLayout onCreateLayout(
         ComponentContext c,
         @Prop(optional = true) String testKey,
-        @Prop(optional = true) Map<String, Object> styles,
         @Prop(optional = true) Integer waitingDuration,
         @Prop Section section,
         @Prop List<Disruption> disruptions) {
 
-        return ViewComponent.create(c).testKey(testKey)
-            .styles(styles)
-            .children(new Component[]{
-                ViewComponent.create(c)
-                    .children(new Component[]{
-                        Roadmap2ColumnsLayout.create(c)
-                            .leftChildren(new Component[]{
-                                ModeIconComponent.create(c)
-                                    .section(section)
-                                    .styles(modeIconStyles)
-                                    .build()
-                            })
-                            .rightChildren(
-                                getRightChildren(c, disruptions, section, waitingDuration)
-                            )
-                            .build()
-                    })
-                    .build(),
-                ViewComponent.create(c)
-                    .styles(diagramContainerStyles)
-                    .children(new Component[]{
-                        PlainComponent.create(c)
-                            .color(Color.getColorFromHexadecimal(section.getDisplayInformations().getColor()))
-                            .build(),
-                        ViewComponent.create(c)
-                            .children(new Component[]{
-                                StopPointComponent.create(c)
-                                    .color(Color.getColorFromHexadecimal(section.getDisplayInformations().getColor()))
-                                    .section(section)
-                                    .sectionWay(SectionStopPointType.departure)
-                                    .build(),
-                                ContainerComponent.create(c)
-                                    .styles(bodyContainerStyles)
-                                    .children(new Component[] {
-                                        DetailsComponent.create(c)
-                                            .section(section)
-                                            .build()
-                                    })
-                                    .build(),
-                                StopPointComponent.create(c)
-                                    .color(Color.getColorFromHexadecimal(section.getDisplayInformations().getColor()))
-                                    .section(section)
-                                    .sectionWay(SectionStopPointType.arrival)
-                                    .build()
-                            })
-                            .build()
-                    })
-                    .build()
-            })
-            .buildWithLayout();
+        return CardComponent.create(c).child(
+            ViewComponent.create(c).testKey(testKey)
+                .styles(containerStyles)
+                .children(new Component[]{
+                    ViewComponent.create(c)
+                        .children(new Component[]{
+                            Roadmap2ColumnsLayout.create(c)
+                                .leftChildren(new Component[]{
+                                    ModeIconComponent.create(c)
+                                        .section(section)
+                                        .build()
+                                })
+                                .rightChildren(
+                                    getRightChildren(c, disruptions, section, waitingDuration)
+                                )
+                                .build()
+                        })
+                        .build(),
+                    ViewComponent.create(c)
+                        .styles(diagramContainerStyles)
+                        .children(new Component[]{
+                            PlainComponent.create(c)
+                                .color(Color.getColorFromHexadecimal(section.getDisplayInformations().getColor()))
+                                .build(),
+                            ViewComponent.create(c)
+                                .children(new Component[]{
+                                    StopPointComponent.create(c)
+                                        .color(Color.getColorFromHexadecimal(section.getDisplayInformations().getColor()))
+                                        .section(section)
+                                        .sectionWay(SectionStopPointType.departure)
+                                        .build(),
+                                    ContainerComponent.create(c)
+                                        .styles(bodyContainerStyles)
+                                        .children(new Component[] {
+                                            DetailsComponent.create(c)
+                                                .section(section)
+                                                .build()
+                                        })
+                                        .build(),
+                                    StopPointComponent.create(c)
+                                        .color(Color.getColorFromHexadecimal(section.getDisplayInformations().getColor()))
+                                        .section(section)
+                                        .sectionWay(SectionStopPointType.arrival)
+                                        .build()
+                                })
+                                .build()
+                        })
+                        .build()
+                })
+        ).buildWithLayout();
     }
 
     @NonNull
@@ -171,6 +168,11 @@ public class PublicTransportComponentSpec {
         diagramContainerStyles.put("marginTop", 20);
     }
 
+    static Map<String, Object> containerStyles = new HashMap<>();
+    static {
+        containerStyles.put("paddingVertical", Configuration.metrics.margin);
+    }
+
     static Map<String, Object> modeLineLabelStyles = new HashMap<>();
     static {
         modeLineLabelStyles.put("alignItems", YogaAlign.CENTER);
@@ -179,7 +181,7 @@ public class PublicTransportComponentSpec {
     static Map<String, Object> instructionTextStyles = new HashMap<>();
     static {
         instructionTextStyles.put("color", Configuration.colors.getDarkText());
-        instructionTextStyles.put("fontSize", 17);
+        instructionTextStyles.put("fontSize", Configuration.metrics.text);
         instructionTextStyles.put("spacingMultiplier", 1.3);
     }
 
@@ -190,12 +192,12 @@ public class PublicTransportComponentSpec {
 
     static Map<String, Object> textSpacerStyles = new HashMap<>();
     static {
-        textSpacerStyles.put("marginBottom", 5);
+        textSpacerStyles.put("marginBottom", Configuration.metrics.marginS);
     }
 
     static Map<String, Object> bodyContainerStyles = new HashMap<>();
     static {
-        bodyContainerStyles.put("paddingVertical", 12);
+        bodyContainerStyles.put("paddingVertical", Configuration.metrics.margin);
         bodyContainerStyles.put("paddingHorizontal", 0);
     }
 

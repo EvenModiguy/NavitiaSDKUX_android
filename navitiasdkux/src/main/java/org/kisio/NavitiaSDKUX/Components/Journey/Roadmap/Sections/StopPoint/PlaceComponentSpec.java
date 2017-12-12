@@ -47,13 +47,13 @@ public class PlaceComponentSpec {
 
     static Map<String, Object> containerStyles = new HashMap<>();
     static {
-        containerStyles.put("paddingHorizontal", 5);
+        containerStyles.put("paddingHorizontal", Configuration.metrics.marginS);
     }
 
     static Map<String, Object> labelStyles = new HashMap<>();
     static {
         labelStyles.put("color", Configuration.colors.getDarkText());
         labelStyles.put("fontWeight", "bold");
-        labelStyles.put("fontSize", 17);
+        labelStyles.put("fontSize", Configuration.metrics.text);
     }
 }

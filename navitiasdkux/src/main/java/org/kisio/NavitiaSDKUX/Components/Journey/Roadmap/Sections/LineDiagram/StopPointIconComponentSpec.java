@@ -11,8 +11,8 @@ import com.facebook.yoga.YogaJustify;
 import com.facebook.yoga.YogaPositionType;
 
 import org.kisio.NavitiaSDKUX.Components.IconComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
+import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 
 import java.util.HashMap;
 import java.util.Map;

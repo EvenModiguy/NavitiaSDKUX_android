@@ -2,6 +2,7 @@ package org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.PublicTranspo
 
 import android.text.Html;
 import android.text.TextUtils;
+
 import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
@@ -13,7 +14,6 @@ import com.facebook.yoga.YogaAlign;
 import org.joda.time.DateTime;
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Period;
-import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.BusinessLogic.DisruptionLevel;
 import org.kisio.NavitiaSDKUX.BusinessLogic.DisruptionMatcher;
 import org.kisio.NavitiaSDKUX.Components.HorizontalContainerComponent;
@@ -112,7 +112,7 @@ class DisruptionDescriptionComponentSpec {
 
     static Map<String, Object> containerStyles = new HashMap<>();
     static {
-        containerStyles.put("marginTop", 8);
+        containerStyles.put("marginTop", Configuration.metrics.margin);
     }
 
     static Map<String, Object> disruptionTitleStyles = new HashMap<>();
@@ -127,25 +127,25 @@ class DisruptionDescriptionComponentSpec {
 
     static Map<String, Object> causeBaseStyles = new HashMap<>();
     static {
-        causeBaseStyles.put("marginLeft", 4);
-        causeBaseStyles.put("fontSize", 13);
+        causeBaseStyles.put("marginLeft", Configuration.metrics.marginS);
+        causeBaseStyles.put("fontSize", Configuration.metrics.textS);
         causeBaseStyles.put("fontWeight", "bold");
     }
 
     static Map<String, Object> disruptionTextStyles = new HashMap<>();
     static {
         disruptionTextStyles.put("marginLeft", 22);
-        disruptionTextStyles.put("marginTop", 8);
-        disruptionTextStyles.put("marginBottom", 6);
+        disruptionTextStyles.put("marginTop", Configuration.metrics.margin);
+        disruptionTextStyles.put("marginBottom", Configuration.metrics.margin);
         disruptionTextStyles.put("color", Configuration.colors.getGray());
-        disruptionTextStyles.put("fontSize", 13);
+        disruptionTextStyles.put("fontSize", Configuration.metrics.textS);
     }
 
     static Map<String, Object> disruptionPeriodStyles = new HashMap<>();
     static {
         disruptionPeriodStyles.put("marginLeft", 22);
-        disruptionPeriodStyles.put("marginTop", 8);
-        disruptionPeriodStyles.put("fontSize", 13);
+        disruptionPeriodStyles.put("marginTop", Configuration.metrics.margin);
+        disruptionPeriodStyles.put("fontSize", Configuration.metrics.textS);
         disruptionPeriodStyles.put("fontWeight", "bold");
         disruptionPeriodStyles.put("color", Configuration.colors.getDarkText());
     }

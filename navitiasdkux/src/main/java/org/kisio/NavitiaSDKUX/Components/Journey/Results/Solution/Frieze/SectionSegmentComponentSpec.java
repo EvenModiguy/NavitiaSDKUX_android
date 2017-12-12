@@ -8,8 +8,8 @@ import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
 
 import org.kisio.NavitiaSDK.models.Section;
-import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
+import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.Util.Color;
 

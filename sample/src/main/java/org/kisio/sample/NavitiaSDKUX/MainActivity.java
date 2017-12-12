@@ -8,8 +8,8 @@ import android.widget.Button;
 
 import org.joda.time.DateTime;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
-import org.kisio.NavitiaSDKUX.Controllers.JourneySolutionsInParameters;
 import org.kisio.NavitiaSDKUX.Controllers.JourneySolutionsActivity;
+import org.kisio.NavitiaSDKUX.Controllers.JourneySolutionsInParameters;
 
 import java.util.Arrays;
 

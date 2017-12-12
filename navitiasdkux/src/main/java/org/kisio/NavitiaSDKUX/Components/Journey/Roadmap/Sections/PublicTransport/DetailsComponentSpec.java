@@ -18,13 +18,16 @@ import org.kisio.NavitiaSDKUX.Components.ActionComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Roadmap3ColumnsLayout;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.DetailButtonComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.PublicTransport.Details.IntermediateStopPointComponent;
-import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.SectionRowLayoutComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
+import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
+import org.kisio.NavitiaSDKUX.Components.ViewComponent;
+import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.R;
 import org.kisio.NavitiaSDKUX.Util.Color;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -51,10 +54,10 @@ class DetailsComponentSpec {
         final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c).testKey(testKey);
 
         if (section.getStopDateTimes() != null && section.getStopDateTimes().size() > 2) {
-            ComponentLayout.ContainerBuilder intermediateStopsComponent;
+            ViewComponent.Builder intermediateStopsComponent;
 
             if (collapsed) {
-                intermediateStopsComponent = BaseViewComponent.create(c);
+                intermediateStopsComponent = ViewComponent.create(c);
             } else {
                 intermediateStopsComponent = getIntermediateStops(c, section);
             }
@@ -90,15 +93,13 @@ class DetailsComponentSpec {
         collapsed.set(!collapsed.get());
     }
 
-    static ComponentLayout.ContainerBuilder getIntermediateStops(ComponentContext c, Section section) {
-        final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c);
-        StylizedComponent.applyStyles(builder, stationListStyles);
-
+    static ViewComponent.Builder getIntermediateStops(ComponentContext c, Section section) {
         int lastIndex = section.getStopDateTimes().size() - 1;
         int index = 0;
+        List<Component> components = new ArrayList<>();
         for (StopDateTime stopDateTime : section.getStopDateTimes()) {
             if (index > 0 && index < lastIndex) {
-                builder.child(
+                components.add(
                     IntermediateStopPointComponent.create(c)
                         .stopDateTime(stopDateTime)
                         .color(Color.getColorFromHexadecimal(section.getDisplayInformations().getColor()))
@@ -108,11 +109,13 @@ class DetailsComponentSpec {
             index++;
         }
 
-        return builder;
+        return ViewComponent.create(c)
+            .styles(intermediateStopsStyles)
+            .children(components.toArray(new Component[components.size()]));
     }
 
-    static Map<String, Object> stationListStyles = new HashMap<>();
+    static Map<String, Object> intermediateStopsStyles = new HashMap<>();
     static {
-        stationListStyles.put("marginTop", 15);
+        intermediateStopsStyles.put("marginTop", Configuration.metrics.marginL);
     }
 }

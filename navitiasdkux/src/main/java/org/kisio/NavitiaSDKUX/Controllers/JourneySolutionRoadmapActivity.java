@@ -1,6 +1,6 @@
 package org.kisio.NavitiaSDKUX.Controllers;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +41,7 @@ public class JourneySolutionRoadmapActivity extends AppCompatActivity {
         try {
             final Component<JourneySolutionRoadmapScreen> screenComponent = builder.build();
             final LithoView lithoView = LithoView.create(this, screenComponent);
+            lithoView.setBackgroundColor(Color.parseColor("#efefef"));
             setContentView(lithoView);
         } catch (IllegalStateException e) {
             Log.e(TAG, e.getMessage());

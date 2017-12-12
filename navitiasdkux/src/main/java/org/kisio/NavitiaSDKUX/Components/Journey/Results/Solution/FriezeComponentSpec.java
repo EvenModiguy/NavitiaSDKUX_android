@@ -11,14 +11,13 @@ import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.BusinessLogic.SectionMatcher;
 import org.kisio.NavitiaSDKUX.Components.Journey.Results.Solution.Frieze.SectionSummaryComponent;
+import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.HorizontalViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
 import org.kisio.NavitiaSDKUX.Components.SeparatorComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

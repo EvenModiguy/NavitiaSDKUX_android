@@ -13,9 +13,9 @@ import com.facebook.yoga.YogaJustify;
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.Components.DurationComponent;
+import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.HorizontalViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
 import org.kisio.NavitiaSDKUX.Components.SeparatorComponent;
 import org.kisio.NavitiaSDKUX.Components.TextComponent;
 import org.kisio.NavitiaSDKUX.Components.ViewComponent;
@@ -88,8 +88,8 @@ public class RowComponentSpec {
 
     static Map<String, Object> journeyHeaderStyles = new HashMap<>();
     static {
-        journeyHeaderStyles.put("paddingTop", 16);
-        journeyHeaderStyles.put("paddingBottom", 16);
+        journeyHeaderStyles.put("paddingTop", Configuration.metrics.marginL);
+        journeyHeaderStyles.put("paddingBottom", Configuration.metrics.marginL);
     }
 
     static Map<String, Object> timesStyles = new HashMap<>();

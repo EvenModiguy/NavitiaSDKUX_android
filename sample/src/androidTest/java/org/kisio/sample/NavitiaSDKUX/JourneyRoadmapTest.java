@@ -1,30 +1,16 @@
 package org.kisio.sample.NavitiaSDKUX;
 
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 
-import com.facebook.litho.LithoView;
-import com.facebook.litho.LithoViewTestHelper;
-import com.facebook.litho.testing.espresso.ComponentHostMatchers;
 import com.facebook.litho.testing.espresso.LithoActivityTestRule;
 import com.facebook.litho.testing.espresso.LithoViewMatchers;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kisio.NavitiaSDK.models.Journey;
 import org.kisio.NavitiaSDKUX.Controllers.JourneySolutionRoadmapActivity;
 import org.kisio.NavitiaSDKUX.Controllers.JourneySolutionsActivity;
 
@@ -32,13 +18,6 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withTagValue;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static com.facebook.litho.testing.espresso.ComponentHostMatchers.componentHost;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest

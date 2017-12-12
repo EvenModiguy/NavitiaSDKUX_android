@@ -7,9 +7,9 @@ import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.yoga.YogaAlign;
 import com.facebook.yoga.YogaJustify;
 
+import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.HorizontalViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
 import org.kisio.NavitiaSDKUX.Components.SeparatorComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 

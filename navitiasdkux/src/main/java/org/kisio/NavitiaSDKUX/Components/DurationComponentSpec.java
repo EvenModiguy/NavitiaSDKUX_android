@@ -76,19 +76,19 @@ public class DurationComponentSpec {
     static {
         digitsStyles.put("color", Configuration.colors.getTertiary());
         digitsStyles.put("fontWeight", "bold");
-        digitsStyles.put("paddingRight", 4);
+        digitsStyles.put("paddingRight", Configuration.metrics.marginS);
     }
 
     static Map<String, Object> abbrStyles = new HashMap<>();
     static {
         abbrStyles.put("color", Configuration.colors.getTertiary());
-        abbrStyles.put("paddingRight", 8);
+        abbrStyles.put("paddingRight", Configuration.metrics.margin);
     }
 
     static Map<String, Object> arrowStyles = new HashMap<>();
     static {
         arrowStyles.put("color", Configuration.colors.getTertiary());
         arrowStyles.put("fontSize", 16);
-        arrowStyles.put("marginRight", -4);
+        arrowStyles.put("marginRight", Configuration.metrics.marginS * -1);
     }
 }

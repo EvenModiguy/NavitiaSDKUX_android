@@ -7,11 +7,9 @@ import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
-import com.facebook.litho.widget.Text;
 
 import org.joda.time.DateTime;
 import org.kisio.NavitiaSDKUX.Components.Primitive.ButtonComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.LabelComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.R;

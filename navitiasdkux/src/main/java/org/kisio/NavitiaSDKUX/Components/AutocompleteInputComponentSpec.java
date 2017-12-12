@@ -8,10 +8,10 @@ import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
 import com.facebook.yoga.YogaAlign;
 
+import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.ButtonComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.HorizontalViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 
 import java.util.HashMap;
@@ -55,10 +55,10 @@ public class AutocompleteInputComponentSpec {
         final ComponentLayout.ContainerBuilder builder = HorizontalViewComponent.create(c);
         builder
         .child(
-            AutocompleteInputComponentSpec.getIconComponent(c, icon, iconColor)
+            getIconComponent(c, icon, iconColor)
         )
         .child(
-            AutocompleteInputComponentSpec.getLabelComponent(c, placeName)
+            getLabelComponent(c, placeName)
         );
         final Map<String, Object> computedStyles = StylizedComponent.mergeStyles(containerStyles, styles);
         return StylizedComponent.applyStyles(builder, computedStyles);
@@ -84,9 +84,9 @@ public class AutocompleteInputComponentSpec {
 
     static Map<String, Object> containerStyles = new HashMap<>();
     static {
-        containerStyles.put("padding", 12);
+        containerStyles.put("padding", Configuration.metrics.marginS * 3);
         containerStyles.put("alignItems", YogaAlign.CENTER);
-        containerStyles.put("paddingRight", 8);
+        containerStyles.put("paddingRight", Configuration.metrics.margin);
     }
 
     static Map<String, Object> iconStyles = new HashMap<>();

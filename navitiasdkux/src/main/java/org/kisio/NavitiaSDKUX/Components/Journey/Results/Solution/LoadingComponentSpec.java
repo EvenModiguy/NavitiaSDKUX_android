@@ -9,8 +9,8 @@ import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
 
+import org.kisio.NavitiaSDKUX.Components.CardComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Results.Solution.Loading.ShimCardContentComponent;
-import org.kisio.NavitiaSDKUX.Components.ListRowComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 
@@ -27,7 +27,7 @@ public class LoadingComponentSpec {
         ComponentContext c,
         @Prop(optional = true) Map<String, Object> styles) {
 
-        final ListRowComponent.Builder builder = ListRowComponent.create(c);
+        final CardComponent.Builder builder = CardComponent.create(c);
         builder
             .child(
                 ShimCardContentComponent.create(c)

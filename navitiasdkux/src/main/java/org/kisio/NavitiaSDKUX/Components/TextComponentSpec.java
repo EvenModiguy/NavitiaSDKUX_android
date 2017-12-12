@@ -45,7 +45,5 @@ public class TextComponentSpec {
     static Map<String, Object> textStyles = new HashMap<>();
     static {
         textStyles.put("color", Configuration.colors.getPrimary());
-        textStyles.put("maxLines", 2);
-        textStyles.put("ellipsis", TextUtils.TruncateAt.END);
     }
 }

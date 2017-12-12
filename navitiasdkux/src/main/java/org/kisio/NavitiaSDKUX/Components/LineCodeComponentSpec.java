@@ -9,9 +9,9 @@ import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
 
 import org.kisio.NavitiaSDK.models.Section;
-import org.kisio.NavitiaSDKUX.BusinessLogic.DisruptionLevel;
-import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
+import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
+import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.Util.Color;
 
 import java.util.HashMap;
@@ -61,7 +61,7 @@ public class LineCodeComponentSpec {
 
     static Map<String, Object> textBaseStyles = new HashMap<>();
     static {
-        textBaseStyles.put("fontSize", 12);
+        textBaseStyles.put("fontSize", Configuration.metrics.textS);
         textBaseStyles.put("fontWeight", "bold");
     }
 }

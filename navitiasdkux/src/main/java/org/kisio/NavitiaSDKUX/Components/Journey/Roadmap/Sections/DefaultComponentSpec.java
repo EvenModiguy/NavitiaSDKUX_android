@@ -8,10 +8,11 @@ import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
 
 import org.kisio.NavitiaSDK.models.Section;
-import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
+import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.SeparatorComponent;
 import org.kisio.NavitiaSDKUX.Components.TextComponent;
+import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.Util.Metrics;
 
 import java.util.HashMap;
@@ -64,12 +65,12 @@ public class DefaultComponentSpec {
 
     static Map<String, Object> containerStyles = new HashMap<>();
     static {
-        containerStyles.put("padding", 10);
+        containerStyles.put("padding", Configuration.metrics.margin);
     }
 
     static Map<String, Object> separatorStyles = new HashMap<>();
     static {
-        separatorStyles.put("marginBottom", 10);
+        separatorStyles.put("marginBottom", Configuration.metrics.margin);
     }
 
     static Map<String, Object> typeStyles = new HashMap<>();

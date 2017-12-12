@@ -11,8 +11,8 @@ import com.facebook.yoga.YogaAlign;
 
 import org.kisio.NavitiaSDKUX.Components.HorizontalContainerComponent;
 import org.kisio.NavitiaSDKUX.Components.IconComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
+import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.TextComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.R;
@@ -57,21 +57,21 @@ class DetailButtonComponentSpec {
 
     static Map<String, Object> detailsHeaderContainerStyle = new HashMap<>();
     static {
-        detailsHeaderContainerStyle.put("paddingHorizontal", 5);
+        detailsHeaderContainerStyle.put("paddingHorizontal", Configuration.metrics.marginS);
         detailsHeaderContainerStyle.put("alignItems", YogaAlign.CENTER);
     }
 
     static Map<String, Object> collapserWayIconStyles = new HashMap<>();
     static {
         collapserWayIconStyles.put("color", Configuration.colors.getGray());
-        collapserWayIconStyles.put("fontSize", 12);
-        collapserWayIconStyles.put("marginRight", 5);
+        collapserWayIconStyles.put("fontSize", Configuration.metrics.textS);
+        collapserWayIconStyles.put("marginRight", Configuration.metrics.marginS);
     }
 
     static Map<String, Object> detailsHeaderTitleStyle = new HashMap<>();
     static {
         detailsHeaderTitleStyle.put("color", Configuration.colors.getGray());
-        detailsHeaderTitleStyle.put("fontSize", 13);
-        detailsHeaderTitleStyle.put("marginRight", 5);
+        detailsHeaderTitleStyle.put("fontSize", Configuration.metrics.textS);
+        detailsHeaderTitleStyle.put("marginRight", Configuration.metrics.marginS);
     }
 }

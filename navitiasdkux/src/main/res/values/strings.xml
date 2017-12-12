@@ -24,10 +24,12 @@
     <string name="units.kilometer">kilometer</string>
     <string name="units.kilometer.plural">kilometers</string>
     <string name="units.kilometer.abbr">km</string>
+    <string name="component.Journey.Roadmap.Sections.StreetNetwork.Description.to">To</string>
     <string name="component.Journey.Roadmap.Sections.StreetNetwork.Description.mode.walking">A %1$s walk</string>
     <string name="component.Journey.Roadmap.Sections.StreetNetwork.Description.mode.bike">A %1$s ride</string>
     <string name="component.Journey.Roadmap.Sections.StreetNetwork.Description.mode.car">A %1$s drive</string>
-    <string name="component.Journey.Roadmap.Sections.StreetNetwork.Description.mode.bss">A %1$s ride on a %2$s</string>
+    <string name="component.Journey.Roadmap.Sections.StreetNetwork.Description.mode.bss.take">Take a %1$s bike at</string>
+    <string name="component.Journey.Roadmap.Sections.StreetNetwork.Description.mode.bss.to">to</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.Description.Disruption.Description.Period.from">From</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.Description.Disruption.Description.Period.to">to</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.Description.Disruption.Description.Period.to.fallback">until further notice</string>

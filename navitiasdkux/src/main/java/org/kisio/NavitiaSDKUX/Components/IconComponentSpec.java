@@ -6,9 +6,7 @@ import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
-import com.facebook.litho.widget.Text;
 
-import org.kisio.NavitiaSDKUX.Components.Primitive.LabelComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Util.Icons;
 

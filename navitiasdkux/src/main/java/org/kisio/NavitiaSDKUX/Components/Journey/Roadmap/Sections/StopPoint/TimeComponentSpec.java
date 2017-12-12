@@ -23,12 +23,14 @@ import static org.kisio.NavitiaSDKUX.Util.Metrics.timeText;
 @LayoutSpec
 class TimeComponentSpec {
     @PropDefault static final Map<String, Object> styles = new HashMap<>();
+    @PropDefault static Map<String, Object> labelStyles = new HashMap<>();
 
     @OnCreateLayout
     static ComponentLayout onCreateLayout(
         ComponentContext c,
         @Prop(optional = true) String testKey,
         @Prop(optional = true) Map<String, Object> styles,
+        @Prop(optional = true) Map<String, Object> labelStyles,
         @Prop String dateTime) {
 
         final ViewComponent.Builder builder = ViewComponent.create(c)
@@ -39,7 +41,7 @@ class TimeComponentSpec {
                     .styles(paddingCenteringStyle)
                     .build(),
                 TextComponent.create(c)
-                    .styles(labelStyles)
+                    .styles(StylizedComponent.mergeStyles(labelBaseStyles, labelStyles))
                     .text(timeText(dateTime))
                     .build(),
                     ViewComponent.create(c)
@@ -64,9 +66,9 @@ class TimeComponentSpec {
         paddingCenteringStyle.put("padding", 0);
     }
 
-    static Map<String, Object> labelStyles = new HashMap<>();
+    static Map<String, Object> labelBaseStyles = new HashMap<>();
     static {
         labelStyles.put("color", Configuration.colors.getDarkText());
-        labelStyles.put("fontSize", 13);
+        labelStyles.put("fontSize", Configuration.metrics.textS);
     }
 }

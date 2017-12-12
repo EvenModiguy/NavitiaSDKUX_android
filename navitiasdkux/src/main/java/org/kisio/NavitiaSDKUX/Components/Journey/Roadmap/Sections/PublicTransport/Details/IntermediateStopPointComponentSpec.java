@@ -13,9 +13,8 @@ import com.facebook.litho.annotations.PropDefault;
 import org.kisio.NavitiaSDK.models.StopDateTime;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Roadmap3ColumnsLayout;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.LineDiagram.StopPointIconComponent;
-import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.SectionRowLayoutComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
+import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.TextComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 
@@ -61,12 +60,12 @@ class IntermediateStopPointComponentSpec {
 
     static Map<String, Object> containerStyles = new HashMap<>();
     static {
-        containerStyles.put("paddingBottom", 10);
+        containerStyles.put("paddingBottom", Configuration.metrics.margin);
     }
 
     static Map<String, Object> stopPointLabelStyles = new HashMap<>();
     static {
-        stopPointLabelStyles.put("fontSize", 13);
+        stopPointLabelStyles.put("fontSize", Configuration.metrics.textS);
         stopPointLabelStyles.put("fontWeight", "bold");
         stopPointLabelStyles.put("color", Configuration.colors.getDarkerGray());
         stopPointLabelStyles.put("paddingLeft", 5);
