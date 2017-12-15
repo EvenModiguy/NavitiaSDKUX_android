@@ -22,7 +22,7 @@ public class LabelComponent {
         @AttrRes int defStyleAttr,
         @StyleRes int defStyleRes) {
         return Text.create(c, defStyleAttr, defStyleRes)
-            .textSizeDip(14);
+            .textSizeSp(14);
     }
 
     public static Text.Builder create(ComponentContext c) {

@@ -18,6 +18,7 @@ import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ import java.util.Map;
 @LayoutSpec
 public class SectionComponentSpec {
     @PropDefault static final Map<String, Object> styles = new HashMap<>();
-    @PropDefault static final Section destinationSection = null;
+    @PropDefault static final List<Disruption> disruptions = new ArrayList<>();
 
     @OnCreateLayout
     static ComponentLayout onCreateLayout(
@@ -33,27 +34,28 @@ public class SectionComponentSpec {
         @Prop(optional = true) String testKey,
         @Prop(optional = true) Map<String, Object> styles,
         @Prop Section section,
-        @Prop List<Disruption> disruptions,
-        @Prop(optional = true) Section destinationSection,
+        @Prop(optional = true) List<Disruption> disruptions,
         @Prop(optional = true) String departureTime,
         @Prop(optional = true) String arrivalTime,
-        @Prop(optional = true) String description) {
+        @Prop(optional = true) String description,
+        @Prop(optional = true) Integer waitingTime) {
 
         final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c).testKey(testKey).child(
             ContainerComponent.create(c).styles(containerStyles).children(new Component<?>[] {
-                getTypedSectionComponent(c, section, disruptions, destinationSection, description, departureTime, arrivalTime)
+                getTypedSectionComponent(c, section, disruptions, description, departureTime, arrivalTime, waitingTime)
             })
         );
         final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder, styles);
         return styledBuilder.build();
     }
 
-    static Component<?> getTypedSectionComponent(ComponentContext c, Section section, List<Disruption> disruptions, Section destinationSection, String description, String departureTime, String arrivalTime) {
+    static Component<?> getTypedSectionComponent(ComponentContext c, Section section, List<Disruption> disruptions, String description, String departureTime, String arrivalTime, Integer waitingTime) {
         switch (section.getType()) {
             case "public_transport":
                 return PublicTransportComponent.create(c)
                     .disruptions(disruptions)
                     .section(section)
+                    .waitingDuration(waitingTime)
                     .build();
             case "street_network":
                 return StreetNetworkComponent.create(c)
@@ -64,12 +66,8 @@ public class SectionComponentSpec {
                     .build();
             case "transfer":
                 return TransferComponent.create(c)
-                        .section(section)
-                        .build();
-            case "waiting":
-                return WaitingComponent.create(c)
-                        .section(section)
-                        .build();
+                    .section(section)
+                    .build();
             default:
                 return DefaultComponent.create(c)
                     .section(section)

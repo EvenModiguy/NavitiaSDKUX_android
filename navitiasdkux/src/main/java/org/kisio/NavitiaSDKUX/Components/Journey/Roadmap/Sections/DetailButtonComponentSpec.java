@@ -22,25 +22,27 @@ import java.util.Map;
 @LayoutSpec
 class DetailButtonComponentSpec {
     @PropDefault static final Map<String, Object> styles = new HashMap<>();
+    @PropDefault static final String text = "Détails";
 
     @OnCreateLayout
     static ComponentLayout onCreateLayout(
         ComponentContext c,
         @Prop(optional = true) String testKey,
         @Prop(optional = true) Map<String, Object> styles,
+        @Prop(optional = true) String text,
         @Prop Boolean collapsed) {
 
         final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c).testKey(testKey).child(
             HorizontalContainerComponent.create(c)
                 .styles(detailsHeaderContainerStyle)
                 .children(new Component<?>[] {
+                    TextComponent.create(c)
+                        .styles(detailsHeaderTitleStyle)
+                        .text(text)
+                        .build(),
                     IconComponent.create(c)
                         .styles(collapserWayIconStyles)
                         .name(collapsed ? "arrow-details-down" : "arrow-details-up")
-                        .build(),
-                    TextComponent.create(c)
-                        .styles(detailsHeaderTitleStyle)
-                        .text("Détails")
                         .build()
                 })
         );

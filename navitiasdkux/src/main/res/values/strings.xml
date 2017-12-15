@@ -8,13 +8,17 @@
     <string name="screen.JourneySolutionsScreen.error">No journey found</string>
     <string name="controller.JourneySolutionRoadmapController.title">Roadmap</string>
     <string name="journey.roadmap.action.walk">walk</string>
-    <string name="journey.roadmap.action.wait">wait</string>
+    <string name="journey.roadmap.action.wait">Wait</string>
     <string name="units.hour">hour</string>
     <string name="units.hour.plural">hours</string>
     <string name="units.hour.abbr">h</string>
     <string name="units.minute">minute</string>
     <string name="units.minute.plural">minutes</string>
     <string name="units.minute.abbr">min</string>
+    <string name="units.hour.plural.and.minute.plural">%1$1d hours and %1$1d minutes</string>
+    <string name="units.hour.plural.and.minute">%1$1d hours and %1$1d minute</string>
+    <string name="units.hour.and.minute.plural">%1$1d hour and %1$1d minutes</string>
+    <string name="units.hour.and.minute">%1$1d hour and %1$1d minute</string>
     <string name="units.meter">meter</string>
     <string name="units.meter.plural">meters</string>
     <string name="units.kilometer">kilometer</string>
@@ -27,4 +31,8 @@
     <string name="component.Journey.Roadmap.Sections.PublicTransport.Description.Disruption.Description.Period.from">From</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.Description.Disruption.Description.Period.to">to</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.Description.Disruption.Description.Period.to.fallback">until further notice</string>
+    <string name="component.Journey.Roadmap.Sections.PublicTransport.Details.nb.stops">%1$1d stops</string>
+    <string name="component.Journey.Roadmap.Sections.PublicTransport.instructions_take">Take the</string>
+    <string name="component.Journey.Roadmap.Sections.PublicTransport.instructions_at">at</string>
+    <string name="component.Journey.Roadmap.Sections.PublicTransport.instructions_direction">in the direction of</string>
 </resources>

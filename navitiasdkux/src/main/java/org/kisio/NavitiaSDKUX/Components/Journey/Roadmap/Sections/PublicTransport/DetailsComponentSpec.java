@@ -1,5 +1,6 @@
 package org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.PublicTransport;
 
+import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.StateValue;
@@ -14,11 +15,13 @@ import com.facebook.litho.annotations.State;
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDK.models.StopDateTime;
 import org.kisio.NavitiaSDKUX.Components.ActionComponent;
+import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Roadmap3ColumnsLayout;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.DetailButtonComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.PublicTransport.Details.IntermediateStopPointComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.SectionRowLayoutComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
+import org.kisio.NavitiaSDKUX.R;
 import org.kisio.NavitiaSDKUX.Util.Color;
 
 import java.util.HashMap;
@@ -45,31 +48,41 @@ class DetailsComponentSpec {
         @Prop(optional = true) Map<String, Object> styles,
         @Prop Section section) {
 
-        ComponentLayout.ContainerBuilder intermediateStopsComponent;
+        final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c).testKey(testKey);
 
-        if (collapsed) {
-            intermediateStopsComponent = BaseViewComponent.create(c);
+        if (section.getStopDateTimes() != null && section.getStopDateTimes().size() > 2) {
+            ComponentLayout.ContainerBuilder intermediateStopsComponent;
+
+            if (collapsed) {
+                intermediateStopsComponent = BaseViewComponent.create(c);
+            } else {
+                intermediateStopsComponent = getIntermediateStops(c, section);
+            }
+
+            final String textTemplate = c.getString(R.string.component_Journey_Roadmap_Sections_PublicTransport_Details_nb_stops);
+            builder
+                .child(
+                    ActionComponent.create(c).actionToCall(new Callable<Void>() { public Void call() {
+                        DetailsComponent.updateCollapsedAsync(c);
+                        return null;
+                    }}).child(
+                        Roadmap3ColumnsLayout.create(c)
+                            .rightChildren(new Component[]{
+                                DetailButtonComponent.create(c)
+                                    .collapsed(collapsed)
+                                    .text(String.format(textTemplate, section.getStopDateTimes().size() - 1))
+                                    .build()
+                            })
+                    )
+                ).child(
+                    intermediateStopsComponent
+                );
+
+            final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder, styles);
+            return styledBuilder.build();
         } else {
-            intermediateStopsComponent = getIntermediateStops(c, section);
+            return builder.build();
         }
-
-        final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c).testKey(testKey).child(
-            ActionComponent.create(c).actionToCall(new Callable<Void>() { public Void call() {
-                DetailsComponent.updateCollapsedAsync(c);
-                return null;
-            }}).child(
-                SectionRowLayoutComponent.create(c)
-                    .thirdComponent(
-                        DetailButtonComponent.create(c)
-                            .collapsed(collapsed)
-                )
-            )
-        ).child(
-            intermediateStopsComponent
-        );
-
-        final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder, styles);
-        return styledBuilder.build();
     }
 
     @OnUpdateState

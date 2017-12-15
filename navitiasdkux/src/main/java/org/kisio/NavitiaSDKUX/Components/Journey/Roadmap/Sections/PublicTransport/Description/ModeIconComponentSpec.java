@@ -38,9 +38,8 @@ class ModeIconComponentSpec {
 
     static Map<String, Object> containerStyles = new HashMap<>();
     static {
-        containerStyles.put("flexGrow", 1);
+        containerStyles.put("marginTop", 14);
         containerStyles.put("alignItems", YogaAlign.CENTER);
-        containerStyles.put("justifyContent", YogaJustify.CENTER);
     }
 
     static Map<String, Object> modeStyles = new HashMap<>();

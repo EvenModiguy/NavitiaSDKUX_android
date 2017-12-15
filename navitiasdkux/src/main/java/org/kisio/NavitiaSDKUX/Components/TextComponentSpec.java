@@ -25,13 +25,13 @@ import java.util.Map;
 @LayoutSpec
 public class TextComponentSpec {
     @PropDefault static final Map<String, Object> styles = new HashMap<>();
-    @PropDefault static final String text = "";
+    @PropDefault static final CharSequence text = "";
 
     @OnCreateLayout
     static ComponentLayout onCreateLayout(
         ComponentContext c,
         @Prop(optional = true) Map<String, Object> styles,
-        @Prop(optional = true) String text) {
+        @Prop(optional = true) CharSequence text) {
 
         final Text.Builder builder = LabelComponent.create(c)
             .text(text);

@@ -2,6 +2,7 @@ package org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.PublicTranspo
 
 import android.text.TextUtils;
 
+import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.annotations.LayoutSpec;
@@ -10,6 +11,7 @@ import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
 
 import org.kisio.NavitiaSDK.models.StopDateTime;
+import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Roadmap3ColumnsLayout;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.LineDiagram.StopPointIconComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.SectionRowLayoutComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
@@ -36,19 +38,21 @@ class IntermediateStopPointComponentSpec {
         final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c).testKey(testKey);
 
         builder.child(
-            SectionRowLayoutComponent.create(c)
+            Roadmap3ColumnsLayout.create(c)
                 .styles(containerStyles)
-                .secondComponent(
+                .middleChildren(new Component[]{
                     StopPointIconComponent.create(c)
                         .color(color)
-                        .outerFontSize(12)
+                        .outerFontSize(13)
                         .innerFontSize(0)
-                )
-                .thirdComponent(
+                        .build()
+                })
+                .rightChildren(new Component[]{
                     TextComponent.create(c)
                         .styles(stopPointLabelStyles)
                         .text(stopDateTime.getStopPoint().getLabel())
-                )
+                        .build()
+                })
         );
 
         final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder, styles);
@@ -62,7 +66,7 @@ class IntermediateStopPointComponentSpec {
 
     static Map<String, Object> stopPointLabelStyles = new HashMap<>();
     static {
-        stopPointLabelStyles.put("fontSize", 12);
+        stopPointLabelStyles.put("fontSize", 13);
         stopPointLabelStyles.put("fontWeight", "bold");
         stopPointLabelStyles.put("color", Configuration.colors.getDarkerGray());
         stopPointLabelStyles.put("paddingLeft", 5);

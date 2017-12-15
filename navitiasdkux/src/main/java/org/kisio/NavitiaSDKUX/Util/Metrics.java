@@ -71,6 +71,10 @@ public class Metrics {
     }
 
     public static String durationText(ComponentContext c, Integer seconds) {
+        return durationText(c, seconds, false);
+    }
+
+    public static String durationText(ComponentContext c, Integer seconds, Boolean useFullFormat) {
         if (seconds < 60) {
             return "< 1 " + c.getString(R.string.units_minute);
         } else if (seconds < 120) {
@@ -85,7 +89,24 @@ public class Metrics {
             if (remainingMinutes < 10) {
                 minutes = "0" + String.valueOf(remainingMinutes);
             }
-            return String.valueOf(hours) + c.getString(R.string.units_hour_abbr) + minutes;
+
+            if (useFullFormat) {
+                if (hours > 1) {
+                    if (remainingMinutes > 1) {
+                        return String.format(c.getString(R.string.units_hour_plural_and_minute_plural), hours, remainingMinutes);
+                    } else {
+                        return String.format(c.getString(R.string.units_hour_plural_and_minute), hours, remainingMinutes);
+                    }
+                } else {
+                    if (remainingMinutes > 1) {
+                        return String.format(c.getString(R.string.units_hour_and_minute_plural), hours, remainingMinutes);
+                    } else {
+                        return String.format(c.getString(R.string.units_hour_and_minute), hours, remainingMinutes);
+                    }
+                }
+            } else {
+                return String.valueOf(hours) + c.getString(R.string.units_hour_abbr) + minutes;
+            }
         }
     }
 

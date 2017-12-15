@@ -1,5 +1,7 @@
 package org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.StopPoint;
 
+import android.graphics.Color;
+
 import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
@@ -47,16 +49,13 @@ public class PlaceComponentSpec {
 
     static Map<String, Object> containerStyles = new HashMap<>();
     static {
-        containerStyles.put("backgroundColor", Configuration.colors.getLighterGray());
         containerStyles.put("paddingHorizontal", 5);
-        containerStyles.put("paddingTop", 14);
-        containerStyles.put("paddingBottom", 14);
     }
 
     static Map<String, Object> labelStyles = new HashMap<>();
     static {
         labelStyles.put("color", Configuration.colors.getDarkText());
         labelStyles.put("fontWeight", "bold");
-        labelStyles.put("fontSize", 15);
+        labelStyles.put("fontSize", 17);
     }
 }

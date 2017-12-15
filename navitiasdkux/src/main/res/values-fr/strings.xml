@@ -8,13 +8,17 @@
     <string name="component.JourneyWalkingSummaryComponent.With">Dont</string>
     <string name="controller.JourneySolutionRoadmapController.title">Feuille de route</string>
     <string name="journey.roadmap.action.walk">de marche</string>
-    <string name="journey.roadmap.action.wait">d\'attente</string>
+    <string name="journey.roadmap.action.wait">Attendre</string>
     <string name="units.hour">heure</string>
     <string name="units.hour.plural">heures</string>
     <string name="units.hour.abbr">h</string>
     <string name="units.minute">minute</string>
     <string name="units.minute.plural">minutes</string>
     <string name="units.minute.abbr">min</string>
+    <string name="units.hour.plural.and.minute.plural">%1$1d heures et %1$1d minutes</string>
+    <string name="units.hour.plural.and.minute">%1$1d heures et %1$1d minute</string>
+    <string name="units.hour.and.minute.plural">%1$1d heure et %1$1d minutes</string>
+    <string name="units.hour.and.minute">%1$1d heure et %1$1d minute</string>
     <string name="units.meter">mètre</string>
     <string name="units.meter.plural">mètres</string>
     <string name="units.kilometer">kilomètre</string>
@@ -27,4 +31,8 @@
     <string name="component.Journey.Roadmap.Sections.PublicTransport.Description.Disruption.Description.Period.from">Du</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.Description.Disruption.Description.Period.to">au</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.Description.Disruption.Description.Period.to.fallback">jusqu\'à nouvel ordre</string>
+    <string name="component.Journey.Roadmap.Sections.PublicTransport.Details.nb.stops">"%1$1d arrêts"</string>
+    <string name="component.Journey.Roadmap.Sections.PublicTransport.instructions_take">Prend le</string>
+    <string name="component.Journey.Roadmap.Sections.PublicTransport.instructions_at">à</string>
+    <string name="component.Journey.Roadmap.Sections.PublicTransport.instructions_direction">en direction de</string>
 </resources>

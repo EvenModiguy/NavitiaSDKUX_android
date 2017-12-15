@@ -67,6 +67,6 @@ class TimeComponentSpec {
     static Map<String, Object> labelStyles = new HashMap<>();
     static {
         labelStyles.put("color", Configuration.colors.getDarkText());
-        labelStyles.put("fontSize", 12);
+        labelStyles.put("fontSize", 13);
     }
 }

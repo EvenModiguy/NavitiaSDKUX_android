@@ -170,7 +170,10 @@ public class StylizedComponent {
                     builder.typeface((Typeface) value);
                     break;
                 case "fontSize":
-                    builder.textSizeDip((int) value);
+                    builder.textSizeSp(new Float(value.toString()));
+                    break;
+                case "spacingMultiplier":
+                    builder.spacingMultiplier(new Float(value.toString()));
                     break;
                 case "fontWeight":
                     builder.textStyle(Typeface.BOLD);
