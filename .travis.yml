@@ -16,7 +16,7 @@ android:
     - ./gradlew build -x test
 
   before_script:
-    - echo SKIPPED
+    - echo SKIPPED_BEFORE_SCRIPT
 
   script:
-    - ./gradlew lint
+    - echo SKIPPED_SCRIPT
