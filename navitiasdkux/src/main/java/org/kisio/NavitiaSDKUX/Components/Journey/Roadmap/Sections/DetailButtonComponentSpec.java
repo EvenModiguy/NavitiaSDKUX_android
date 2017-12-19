@@ -15,6 +15,7 @@ import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
 import org.kisio.NavitiaSDKUX.Components.TextComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
+import org.kisio.NavitiaSDKUX.R;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +23,6 @@ import java.util.Map;
 @LayoutSpec
 class DetailButtonComponentSpec {
     @PropDefault static final Map<String, Object> styles = new HashMap<>();
-    @PropDefault static final String text = "Détails";
 
     @OnCreateLayout
     static ComponentLayout onCreateLayout(
@@ -31,6 +31,10 @@ class DetailButtonComponentSpec {
         @Prop(optional = true) Map<String, Object> styles,
         @Prop(optional = true) String text,
         @Prop Boolean collapsed) {
+
+        if (text == null) {
+            text = c.getString(R.string.component_Journey_Roadmap_Sections_PublicTransport_Details_details);
+        }
 
         final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c).testKey(testKey).child(
             HorizontalContainerComponent.create(c)

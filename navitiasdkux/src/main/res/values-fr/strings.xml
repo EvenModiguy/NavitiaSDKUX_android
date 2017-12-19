@@ -31,8 +31,9 @@
     <string name="component.Journey.Roadmap.Sections.PublicTransport.Description.Disruption.Description.Period.from">Du</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.Description.Disruption.Description.Period.to">au</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.Description.Disruption.Description.Period.to.fallback">jusqu\'à nouvel ordre</string>
+    <string name="component.Journey.Roadmap.Sections.PublicTransport.Details.details">"Détails"</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.Details.nb.stops">"%1$1d arrêts"</string>
-    <string name="component.Journey.Roadmap.Sections.PublicTransport.instructions_take">Prend le</string>
+    <string name="component.Journey.Roadmap.Sections.PublicTransport.instructions_take">Prendre le</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.instructions_at">à</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.instructions_direction">en direction de</string>
 </resources>
