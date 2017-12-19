@@ -11,7 +11,7 @@ import java.util.List;
 
 public class SectionMatcher {
     public static List<Disruption> getMatchingDisruptions(Section section, List<Disruption> disruptions) {
-        if (disruptions == null) {
+        if (disruptions == null || section.getDisplayInformations() == null || section.getDisplayInformations().getLinks() == null) {
             return new ArrayList<>();
         }
 
