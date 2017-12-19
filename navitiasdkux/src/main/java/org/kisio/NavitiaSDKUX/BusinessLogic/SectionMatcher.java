@@ -25,11 +25,7 @@ public class SectionMatcher {
         List<Disruption> disruptionsResult = new ArrayList<>();
         for (Disruption disruption: disruptions) {
             if (disruption.getId() != null && linkIdsWithDisruption.contains(disruption.getId()) && disruption.getApplicationPeriods() != null) {
-                for (Period period: disruption.getApplicationPeriods()) {
-                    if (PeriodMatcher.contains(period, (date != null ? date : new Date()))) {
-                        disruptionsResult.add(disruption);
-                    }
-                }
+                disruptionsResult.add(disruption);
             }
         }
 
