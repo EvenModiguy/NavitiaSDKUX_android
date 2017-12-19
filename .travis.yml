@@ -1,0 +1,19 @@
+language: android
+android:
+  components:
+    # "tools" appears twice on purpose, leave it still
+    - tools
+    - platform-tools
+    - tools
+
+    - build-tools-26.0.2
+    - android-26
+
+  licenses:
+    - 'android-sdk-license-2742d1c5'
+
+  install:
+    - ./gradlew build -x test
+
+  script:
+    - ./gradlew lint
