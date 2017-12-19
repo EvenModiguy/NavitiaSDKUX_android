@@ -63,7 +63,7 @@ public class JourneySolutionRoadmapScreenSpec {
             if (Arrays.asList( "street_network", "public_transport", "transfer", "waiting" ).contains(section.getType())) {
                 List<Disruption> sectionDisruptions = new ArrayList<>();
                 if (section.getType().equals("public_transport") && disruptions != null && disruptions.size() > 0) {
-                    sectionDisruptions = SectionMatcher.getMatchingDisruptions(section, disruptions, new Date());
+                    sectionDisruptions = SectionMatcher.getMatchingDisruptions(section, disruptions);
                 }
                 SectionComponent.Builder sectionComponentBuilder = SectionComponent.create(c)
                     .key("journey_roadmap_section_" + index)

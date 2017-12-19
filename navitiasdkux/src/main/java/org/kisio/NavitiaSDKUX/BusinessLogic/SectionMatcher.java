@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public class SectionMatcher {
-    public static List<Disruption> getMatchingDisruptions(Section section, List<Disruption> disruptions, Date date) {
+    public static List<Disruption> getMatchingDisruptions(Section section, List<Disruption> disruptions) {
         if (disruptions == null) {
             return new ArrayList<>();
         }
