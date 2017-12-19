@@ -32,7 +32,7 @@ public class DisruptionMatcher {
 
     public static DisruptionLevel getHighestDisruptionLevel(List<Disruption> disruptions) {
         DisruptionLevel highestLevel = DisruptionLevel.none;
-        if (disruptions != null) {
+        if (disruptions != null && disruptions.size() > 0) {
             for (Disruption disruption : disruptions) {
                 if (DisruptionMatcher.getLevel(disruption).ordinal() > highestLevel.ordinal()) {
                     highestLevel = DisruptionMatcher.getLevel(disruption);
