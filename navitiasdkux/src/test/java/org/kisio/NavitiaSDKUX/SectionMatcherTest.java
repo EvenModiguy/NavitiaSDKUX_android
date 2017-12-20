@@ -27,13 +27,13 @@ public class SectionMatcherTest {
     @Before
     public void setup() {
         try {
-            Path jsonFilePath = Paths.get(System.getProperty("user.dir") + "/navitiasdkux/src/test/java/org/kisio/NavitiaSDKUX/journeysWithDisruptionsResponse.json");
+            Path jsonFilePath = Paths.get(System.getProperty("user.dir") + "/src/test/java/org/kisio/NavitiaSDKUX/journeysWithDisruptionsResponse.json");
             Gson gson = new Gson();
             journeysResponse = gson.fromJson(new String(Files.readAllBytes(jsonFilePath)), Journeys.class);
         } catch (IOException e) {
-            assertTrue("Test file not loaded", false);
+            assertTrue("Test file not loaded : " + e.getMessage(), false);
         } catch (JsonSyntaxException e) {
-            assertTrue("JSON parsing error", false);
+            assertTrue("JSON parsing error : " + e.getMessage(), false);
         }
     }
 
@@ -42,8 +42,7 @@ public class SectionMatcherTest {
         Section section = journeysResponse.getJourneys().get(0).getSections().get(1);
         List<Disruption> matchingDisruptions = SectionMatcher.getMatchingDisruptions(
             section,
-            journeysResponse.getDisruptions(),
-            new Date()
+            journeysResponse.getDisruptions()
         );
 
         assertEquals(matchingDisruptions.size(), 1);
@@ -59,8 +58,7 @@ public class SectionMatcherTest {
         Section section = journeysResponse.getJourneys().get(0).getSections().get(1);
         List<Disruption> matchingDisruptions = SectionMatcher.getMatchingDisruptions(
             section,
-            new ArrayList<Disruption>(),
-            new Date()
+            new ArrayList<Disruption>()
         );
 
         assertEquals(matchingDisruptions.size(), 0);
@@ -71,32 +69,7 @@ public class SectionMatcherTest {
         Section section = journeysResponse.getJourneys().get(0).getSections().get(1);
         List<Disruption> matchingDisruptions = SectionMatcher.getMatchingDisruptions(
             section,
-            null,
-            new Date()
-        );
-
-        assertEquals(matchingDisruptions.size(), 0);
-    }
-
-    @Test
-    public void testExtensionSectionWithValidDisruptionsAndDateBefore() throws Exception {
-        Section section = journeysResponse.getJourneys().get(0).getSections().get(1);
-        List<Disruption> matchingDisruptions = SectionMatcher.getMatchingDisruptions(
-            section,
-            journeysResponse.getDisruptions(),
-            Metrics.navitiaDate("20160928T140500")
-        );
-
-        assertEquals(matchingDisruptions.size(), 0);
-    }
-
-    @Test
-    public void testExtensionSectionWithValidDisruptionsAndDateAfter() throws Exception {
-        Section section = journeysResponse.getJourneys().get(0).getSections().get(1);
-        List<Disruption> matchingDisruptions = SectionMatcher.getMatchingDisruptions(
-            section,
-            journeysResponse.getDisruptions(),
-            Metrics.navitiaDate("20180928T140500")
+            null
         );
 
         assertEquals(matchingDisruptions.size(), 0);

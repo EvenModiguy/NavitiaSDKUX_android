@@ -54,7 +54,7 @@ public class FriezeComponentSpec {
             if (section.getType().equals("public_transport") || section.getType().equals("street_network")) {
                 List<Disruption> sectionDisruptions = new ArrayList<>();
                 if (section.getType().equals("public_transport") && journeyDisruptions != null && journeyDisruptions.size() > 0) {
-                    sectionDisruptions = SectionMatcher.getMatchingDisruptions(section, journeyDisruptions, new Date());
+                    sectionDisruptions = SectionMatcher.getMatchingDisruptions(section, journeyDisruptions);
                 }
                 builder.child(getSectionComponents(c, section, sectionDisruptions));
             }

@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.List;
 
 public class SectionMatcher {
-    public static List<Disruption> getMatchingDisruptions(Section section, List<Disruption> disruptions, Date date) {
-        if (disruptions == null) {
+    public static List<Disruption> getMatchingDisruptions(Section section, List<Disruption> disruptions) {
+        if (disruptions == null || section.getDisplayInformations() == null || section.getDisplayInformations().getLinks() == null) {
             return new ArrayList<>();
         }
 
@@ -25,11 +25,7 @@ public class SectionMatcher {
         List<Disruption> disruptionsResult = new ArrayList<>();
         for (Disruption disruption: disruptions) {
             if (disruption.getId() != null && linkIdsWithDisruption.contains(disruption.getId()) && disruption.getApplicationPeriods() != null) {
-                for (Period period: disruption.getApplicationPeriods()) {
-                    if (PeriodMatcher.contains(period, (date != null ? date : new Date()))) {
-                        disruptionsResult.add(disruption);
-                    }
-                }
+                disruptionsResult.add(disruption);
             }
         }
 

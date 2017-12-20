@@ -75,7 +75,7 @@ public class JourneySolutionRoadmapScreenSpec {
 
                     if (disruptions != null && disruptions.size() > 0) {
                         sectionComponentBuilder.disruptions(
-                            SectionMatcher.getMatchingDisruptions(section, disruptions, new Date())
+                            SectionMatcher.getMatchingDisruptions(section, disruptions)
                         );
                     }
                 } else if (section.getType().equals("street_network")) {
