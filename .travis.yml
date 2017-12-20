@@ -15,8 +15,5 @@ android:
 install:
   - ./gradlew build -x test
 
-before_script:
-  - echo SKIPPED_BEFORE_SCRIPT
-
 script:
-  - echo SKIPPED_SCRIPT
+  - ./gradlew lint
