@@ -31,9 +31,9 @@ public class SectionMatcherTest {
             Gson gson = new Gson();
             journeysResponse = gson.fromJson(new String(Files.readAllBytes(jsonFilePath)), Journeys.class);
         } catch (IOException e) {
-            assertTrue("Test file not loaded", false);
+            assertTrue("Test file not loaded : " + e.getMessage(), false);
         } catch (JsonSyntaxException e) {
-            assertTrue("JSON parsing error", false);
+            assertTrue("JSON parsing error : " + e.getMessage(), false);
         }
     }
 
