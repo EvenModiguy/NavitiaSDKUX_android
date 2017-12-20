@@ -102,7 +102,7 @@ publishing {
         maven(MavenPublication) {
             groupId 'org.kisio.sdk'
             artifactId 'navitia-sdk-ux'
-            version '0.3.2'
+            version '0.3.3'
             // Or use same version as in android branch
             // version = android.defaultConfig.versionName
 
@@ -112,7 +112,7 @@ publishing {
 
             pom.withXml {
                 def root = asNode()
-                root.appendNode('description', 'NavitiaSDKUX android 0.3.2')
+                root.appendNode('description', 'NavitiaSDKUX android 0.3.3')
                 root.appendNode('name', 'navitia-sdk-ux')
                 root.appendNode('url', 'https://github.com/CanalTP/NavitiaSDKUX_android')
 
@@ -163,10 +163,10 @@ bintray {
         licenses = ['GPL-3.0']
         vcsUrl = 'https://github.com/CanalTP/NavitiaSDKUX_android.git'
         version {
-            name = '0.3.2'
-            desc = 'NavitiaSDKUX android 0.3.2'
+            name = '0.3.3'
+            desc = 'NavitiaSDKUX android 0.3.3'
             released  = new Date()
-            vcsTag = '0.3.2'
+            vcsTag = '0.3.3'
             gpg {
                 sign = true
             }
