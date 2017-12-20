@@ -42,8 +42,7 @@ public class SectionMatcherTest {
         Section section = journeysResponse.getJourneys().get(0).getSections().get(1);
         List<Disruption> matchingDisruptions = SectionMatcher.getMatchingDisruptions(
             section,
-            journeysResponse.getDisruptions(),
-            new Date()
+            journeysResponse.getDisruptions()
         );
 
         assertEquals(matchingDisruptions.size(), 1);
@@ -59,8 +58,7 @@ public class SectionMatcherTest {
         Section section = journeysResponse.getJourneys().get(0).getSections().get(1);
         List<Disruption> matchingDisruptions = SectionMatcher.getMatchingDisruptions(
             section,
-            new ArrayList<Disruption>(),
-            new Date()
+            new ArrayList<Disruption>()
         );
 
         assertEquals(matchingDisruptions.size(), 0);
@@ -71,32 +69,7 @@ public class SectionMatcherTest {
         Section section = journeysResponse.getJourneys().get(0).getSections().get(1);
         List<Disruption> matchingDisruptions = SectionMatcher.getMatchingDisruptions(
             section,
-            null,
-            new Date()
-        );
-
-        assertEquals(matchingDisruptions.size(), 0);
-    }
-
-    @Test
-    public void testExtensionSectionWithValidDisruptionsAndDateBefore() throws Exception {
-        Section section = journeysResponse.getJourneys().get(0).getSections().get(1);
-        List<Disruption> matchingDisruptions = SectionMatcher.getMatchingDisruptions(
-            section,
-            journeysResponse.getDisruptions(),
-            Metrics.navitiaDate("20160928T140500")
-        );
-
-        assertEquals(matchingDisruptions.size(), 0);
-    }
-
-    @Test
-    public void testExtensionSectionWithValidDisruptionsAndDateAfter() throws Exception {
-        Section section = journeysResponse.getJourneys().get(0).getSections().get(1);
-        List<Disruption> matchingDisruptions = SectionMatcher.getMatchingDisruptions(
-            section,
-            journeysResponse.getDisruptions(),
-            Metrics.navitiaDate("20180928T140500")
+            null
         );
 
         assertEquals(matchingDisruptions.size(), 0);
