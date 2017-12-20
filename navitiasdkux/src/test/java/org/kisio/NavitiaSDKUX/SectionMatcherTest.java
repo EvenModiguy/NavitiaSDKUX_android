@@ -27,7 +27,7 @@ public class SectionMatcherTest {
     @Before
     public void setup() {
         try {
-            Path jsonFilePath = Paths.get(System.getProperty("user.dir").replace("/navitiasdkux", "") + "/navitiasdkux/src/test/java/org/kisio/NavitiaSDKUX/journeysWithDisruptionsResponse.json");
+            Path jsonFilePath = Paths.get(System.getProperty("user.dir") + "/src/test/java/org/kisio/NavitiaSDKUX/journeysWithDisruptionsResponse.json");
             Gson gson = new Gson();
             journeysResponse = gson.fromJson(new String(Files.readAllBytes(jsonFilePath)), Journeys.class);
         } catch (IOException e) {
