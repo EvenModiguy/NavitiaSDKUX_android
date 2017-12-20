@@ -12,11 +12,11 @@ android:
   licenses:
     - 'android-sdk-license-2742d1c5'
 
-  install:
-    - ./gradlew build -x test
+install:
+  - ./gradlew build -x test
 
-  before_script:
-    - echo SKIPPED_BEFORE_SCRIPT
+before_script:
+  - echo SKIPPED_BEFORE_SCRIPT
 
-  script:
-    - echo SKIPPED_SCRIPT
+script:
+  - echo SKIPPED_SCRIPT
