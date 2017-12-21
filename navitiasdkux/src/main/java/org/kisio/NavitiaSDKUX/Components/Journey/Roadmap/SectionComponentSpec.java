@@ -16,7 +16,6 @@ import org.kisio.NavitiaSDKUX.Components.ContainerComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.*;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
-import org.kisio.NavitiaSDKUX.Config.Configuration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -56,6 +55,7 @@ public class SectionComponentSpec {
                     .disruptions(disruptions)
                     .section(section)
                     .waitingDuration(waitingTime)
+                    .styles(sectionBlocStyles)
                     .build();
             case "street_network":
                 return StreetNetworkComponent.create(c)
@@ -63,6 +63,7 @@ public class SectionComponentSpec {
                     .description(description)
                     .departureTime(departureTime)
                     .arrivalTime(arrivalTime)
+                    .styles(sectionBlocStyles)
                     .build();
             case "transfer":
                 return TransferComponent.create(c)
@@ -80,5 +81,10 @@ public class SectionComponentSpec {
         containerStyles.put("backgroundColor", Color.WHITE);
         containerStyles.put("paddingHorizontal", 4);
         containerStyles.put("paddingVertical", 4);
+    }
+
+    static Map<String, Object> sectionBlocStyles = new HashMap<>();
+    static {
+        containerStyles.put("paddingVertical", 12);
     }
 }

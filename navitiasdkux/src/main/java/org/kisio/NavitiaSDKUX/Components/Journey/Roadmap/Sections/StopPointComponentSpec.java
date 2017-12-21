@@ -11,11 +11,9 @@ import com.facebook.litho.annotations.PropDefault;
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.BusinessLogic.SectionStopPointType;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Roadmap3ColumnsLayout;
-import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Roadmap3ColumnsLayoutSpec;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.LineDiagram.StopPointIconComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.StopPoint.PlaceComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.StopPoint.TimeComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,7 +1,5 @@
 package org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.StopPoint;
 
-import android.graphics.Color;
-
 import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
@@ -10,9 +8,9 @@ import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
 
-import org.kisio.NavitiaSDKUX.Components.ContainerComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.TextComponent;
+import org.kisio.NavitiaSDKUX.Components.ViewComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 
 import java.util.HashMap;
@@ -32,7 +30,7 @@ public class PlaceComponentSpec {
 
         final Map<String, Object> computedContainerStyles = StylizedComponent.mergeStyles(containerStyles, styles);
 
-        final ContainerComponent.Builder builder = ContainerComponent.create(c)
+        final ViewComponent.Builder builder = ViewComponent.create(c)
             .testKey(testKey)
             .styles(computedContainerStyles)
             .children(new Component<?>[] {

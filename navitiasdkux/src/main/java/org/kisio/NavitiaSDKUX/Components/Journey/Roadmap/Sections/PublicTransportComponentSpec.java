@@ -27,7 +27,6 @@ import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.PublicTranspor
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.PublicTransport.Description.ModeIconComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.PublicTransport.DetailsComponent;
 import org.kisio.NavitiaSDKUX.Components.LineCodeWithDisruptionStatusComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.TextComponent;
 import org.kisio.NavitiaSDKUX.Components.ViewComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
@@ -54,7 +53,7 @@ public class PublicTransportComponentSpec {
         @Prop List<Disruption> disruptions) {
 
         return ViewComponent.create(c).testKey(testKey)
-            .styles(StylizedComponent.mergeStyles(containerStyles, styles))
+            .styles(styles)
             .children(new Component[]{
                 ViewComponent.create(c)
                     .children(new Component[]{
@@ -169,11 +168,6 @@ public class PublicTransportComponentSpec {
     static Map<String, Object> diagramContainerStyles = new HashMap<>();
     static {
         diagramContainerStyles.put("marginTop", 20);
-    }
-
-    static Map<String, Object> containerStyles = new HashMap<>();
-    static {
-        containerStyles.put("paddingVertical", 10);
     }
 
     static Map<String, Object> modeLineLabelStyles = new HashMap<>();
