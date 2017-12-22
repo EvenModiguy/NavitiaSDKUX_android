@@ -58,7 +58,6 @@ class DetailButtonComponentSpec {
     static Map<String, Object> detailsHeaderContainerStyle = new HashMap<>();
     static {
         detailsHeaderContainerStyle.put("paddingHorizontal", 5);
-        detailsHeaderContainerStyle.put("marginBottom", 10);
         detailsHeaderContainerStyle.put("alignItems", YogaAlign.CENTER);
     }
 

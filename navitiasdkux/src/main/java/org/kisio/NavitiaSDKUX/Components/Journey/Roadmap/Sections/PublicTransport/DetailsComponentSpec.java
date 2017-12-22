@@ -92,6 +92,7 @@ class DetailsComponentSpec {
 
     static ComponentLayout.ContainerBuilder getIntermediateStops(ComponentContext c, Section section) {
         final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c);
+        StylizedComponent.applyStyles(builder, stationListStyles);
 
         int lastIndex = section.getStopDateTimes().size() - 1;
         int index = 0;
@@ -108,5 +109,10 @@ class DetailsComponentSpec {
         }
 
         return builder;
+    }
+
+    static Map<String, Object> stationListStyles = new HashMap<>();
+    static {
+        stationListStyles.put("marginTop", 15);
     }
 }

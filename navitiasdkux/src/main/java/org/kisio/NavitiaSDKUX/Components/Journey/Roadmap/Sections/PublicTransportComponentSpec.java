@@ -61,6 +61,7 @@ public class PublicTransportComponentSpec {
                             .leftChildren(new Component[]{
                                 ModeIconComponent.create(c)
                                     .section(section)
+                                    .styles(modeIconStyles)
                                     .build()
                             })
                             .rightChildren(
@@ -196,5 +197,11 @@ public class PublicTransportComponentSpec {
     static {
         bodyContainerStyles.put("paddingVertical", 12);
         bodyContainerStyles.put("paddingHorizontal", 0);
+    }
+
+    static Map<String, Object> modeIconStyles = new HashMap<>();
+    static {
+        modeIconStyles.put("alignItems", YogaAlign.CENTER);
+        modeIconStyles.put("marginTop", 14);
     }
 }

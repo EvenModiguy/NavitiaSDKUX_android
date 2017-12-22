@@ -7,6 +7,7 @@ import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
+import com.facebook.yoga.YogaAlign;
 
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.PublicTransport.Description.ModeIconComponent;
@@ -40,6 +41,7 @@ public class DescriptionComponentSpec {
                     .firstComponent(
                         ModeIconComponent.create(c)
                             .section(section)
+                            .styles(modeIconStyles)
                             .build())
                     .thirdComponent(
                         TextComponent.create(c)
@@ -56,11 +58,17 @@ public class DescriptionComponentSpec {
     static {
         containerStyles.put("paddingHorizontal", 4);
         containerStyles.put("paddingVertical", 24);
+        containerStyles.put("alignItems", YogaAlign.CENTER);
     }
 
     static Map<String, Object> labelStyles = new HashMap<>();
     static {
         labelStyles.put("fontSize", 15);
         labelStyles.put("color", Configuration.colors.getDarkGray());
+    }
+
+    static Map<String, Object> modeIconStyles = new HashMap<>();
+    static {
+        modeIconStyles.put("alignItems", YogaAlign.CENTER);
     }
 }
