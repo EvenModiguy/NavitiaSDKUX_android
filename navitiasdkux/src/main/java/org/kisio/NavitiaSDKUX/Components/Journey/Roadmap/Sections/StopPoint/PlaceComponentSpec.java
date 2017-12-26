@@ -8,9 +8,9 @@ import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
 
-import org.kisio.NavitiaSDKUX.Components.ContainerComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.TextComponent;
+import org.kisio.NavitiaSDKUX.Components.ViewComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public class PlaceComponentSpec {
 
         final Map<String, Object> computedContainerStyles = StylizedComponent.mergeStyles(containerStyles, styles);
 
-        final ContainerComponent.Builder builder = ContainerComponent.create(c)
+        final ViewComponent.Builder builder = ViewComponent.create(c)
             .testKey(testKey)
             .styles(computedContainerStyles)
             .children(new Component<?>[] {
@@ -47,16 +47,13 @@ public class PlaceComponentSpec {
 
     static Map<String, Object> containerStyles = new HashMap<>();
     static {
-        containerStyles.put("backgroundColor", Configuration.colors.getLighterGray());
         containerStyles.put("paddingHorizontal", 5);
-        containerStyles.put("paddingTop", 14);
-        containerStyles.put("paddingBottom", 14);
     }
 
     static Map<String, Object> labelStyles = new HashMap<>();
     static {
         labelStyles.put("color", Configuration.colors.getDarkText());
         labelStyles.put("fontWeight", "bold");
-        labelStyles.put("fontSize", 15);
+        labelStyles.put("fontSize", 17);
     }
 }

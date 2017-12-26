@@ -1,5 +1,6 @@
 package org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections;
 
+import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.annotations.LayoutSpec;
@@ -9,10 +10,10 @@ import com.facebook.litho.annotations.PropDefault;
 
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.BusinessLogic.SectionStopPointType;
+import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Roadmap3ColumnsLayout;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.LineDiagram.StopPointIconComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.StopPoint.PlaceComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Sections.StopPoint.TimeComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,22 +39,24 @@ public class StopPointComponentSpec {
             stopPointLabel = section.getTo().getName();
         }
 
-        final SectionRowLayoutComponent.Builder builder = SectionRowLayoutComponent.create(c)
+        return Roadmap3ColumnsLayout.create(c)
+            .styles(styles)
             .testKey(testKey)
-            .firstComponent(
+            .leftChildren(new Component[]{
                 TimeComponent.create(c)
                     .dateTime(time != null ? time : (sectionWay == SectionStopPointType.departure ? section.getDepartureDateTime() : section.getArrivalDateTime()))
-                    .build())
-            .secondComponent(
+                    .build()
+            })
+            .middleChildren(new Component[]{
                 StopPointIconComponent.create(c)
                     .color(color)
-            )
-            .thirdComponent(
+                    .build()
+            })
+            .rightChildren(new Component[]{
                 PlaceComponent.create(c)
                     .stopPointLabel(stopPointLabel)
-            );
-        
-        final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder.withLayout(), styles);
-        return styledBuilder.build();
+                    .build()
+            })
+            .buildWithLayout();
     }
 }

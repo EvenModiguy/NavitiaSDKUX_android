@@ -35,27 +35,25 @@ class DisruptionDescriptionComponentSpec {
     @OnCreateLayout
     static ComponentLayout onCreateLayout(
         ComponentContext c,
-        @Prop Section section,
         @Prop List<Disruption> disruptions) {
 
-        final ViewComponent.Builder builder = ViewComponent.create(c);
-
-        return builder
+        return ViewComponent.create(c)
+            .styles(containerStyles)
             .children(getDisruptionComponents(c, disruptions))
             .buildWithLayout();
     }
 
-    private static Component<?>[] getDisruptionComponents(ComponentContext c, List<Disruption> disruptions) {
-        List<Component<?>> components = new ArrayList<>();
+    private static Component[] getDisruptionComponents(ComponentContext c, List<Disruption> disruptions) {
+        List<Component> components = new ArrayList<>();
 
         for (Disruption disruption: disruptions) {
             components.add(getDisruptionComponent(c, disruption));
         }
 
-        return components.toArray(new Component<?>[components.size()]);
+        return components.toArray(new Component[components.size()]);
     }
 
-    private static Component<?> getDisruptionComponent(ComponentContext c, Disruption disruption) {
+    private static Component getDisruptionComponent(ComponentContext c, Disruption disruption) {
         List<Component> disruptionBlocks = new ArrayList<>();
 
         DisruptionLevel disruptionLevel = DisruptionMatcher.getLevel(disruption);
@@ -67,7 +65,7 @@ class DisruptionDescriptionComponentSpec {
 
         disruptionBlocks.add(HorizontalContainerComponent.create(c)
             .styles(disruptionTitleStyles)
-            .children(new Component<?>[]{
+            .children(new Component[]{
                 IconComponent.create(c)
                     .styles(iconStyles)
                     .name(disruptionLevel.getIconName())
@@ -114,7 +112,7 @@ class DisruptionDescriptionComponentSpec {
 
     static Map<String, Object> containerStyles = new HashMap<>();
     static {
-        containerStyles.put("marginTop", 26);
+        containerStyles.put("marginTop", 8);
     }
 
     static Map<String, Object> disruptionTitleStyles = new HashMap<>();
@@ -124,30 +122,30 @@ class DisruptionDescriptionComponentSpec {
 
     static Map<String, Object> iconBaseStyles = new HashMap<>();
     static {
-        iconBaseStyles.put("fontSize", 14);
+        iconBaseStyles.put("fontSize", 18);
     }
 
     static Map<String, Object> causeBaseStyles = new HashMap<>();
     static {
         causeBaseStyles.put("marginLeft", 4);
-        causeBaseStyles.put("fontSize", 12);
+        causeBaseStyles.put("fontSize", 13);
         causeBaseStyles.put("fontWeight", "bold");
     }
 
     static Map<String, Object> disruptionTextStyles = new HashMap<>();
     static {
-        disruptionTextStyles.put("marginLeft", 18);
-        disruptionTextStyles.put("marginTop", 13);
+        disruptionTextStyles.put("marginLeft", 22);
+        disruptionTextStyles.put("marginTop", 8);
         disruptionTextStyles.put("marginBottom", 6);
         disruptionTextStyles.put("color", Configuration.colors.getGray());
-        disruptionTextStyles.put("fontSize", 12);
+        disruptionTextStyles.put("fontSize", 13);
     }
 
     static Map<String, Object> disruptionPeriodStyles = new HashMap<>();
     static {
-        disruptionPeriodStyles.put("marginLeft", 18);
-        disruptionPeriodStyles.put("marginTop", 6);
-        disruptionPeriodStyles.put("fontSize", 12);
+        disruptionPeriodStyles.put("marginLeft", 22);
+        disruptionPeriodStyles.put("marginTop", 8);
+        disruptionPeriodStyles.put("fontSize", 13);
         disruptionPeriodStyles.put("fontWeight", "bold");
         disruptionPeriodStyles.put("color", Configuration.colors.getDarkText());
     }

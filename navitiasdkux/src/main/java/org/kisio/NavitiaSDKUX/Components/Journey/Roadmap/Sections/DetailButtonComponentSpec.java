@@ -15,6 +15,7 @@ import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
 import org.kisio.NavitiaSDKUX.Components.TextComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
+import org.kisio.NavitiaSDKUX.R;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,19 +29,24 @@ class DetailButtonComponentSpec {
         ComponentContext c,
         @Prop(optional = true) String testKey,
         @Prop(optional = true) Map<String, Object> styles,
+        @Prop(optional = true) String text,
         @Prop Boolean collapsed) {
+
+        if (text == null) {
+            text = c.getString(R.string.component_Journey_Roadmap_Sections_PublicTransport_Details_details);
+        }
 
         final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c).testKey(testKey).child(
             HorizontalContainerComponent.create(c)
                 .styles(detailsHeaderContainerStyle)
                 .children(new Component<?>[] {
+                    TextComponent.create(c)
+                        .styles(detailsHeaderTitleStyle)
+                        .text(text)
+                        .build(),
                     IconComponent.create(c)
                         .styles(collapserWayIconStyles)
                         .name(collapsed ? "arrow-details-down" : "arrow-details-up")
-                        .build(),
-                    TextComponent.create(c)
-                        .styles(detailsHeaderTitleStyle)
-                        .text("Détails")
                         .build()
                 })
         );
@@ -52,7 +58,6 @@ class DetailButtonComponentSpec {
     static Map<String, Object> detailsHeaderContainerStyle = new HashMap<>();
     static {
         detailsHeaderContainerStyle.put("paddingHorizontal", 5);
-        detailsHeaderContainerStyle.put("marginBottom", 10);
         detailsHeaderContainerStyle.put("alignItems", YogaAlign.CENTER);
     }
 

@@ -5,8 +5,7 @@ import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
-import com.facebook.yoga.YogaAlign;
-import com.facebook.yoga.YogaJustify;
+import com.facebook.litho.annotations.PropDefault;
 
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.Components.ModeComponent;
@@ -18,10 +17,14 @@ import java.util.Map;
 
 @LayoutSpec
 class ModeIconComponentSpec {
+    @PropDefault
+    static final Map<String, Object> styles = new HashMap<>();
+
     @OnCreateLayout
     static ComponentLayout onCreateLayout(
         ComponentContext c,
         @Prop(optional = true) String testKey,
+        @Prop(optional = true) Map<String, Object> styles,
         @Prop Section section) {
 
         final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c).testKey(testKey);
@@ -32,19 +35,12 @@ class ModeIconComponentSpec {
                 .styles(modeStyles)
         );
 
-        final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder, containerStyles);
+        final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder, styles);
         return styledBuilder.build();
-    }
-
-    static Map<String, Object> containerStyles = new HashMap<>();
-    static {
-        containerStyles.put("flexGrow", 1);
-        containerStyles.put("alignItems", YogaAlign.CENTER);
-        containerStyles.put("justifyContent", YogaJustify.CENTER);
     }
 
     static Map<String, Object> modeStyles = new HashMap<>();
     static {
-        modeStyles.put("height", 28);
+        modeStyles.put("height", 25);
     }
 }

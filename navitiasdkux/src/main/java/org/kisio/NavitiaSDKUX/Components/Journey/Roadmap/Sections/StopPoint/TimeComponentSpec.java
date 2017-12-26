@@ -10,9 +10,9 @@ import com.facebook.litho.annotations.PropDefault;
 import com.facebook.yoga.YogaAlign;
 import com.facebook.yoga.YogaJustify;
 
-import org.kisio.NavitiaSDKUX.Components.ContainerComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Components.TextComponent;
+import org.kisio.NavitiaSDKUX.Components.ViewComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 
 import java.util.HashMap;
@@ -31,18 +31,18 @@ class TimeComponentSpec {
         @Prop(optional = true) Map<String, Object> styles,
         @Prop String dateTime) {
 
-        final ContainerComponent.Builder builder = ContainerComponent.create(c)
+        final ViewComponent.Builder builder = ViewComponent.create(c)
             .styles(containerStyles)
             .testKey(testKey)
             .children(new Component<?>[] {
-                ContainerComponent.create(c)
+                    ViewComponent.create(c)
                     .styles(paddingCenteringStyle)
                     .build(),
                 TextComponent.create(c)
                     .styles(labelStyles)
                     .text(timeText(dateTime))
                     .build(),
-                ContainerComponent.create(c)
+                    ViewComponent.create(c)
                     .styles(paddingCenteringStyle)
                     .build()
         });
@@ -67,6 +67,6 @@ class TimeComponentSpec {
     static Map<String, Object> labelStyles = new HashMap<>();
     static {
         labelStyles.put("color", Configuration.colors.getDarkText());
-        labelStyles.put("fontSize", 12);
+        labelStyles.put("fontSize", 13);
     }
 }

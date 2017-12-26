@@ -1,5 +1,7 @@
 package org.kisio.NavitiaSDKUX.Components;
 
+import android.text.TextUtils;
+
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.annotations.LayoutSpec;
@@ -25,13 +27,13 @@ import java.util.Map;
 @LayoutSpec
 public class TextComponentSpec {
     @PropDefault static final Map<String, Object> styles = new HashMap<>();
-    @PropDefault static final String text = "";
+    @PropDefault static final CharSequence text = "";
 
     @OnCreateLayout
     static ComponentLayout onCreateLayout(
         ComponentContext c,
         @Prop(optional = true) Map<String, Object> styles,
-        @Prop(optional = true) String text) {
+        @Prop(optional = true) CharSequence text) {
 
         final Text.Builder builder = LabelComponent.create(c)
             .text(text);
@@ -43,5 +45,7 @@ public class TextComponentSpec {
     static Map<String, Object> textStyles = new HashMap<>();
     static {
         textStyles.put("color", Configuration.colors.getPrimary());
+        textStyles.put("maxLines", 2);
+        textStyles.put("ellipsis", TextUtils.TruncateAt.END);
     }
 }

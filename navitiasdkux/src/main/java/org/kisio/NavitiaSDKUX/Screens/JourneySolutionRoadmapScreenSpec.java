@@ -60,17 +60,24 @@ public class JourneySolutionRoadmapScreenSpec {
 
         int index = 0;
         for (Section section : journey.getSections()) {
-            if (Arrays.asList( "street_network", "public_transport", "transfer", "waiting" ).contains(section.getType())) {
-                List<Disruption> sectionDisruptions = new ArrayList<>();
-                if (section.getType().equals("public_transport") && disruptions != null && disruptions.size() > 0) {
-                    sectionDisruptions = SectionMatcher.getMatchingDisruptions(section, disruptions);
-                }
+            if (Arrays.asList( "street_network", "public_transport", "transfer").contains(section.getType())) {
                 SectionComponent.Builder sectionComponentBuilder = SectionComponent.create(c)
                     .key("journey_roadmap_section_" + index)
-                    .section(section)
-                    .disruptions(sectionDisruptions);
-                if (section.getType().equals("transfer")) {
-                    sectionComponentBuilder.destinationSection(journey.getSections().get(index + 1));
+                    .section(section);
+
+                if (section.getType().equals("public_transport")) {
+                    if (index > 0) {
+                        Section prevSection = journey.getSections().get(index - 1);
+                        if (prevSection.getType().equals("waiting")) {
+                            sectionComponentBuilder.waitingTime(prevSection.getDuration());
+                        }
+                    }
+
+                    if (disruptions != null && disruptions.size() > 0) {
+                        sectionComponentBuilder.disruptions(
+                            SectionMatcher.getMatchingDisruptions(section, disruptions)
+                        );
+                    }
                 } else if (section.getType().equals("street_network")) {
                     String mode = section.getMode();
                     String network = null;

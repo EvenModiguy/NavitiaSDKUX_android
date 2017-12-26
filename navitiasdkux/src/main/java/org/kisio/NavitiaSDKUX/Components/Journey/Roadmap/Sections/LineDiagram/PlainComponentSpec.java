@@ -34,8 +34,8 @@ public class PlainComponentSpec {
     static {
         lineBaseStyles.put("position", YogaPositionType.ABSOLUTE);
         lineBaseStyles.put("start", 58);
-        lineBaseStyles.put("top", 28);
-        lineBaseStyles.put("bottom", 28);
+        lineBaseStyles.put("top", 16);
+        lineBaseStyles.put("bottom", 16);
         lineBaseStyles.put("width", 4);
         lineBaseStyles.put("borderLeftWidth", 4);
     }
