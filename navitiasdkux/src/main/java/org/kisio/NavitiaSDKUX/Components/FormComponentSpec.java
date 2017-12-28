@@ -17,13 +17,6 @@ import org.kisio.NavitiaSDKUX.Config.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * NavitiaSDKUX_android
- *
- * Created by Johan Rouve on 24/08/2017.
- * Copyright © 2017 Kisio. All rights reserved.
- */
-
 @LayoutSpec
 public class FormComponentSpec {
     @PropDefault static final Map<String, Object> styles = new HashMap<>();

@@ -1,4 +1,4 @@
-package org.kisio.NavitiaSDKUX.Components;
+package org.kisio.NavitiaSDKUX.Components.Journey.Results.FormComponentParts;
 
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
@@ -7,34 +7,35 @@ import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
 
-import org.kisio.NavitiaSDK.models.Section;
-import org.kisio.NavitiaSDKUX.BusinessLogic.Modes;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
+import org.kisio.NavitiaSDKUX.Components.TextComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @LayoutSpec
-public class ModeComponentSpec {
-    @PropDefault static final Map<String, Object> styles = new HashMap<>();
+public class PlacePartSpec {
+    @PropDefault
+    static final Map<String, Object> styles = new HashMap<>();
+    @PropDefault static final String name = "";
 
     @OnCreateLayout
     static ComponentLayout onCreateLayout(
         ComponentContext c,
         @Prop(optional = true) Map<String, Object> styles,
-        @Prop Section section) {
+        @Prop(optional = true) String name) {
+        final Map<String, Object> computedStyles = StylizedComponent.mergeStyles(nameStyles, styles);
 
-        final Map<String, Object> computedStyles = StylizedComponent.mergeStyles(iconStyles, styles);
-
-        return IconComponent.create(c)
-            .name(Modes.getModeIcon(section))
+        return TextComponent.create(c)
+            .text(name)
             .styles(computedStyles)
             .buildWithLayout();
     }
 
-    static Map<String, Object> iconStyles = new HashMap<>();
+    static Map<String, Object> nameStyles = new HashMap<>();
     static {
-        iconStyles.put("color", Configuration.colors.getDarkerGray());
+        nameStyles.put("fontWeight", "bold");
+        nameStyles.put("marginEnd", Configuration.metrics.marginS);
     }
 }

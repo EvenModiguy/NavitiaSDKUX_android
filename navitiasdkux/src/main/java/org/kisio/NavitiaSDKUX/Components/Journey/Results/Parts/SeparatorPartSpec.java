@@ -1,6 +1,5 @@
-package org.kisio.NavitiaSDKUX.Components;
+package org.kisio.NavitiaSDKUX.Components.Journey.Results.Parts;
 
-import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.annotations.LayoutSpec;
@@ -16,31 +15,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 @LayoutSpec
-public class ContainerComponentSpec {
+public class SeparatorPartSpec {
     @PropDefault static final Map<String, Object> styles = new HashMap<>();
 
     @OnCreateLayout
     static ComponentLayout onCreateLayout(
         ComponentContext c,
-        @Prop(optional = true) String testKey,
-        @Prop(optional = true) Map<String, Object> styles,
-        @Prop(optional = true) Component<?>[] children) {
+        @Prop(optional = true) Map<String, Object> styles) {
 
-        final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c).testKey(testKey);
-
-        if (children != null) {
-            for (Component<?> child : children) {
-                builder.child(child);
-            }
-        }
-
-        final Map<String, Object> computedStyles = StylizedComponent.mergeStyles(smallStyles, styles);
+        final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c);
+        final Map<String, Object> computedStyles = StylizedComponent.mergeStyles(lineStyles, styles);
         final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder, computedStyles);
         return styledBuilder.build();
     }
 
-    static Map<String, Object> smallStyles = new HashMap<>();
+    static Map<String, Object> lineStyles = new HashMap<>();
     static {
-        smallStyles.put("padding", Configuration.metrics.margin);
+        lineStyles.put("heightPx", 1);
+        lineStyles.put("backgroundColor", Configuration.colors.getSecondary());
     }
 }

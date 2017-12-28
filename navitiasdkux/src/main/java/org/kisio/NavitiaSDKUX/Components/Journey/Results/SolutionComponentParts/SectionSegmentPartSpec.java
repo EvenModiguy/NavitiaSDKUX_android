@@ -1,6 +1,5 @@
-package org.kisio.NavitiaSDKUX.Components;
+package org.kisio.NavitiaSDKUX.Components.Journey.Results.SolutionComponentParts;
 
-import com.facebook.litho.Component;
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.annotations.LayoutSpec;
@@ -8,15 +7,17 @@ import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
 
+import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
+import org.kisio.NavitiaSDKUX.Util.Color;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @LayoutSpec
-public class ContainerComponentSpec {
+public class SectionSegmentPartSpec {
     @PropDefault static final Map<String, Object> styles = new HashMap<>();
 
     @OnCreateLayout
@@ -24,23 +25,23 @@ public class ContainerComponentSpec {
         ComponentContext c,
         @Prop(optional = true) String testKey,
         @Prop(optional = true) Map<String, Object> styles,
-        @Prop(optional = true) Component<?>[] children) {
+        @Prop Section section) {
 
-        final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c).testKey(testKey);
-
-        if (children != null) {
-            for (Component<?> child : children) {
-                builder.child(child);
-            }
+        Integer color = Configuration.colors.getDarkerGray();
+        if (section.getDisplayInformations() != null) {
+            color = Color.getColorFromHexadecimal(section.getDisplayInformations().getColor());
         }
 
-        final Map<String, Object> computedStyles = StylizedComponent.mergeStyles(smallStyles, styles);
+        final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c).testKey(testKey);
+        Map<String, Object> containerStyles = new HashMap<>(containerBaseStyles);
+        containerStyles.put("backgroundColor", color);
+        final Map<String, Object> computedStyles = StylizedComponent.mergeStyles(containerStyles, styles);
         final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder, computedStyles);
         return styledBuilder.build();
     }
 
-    static Map<String, Object> smallStyles = new HashMap<>();
+    static Map<String, Object> containerBaseStyles = new HashMap<>();
     static {
-        smallStyles.put("padding", Configuration.metrics.margin);
+        containerBaseStyles.put("height", 5);
     }
 }

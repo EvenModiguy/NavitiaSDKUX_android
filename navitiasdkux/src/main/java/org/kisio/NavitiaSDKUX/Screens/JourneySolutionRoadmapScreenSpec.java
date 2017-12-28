@@ -18,10 +18,11 @@ import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.BusinessLogic.SectionMatcher;
 import org.kisio.NavitiaSDKUX.Components.ContainerComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Results.SolutionComponent;
-import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.PlaceComponent;
-import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.SectionComponent;
+import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.StepComponent;
+import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Steps.PlaceStepComponent;
 import org.kisio.NavitiaSDKUX.Components.ListViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
+import org.kisio.NavitiaSDKUX.Components.ScreenHeaderComponent;
 import org.kisio.NavitiaSDKUX.Components.ScrollViewComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.R;
@@ -42,7 +43,7 @@ public class JourneySolutionRoadmapScreenSpec {
         @Prop List<Disruption> disruptions) {
 
         return BaseViewComponent.create(c).testKey("roadmap").child(
-            ContainerComponent.create(c)
+            ScreenHeaderComponent.create(c)
                 .styles(headerStyles)
                 .children(new Component<?>[]{})
                 .build()
@@ -72,7 +73,7 @@ public class JourneySolutionRoadmapScreenSpec {
         for (Section section : journey.getSections()) {
             if (index == 0) {
                 components.add(
-                    PlaceComponent.create(c)
+                    PlaceStepComponent.create(c)
                         .styles(originSectionStyles)
                         .datetime("20171207T114800")
                         .placeType("Departure :")
@@ -83,7 +84,7 @@ public class JourneySolutionRoadmapScreenSpec {
             }
 
             if (Arrays.asList( "street_network", "public_transport", "transfer" ).contains(section.getType())) {
-                SectionComponent.Builder sectionComponentBuilder = SectionComponent.create(c)
+                StepComponent.Builder sectionComponentBuilder = StepComponent.create(c)
                     .key("journey_roadmap_section_" + index)
                     .section(section);
 
@@ -127,7 +128,7 @@ public class JourneySolutionRoadmapScreenSpec {
 
             if (index == lastIndex) {
                 components.add(
-                    PlaceComponent.create(c)
+                    PlaceStepComponent.create(c)
                         .styles(destinationSectionStyles)
                         .datetime("20171207T131200")
                         .placeType("Arrival :")

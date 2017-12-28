@@ -16,7 +16,7 @@ import org.kisio.NavitiaSDK.models.Journey;
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.Components.ActionComponent;
 import org.kisio.NavitiaSDKUX.Components.CardComponent;
-import org.kisio.NavitiaSDKUX.Components.Journey.Results.Solution.RowComponent;
+import org.kisio.NavitiaSDKUX.Components.Journey.Results.SolutionComponentParts.RowPart;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
@@ -48,7 +48,7 @@ public class SolutionComponentSpec {
         final ComponentLayout.Builder styledBuilder;
 
         final CardComponent.Builder listRowBuilder = CardComponent.create(c).styles(computedStyles).child(
-            RowComponent.create(c)
+            RowPart.create(c)
                 .departureTime(journey.getDepartureDateTime())
                 .arrivalTime(journey.getArrivalDateTime())
                 .totalDuration(journey.getDuration())

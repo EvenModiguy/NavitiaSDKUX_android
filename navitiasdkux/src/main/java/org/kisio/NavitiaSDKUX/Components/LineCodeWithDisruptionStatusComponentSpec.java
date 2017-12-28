@@ -10,6 +10,8 @@ import com.facebook.yoga.YogaPositionType;
 
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Section;
+import org.kisio.NavitiaSDKUX.Components.LineCodeWithDisruptionStatusComponentParts.DisruptionBadgeComponent;
+import org.kisio.NavitiaSDKUX.Components.LineCodeWithDisruptionStatusComponentParts.LineCodeComponent;
 
 import java.util.HashMap;
 import java.util.List;

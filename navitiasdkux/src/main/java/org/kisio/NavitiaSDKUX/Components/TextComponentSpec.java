@@ -1,7 +1,5 @@
 package org.kisio.NavitiaSDKUX.Components;
 
-import android.text.TextUtils;
-
 import com.facebook.litho.ComponentContext;
 import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.annotations.LayoutSpec;
@@ -16,13 +14,6 @@ import org.kisio.NavitiaSDKUX.Config.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
-
-/**
- * NavitiaSDKUX_android
- *
- * Created by Johan Rouve on 24/08/2017.
- * Copyright © 2017 Kisio. All rights reserved.
- */
 
 @LayoutSpec
 public class TextComponentSpec {

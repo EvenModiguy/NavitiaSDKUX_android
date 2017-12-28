@@ -13,13 +13,6 @@ import org.kisio.NavitiaSDKUX.Util.Icons;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * NavitiaSDKUX_android
- *
- * Created by Johan Rouve on 24/08/2017.
- * Copyright © 2017 Kisio. All rights reserved.
- */
-
 @LayoutSpec
 public class IconComponentSpec {
     @PropDefault static final Map<String, Object> styles = new HashMap<>();
