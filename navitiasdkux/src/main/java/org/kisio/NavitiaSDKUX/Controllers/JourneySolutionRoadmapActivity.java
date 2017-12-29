@@ -13,6 +13,7 @@ import com.facebook.litho.LithoView;
 
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Journey;
+import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.R;
 import org.kisio.NavitiaSDKUX.Screens.JourneySolutionRoadmapScreen;
 import org.kisio.NavitiaSDKUX.Util.JourneySolutionCache;
@@ -41,7 +42,7 @@ public class JourneySolutionRoadmapActivity extends AppCompatActivity {
         try {
             final Component<JourneySolutionRoadmapScreen> screenComponent = builder.build();
             final LithoView lithoView = LithoView.create(this, screenComponent);
-            lithoView.setBackgroundColor(Color.parseColor("#efefef"));
+            lithoView.setBackgroundColor(Configuration.colors.getLighterGray());
             setContentView(lithoView);
         } catch (IllegalStateException e) {
             Log.e(TAG, e.getMessage());

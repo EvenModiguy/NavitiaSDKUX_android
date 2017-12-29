@@ -75,8 +75,8 @@ public class JourneySolutionRoadmapScreenSpec {
                 components.add(
                     PlaceStepComponent.create(c)
                         .styles(originSectionStyles)
-                        .datetime("20171207T114800")
-                        .placeType("Departure :")
+                        .datetime(journey.getDepartureDateTime())
+                        .placeType(c.getString(R.string.component_Journey_Roadmap_Steps_PlaceStepComponent_departure))
                         .placeLabel(section.getFrom().getName())
                         .backgroundColor(Configuration.colors.getOrigin())
                         .build()
@@ -130,8 +130,8 @@ public class JourneySolutionRoadmapScreenSpec {
                 components.add(
                     PlaceStepComponent.create(c)
                         .styles(destinationSectionStyles)
-                        .datetime("20171207T131200")
-                        .placeType("Arrival :")
+                        .datetime(journey.getArrivalDateTime())
+                        .placeType(c.getString(R.string.component_Journey_Roadmap_Steps_PlaceStepComponent_arrival))
                         .placeLabel(section.getTo().getName())
                         .backgroundColor(Configuration.colors.getDestination())
                         .build()
