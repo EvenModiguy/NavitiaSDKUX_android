@@ -48,7 +48,7 @@ public class JourneySolutionsActivity extends AppCompatActivity {
                 this,
                 screenComponent
             );
-
+            lithoView.setBackgroundColor(Configuration.colors.getLighterGray());
             setContentView(lithoView);
         } catch (IllegalStateException e) {
             Log.e(TAG, e.getMessage());

@@ -8,7 +8,6 @@ import org.kisio.NavitiaSDK.models.Path;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.R;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;

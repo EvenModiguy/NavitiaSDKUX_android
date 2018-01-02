@@ -21,6 +21,8 @@ public class Configuration {
         public static Integer marginS = 4;
         public static Integer margin = 8;
         public static Integer marginL = 16;
+        public static Integer textS = 13;
+        public static Integer text = 17;
         public static String timeFormat = "HH:mm";
         public static String longDateFormat = "EEE d MMM - HH:mm";
     }
@@ -41,7 +43,7 @@ public class Configuration {
         static Integer darkGray = Color.parseColor("#404040");
         static Integer darkerGray = Color.parseColor("#202020");
         static Integer origin = Color.parseColor("#00bb75");
-        static Integer destination = Color.parseColor("#ffa036");
+        static Integer destination = Color.parseColor("#b00353");
 
         public static Integer getPrimary() {
             return primary;

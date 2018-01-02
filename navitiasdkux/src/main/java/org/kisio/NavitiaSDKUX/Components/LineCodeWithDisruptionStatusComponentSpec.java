@@ -6,12 +6,12 @@ import com.facebook.litho.ComponentLayout;
 import com.facebook.litho.annotations.LayoutSpec;
 import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
-import com.facebook.yoga.YogaAlign;
-import com.facebook.yoga.YogaJustify;
 import com.facebook.yoga.YogaPositionType;
 
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Section;
+import org.kisio.NavitiaSDKUX.Components.LineCodeWithDisruptionStatusComponentParts.DisruptionBadgeComponent;
+import org.kisio.NavitiaSDKUX.Components.LineCodeWithDisruptionStatusComponentParts.LineCodeComponent;
 
 import java.util.HashMap;
 import java.util.List;

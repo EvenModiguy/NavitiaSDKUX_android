@@ -2,11 +2,9 @@ package org.kisio.NavitiaSDKUX.BusinessLogic;
 
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.LinkSchema;
-import org.kisio.NavitiaSDK.models.Period;
 import org.kisio.NavitiaSDK.models.Section;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class SectionMatcher {

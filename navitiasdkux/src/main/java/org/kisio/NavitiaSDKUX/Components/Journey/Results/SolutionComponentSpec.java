@@ -15,10 +15,10 @@ import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Journey;
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.Components.ActionComponent;
-import org.kisio.NavitiaSDKUX.Components.Journey.Results.Solution.RowComponent;
-import org.kisio.NavitiaSDKUX.Components.ListRowComponent;
-import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
+import org.kisio.NavitiaSDKUX.Components.CardComponent;
+import org.kisio.NavitiaSDKUX.Components.Journey.Results.SolutionComponentParts.RowPart;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
+import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.Controllers.JourneySolutionRoadmapActivity;
 import org.kisio.NavitiaSDKUX.Util.JourneySolutionCache;
@@ -47,8 +47,8 @@ public class SolutionComponentSpec {
         final Context context = c;
         final ComponentLayout.Builder styledBuilder;
 
-        final ListRowComponent.Builder listRowBuilder = ListRowComponent.create(c).styles(computedStyles).child(
-            RowComponent.create(c)
+        final CardComponent.Builder listRowBuilder = CardComponent.create(c).styles(computedStyles).child(
+            RowPart.create(c)
                 .departureTime(journey.getDepartureDateTime())
                 .arrivalTime(journey.getArrivalDateTime())
                 .totalDuration(journey.getDuration())
@@ -81,7 +81,7 @@ public class SolutionComponentSpec {
     static {
         listStyles.put("backgroundColor", Color.WHITE);
         listStyles.put("padding", Configuration.metrics.marginL);
-        listStyles.put("paddingTop", 4);
+        listStyles.put("paddingTop", Configuration.metrics.marginS);
         listStyles.put("marginBottom", Configuration.metrics.margin);
     }
 

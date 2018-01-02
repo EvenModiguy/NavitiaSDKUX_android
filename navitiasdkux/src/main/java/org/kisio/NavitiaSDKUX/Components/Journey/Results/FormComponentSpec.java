@@ -8,10 +8,10 @@ import com.facebook.litho.annotations.OnCreateLayout;
 import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
 
-import org.kisio.NavitiaSDKUX.Components.AutocompleteInputComponent;
 import org.kisio.NavitiaSDKUX.Components.FormComponent;
+import org.kisio.NavitiaSDKUX.Components.Journey.Results.FormComponentParts.AutocompleteInputPart;
+import org.kisio.NavitiaSDKUX.Components.Journey.Results.Parts.SeparatorPart;
 import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
-import org.kisio.NavitiaSDKUX.Components.SeparatorComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 
 import java.util.HashMap;
@@ -34,13 +34,13 @@ public class FormComponentSpec {
         final FormComponent.Builder builder = FormComponent.create(c);
         builder
             .children(new Component<?>[]{
-                AutocompleteInputComponent.create(c)
+                AutocompleteInputPart.create(c)
                     .icon("origin")
                     .iconColor(Configuration.colors.getOrigin())
                     .placeName(origin)
                     .build(),
-                SeparatorComponent.create(c).build(),
-                AutocompleteInputComponent.create(c)
+                SeparatorPart.create(c).build(),
+                AutocompleteInputPart.create(c)
                     .icon("destination")
                     .iconColor(Configuration.colors.getDestination())
                     .placeName(destination)

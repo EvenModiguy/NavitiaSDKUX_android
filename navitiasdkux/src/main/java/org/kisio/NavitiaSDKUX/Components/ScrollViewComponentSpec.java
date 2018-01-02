@@ -14,13 +14,6 @@ import org.kisio.NavitiaSDKUX.Components.Primitive.StylizedComponent;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * NavitiaSDKUX_android
- *
- * Created by Johan Rouve on 25/08/2017.
- * Copyright © 2017 Kisio. All rights reserved.
- */
-
 @LayoutSpec
 public class ScrollViewComponentSpec {
     @PropDefault static final Map<String, Object> styles = new HashMap<>();
