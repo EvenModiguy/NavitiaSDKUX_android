@@ -40,4 +40,6 @@
     <string name="component.Journey.Roadmap.Sections.PublicTransport.instructions_take">Take the</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.instructions_at">at</string>
     <string name="component.Journey.Roadmap.Sections.PublicTransport.instructions_direction">in the direction of</string>
+    <string name="component.JourneyMapViewComponent.departure">Departure</string>
+    <string name="component.JourneyMapViewComponent.arrival">Arrival</string>
 </resources>
