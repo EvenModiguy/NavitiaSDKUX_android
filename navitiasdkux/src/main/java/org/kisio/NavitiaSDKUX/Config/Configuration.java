@@ -44,6 +44,7 @@ public class Configuration {
         static Integer darkerGray = Color.parseColor("#202020");
         static Integer origin = Color.parseColor("#00bb75");
         static Integer destination = Color.parseColor("#b00353");
+        static Integer transparentBlack = Color.parseColor("#bb000000");
 
         public static Integer getPrimary() {
             return primary;
@@ -100,6 +101,10 @@ public class Configuration {
             colors.darkText = darkText;
         }
 
+        public static Integer getWhite() {
+            return white;
+        }
+
         public static Integer getLighterGray() {
             return lighterGray;
         }
@@ -134,6 +139,10 @@ public class Configuration {
 
         public static void setDestination(Integer destination) {
             colors.destination = destination;
+        }
+
+        public static Integer getTransparentBlack() {
+            return transparentBlack;
         }
     }
 

@@ -35,7 +35,7 @@ public class JourneySolutionRoadmapActivity extends AppCompatActivity {
         }
 
         final ComponentContext c = new ComponentContext(this);
-        final JourneySolutionRoadmapScreen.Builder builder = JourneySolutionRoadmapScreen.create(c);
+        final JourneySolutionRoadmapScreen.Builder builder = JourneySolutionRoadmapScreen.create(c).savedInstanceState(savedInstanceState);
 
         setProps(builder);
 

@@ -1,6 +1,7 @@
 package org.kisio.NavitiaSDKUX.Screens;
 
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.StyleSpan;
@@ -16,13 +17,12 @@ import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Journey;
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.BusinessLogic.SectionMatcher;
-import org.kisio.NavitiaSDKUX.Components.ContainerComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Results.SolutionComponent;
+import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.JourneyMapViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.StepComponent;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.Steps.PlaceStepComponent;
 import org.kisio.NavitiaSDKUX.Components.ListViewComponent;
 import org.kisio.NavitiaSDKUX.Components.Primitive.BaseViewComponent;
-import org.kisio.NavitiaSDKUX.Components.ScreenHeaderComponent;
 import org.kisio.NavitiaSDKUX.Components.ScrollViewComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.R;
@@ -40,33 +40,23 @@ public class JourneySolutionRoadmapScreenSpec {
     static ComponentLayout onCreateLayout(
         ComponentContext c,
         @Prop Journey journey,
-        @Prop List<Disruption> disruptions) {
+        @Prop List<Disruption> disruptions,
+        @Prop Bundle savedInstanceState) {
 
-        return BaseViewComponent.create(c).testKey("roadmap").child(
-            ScreenHeaderComponent.create(c)
-                .styles(headerStyles)
-                .children(new Component<?>[]{})
-                .build()
-        ).child(
-            ContainerComponent.create(c)
-                .styles(summaryStyles)
-                .testKey("summary")
-                .children(new Component<?>[]{
-                    SolutionComponent.create(c)
-                        .journey(journey)
-                        .disruptions(disruptions)
-                        .isTouchable(false)
-                        .build()})
-                .build()
-        ).child(
-            ScrollViewComponent.create(c).child(ListViewComponent.create(c).children(
+        return BaseViewComponent.create(c).child(
+                JourneyMapViewComponent.create(c).savedInstanceState(savedInstanceState).journey(journey).build()
+        ).child(ScrollViewComponent.create(c).child(ListViewComponent.create(c).children(
                 getJourneySectionComponents(c, journey, disruptions)
-            ).build())
-        ).build();
+        ).build())).build();
     }
 
-    static Component<?>[] getJourneySectionComponents(ComponentContext c, Journey journey, List<Disruption> disruptions) {
+    private static Component<?>[] getJourneySectionComponents(ComponentContext c, Journey journey, List<Disruption> disruptions) {
         List<Component<?>> components = new ArrayList<>();
+        components.add(SolutionComponent.create(c)
+                .journey(journey)
+                .disruptions(disruptions)
+                .isTouchable(false)
+                .build());
 
         int index = 0;
         final int lastIndex = journey.getSections().size() - 1;
@@ -208,16 +198,5 @@ public class JourneySolutionRoadmapScreenSpec {
     static Map<String, Object> originSectionStyles = new HashMap<>();
     static {
         originSectionStyles.put("marginBottom", Configuration.metrics.margin);
-    }
-
-    static Map<String, Object> headerStyles = new HashMap<>();
-    static {
-        headerStyles.put("backgroundColor", Configuration.colors.getTertiary());
-        headerStyles.put("paddingTop", 40);
-    }
-
-    static Map<String, Object> summaryStyles = new HashMap<>();
-    static {
-        summaryStyles.put("marginTop", -60);
     }
 }
