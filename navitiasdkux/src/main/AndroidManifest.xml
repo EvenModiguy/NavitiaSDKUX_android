@@ -18,9 +18,6 @@
         <activity android:name="org.kisio.NavitiaSDKUX.Controllers.JourneySolutionsActivity"></activity>
         <activity android:name="org.kisio.NavitiaSDKUX.Controllers.JourneySolutionRoadmapActivity"></activity>
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value=""/>
-        <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
     </application>

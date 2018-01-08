@@ -32,18 +32,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.kisio.NavitiaSDK.models.Journey;
-import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.JourneyMapViewComponentParts.PlaceMarkerComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.R;
+import org.kisio.NavitiaSDKUX.BusinessLogic.JourneyPathElements;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-/**
- * Created by rabidi on 03/01/2018.
- */
 
 @MountSpec
 public class JourneyMapViewComponentSpec {
@@ -90,19 +85,15 @@ public class JourneyMapViewComponentSpec {
                     }
                 });
 
-                HashMap<String, Object> journeyPathElements = getJourneyPathElements(journey);
-                List<LatLng> journeyPolylineCoords = (List<LatLng>) journeyPathElements.get("journey_polyline_coords");
-                List<List<LatLng>> sectionsPolylinesCoords = (List<List<LatLng>>) journeyPathElements.get("sections_polylines_coords");
-                List<LatLng> intermediatePointsCirclesCoords = (List<LatLng>) journeyPathElements.get("intermediate_points_circles_coords");
-
-                for (List<LatLng> sectionPolylineCoords : sectionsPolylinesCoords) {
+                JourneyPathElements journeyPathElements = new JourneyPathElements(journey);
+                for (List<LatLng> sectionPolylineCoords : journeyPathElements.getSectionsPolylinesCoords()) {
                     PolylineOptions polylineOptions = new PolylineOptions().width(15).color(Color.BLACK).zIndex(1);
                     polylineOptions.addAll(sectionPolylineCoords);
                     googleMap.addPolyline(polylineOptions);
                 }
 
                 intermediatePointsCircles.clear();
-                for (LatLng centerCoord : intermediatePointsCirclesCoords) {
+                for (LatLng centerCoord : journeyPathElements.getIntermediatePointsCirclesCoords()) {
                     CircleOptions circleOptions = new CircleOptions().center(centerCoord)
                             .strokeColor(Color.BLACK)
                             .strokeWidth(8)
@@ -121,36 +112,9 @@ public class JourneyMapViewComponentSpec {
                         .icon(BitmapDescriptorFactory.fromBitmap(getPlaceMarkerIcon(context, context.getString(R.string.component_JourneyMapViewComponent_arrival), Configuration.colors.getDestination())));
                 googleMap.addMarker(arrivalMarkerOptions);
 
-                zoomToPolyline(googleMap, journeyPolylineCoords, false);
+                zoomToPolyline(googleMap, journeyPathElements.getJourneyPolylineCoords(), false);
             }
         });
-    }
-
-    private static HashMap<String, Object> getJourneyPathElements(Journey journey) {
-        List<LatLng> journeyPolylineCoords = new ArrayList<>();
-        List<List<LatLng>> sectionsPolylinesCoords = new ArrayList<>();
-        List<LatLng> intermediatePointsCirclesCoords = new ArrayList<>();
-        for (Section section : journey.getSections()) {
-            if (section.getGeojson() != null) {
-                List<List<Float>> sectionGeoJSONCoordinates = section.getGeojson().getCoordinates();
-                List<LatLng> sectionPathCoordinates = new ArrayList<>();
-                for (List<Float> coordinate : sectionGeoJSONCoordinates) {
-                    sectionPathCoordinates.add(new LatLng(coordinate.get(1), coordinate.get(0)));
-                }
-                sectionsPolylinesCoords.add(sectionPathCoordinates);
-                intermediatePointsCirclesCoords.add(new LatLng(sectionGeoJSONCoordinates.get(sectionGeoJSONCoordinates.size() - 1).get(1), sectionGeoJSONCoordinates.get(sectionGeoJSONCoordinates.size() - 1).get(0)));
-                journeyPolylineCoords.addAll(sectionPathCoordinates);
-            }
-        }
-        if (intermediatePointsCirclesCoords.size() > 0) {
-            intermediatePointsCirclesCoords.remove(intermediatePointsCirclesCoords.size() - 1);
-        }
-
-        HashMap<String, Object> journeyPathElements = new HashMap<>();
-        journeyPathElements.put("journey_polyline_coords", journeyPolylineCoords);
-        journeyPathElements.put("sections_polylines_coords", sectionsPolylinesCoords);
-        journeyPathElements.put("intermediate_points_circles_coords", intermediatePointsCirclesCoords);
-        return journeyPathElements;
     }
 
     private static LatLng getJourneyDepartureCoordinates(Journey journey) {
