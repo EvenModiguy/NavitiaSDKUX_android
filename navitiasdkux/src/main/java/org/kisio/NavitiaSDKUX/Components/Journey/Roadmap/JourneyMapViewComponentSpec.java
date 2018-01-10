@@ -25,10 +25,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.Dash;
+import com.google.android.gms.maps.model.Gap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PatternItem;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.kisio.NavitiaSDK.models.Journey;
@@ -36,8 +39,10 @@ import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.JourneyMapViewComponent
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.R;
 import org.kisio.NavitiaSDKUX.BusinessLogic.JourneyPathElements;
+import org.kisio.NavitiaSDKUX.Util.SectionPolyline;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @MountSpec
@@ -66,6 +71,7 @@ public class JourneyMapViewComponentSpec {
             final MapView mapView,
             @Prop Bundle savedInstanceState,
             @Prop final Journey journey) {
+
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(new OnMapReadyCallback() {
             @SuppressWarnings("unchecked")
@@ -86,9 +92,38 @@ public class JourneyMapViewComponentSpec {
                 });
 
                 JourneyPathElements journeyPathElements = new JourneyPathElements(journey);
-                for (List<LatLng> sectionPolylineCoords : journeyPathElements.getSectionsPolylinesCoords()) {
-                    PolylineOptions polylineOptions = new PolylineOptions().width(15).color(Color.BLACK).zIndex(1);
-                    polylineOptions.addAll(sectionPolylineCoords);
+
+                // Configure each section
+                for (SectionPolyline sectionPolyline : journeyPathElements.getSectionPolylines()) {
+                    String type = sectionPolyline.getType();
+                    String mode = sectionPolyline.getMode();
+                    PolylineOptions polylineOptions = new PolylineOptions().zIndex(1);
+
+                    if (mode != null) {
+                        switch (mode) {
+                            case SectionPolyline.MODE_WALKING:
+                                List<PatternItem> patternItems = Arrays.asList(new Dash(10), new Gap(10));
+                                polylineOptions.width(15).color(Color.GRAY).pattern(patternItems);
+                                break;
+                            case SectionPolyline.MODE_BIKE:
+                            case SectionPolyline.MODE_CAR:
+                                polylineOptions.width(15).color(Color.GRAY);
+                                break;
+                        }
+                    } else {
+                        if (type.equals(SectionPolyline.TYPE_PUBLIC_TRANSPORT)) {
+                            polylineOptions.width(25);
+
+                            if (sectionPolyline.getLineColor() != null) {
+                                polylineOptions.color(org.kisio.NavitiaSDKUX.Util.Color.getColorFromHexadecimal(sectionPolyline.getLineColor()));
+                            } else {
+                                polylineOptions.color(Color.BLACK);
+                            }
+
+                        }
+                    }
+
+                    polylineOptions.addAll(sectionPolyline.getSectionPathCoordinates());
                     googleMap.addPolyline(polylineOptions);
                 }
 
@@ -103,13 +138,24 @@ public class JourneyMapViewComponentSpec {
                     intermediatePointsCircles.add(googleMap.addCircle(circleOptions));
                 }
 
+                // Configure departure marker
                 MarkerOptions departureMarkerOptions = new MarkerOptions()
                         .position(getJourneyDepartureCoordinates(journey))
-                        .icon(BitmapDescriptorFactory.fromBitmap(getPlaceMarkerIcon(context, context.getString(R.string.component_JourneyMapViewComponent_departure), Configuration.colors.getOrigin())));
+                        .icon(BitmapDescriptorFactory.fromBitmap(getPlaceMarkerIcon(
+                                context,
+                                context.getString(R.string.component_JourneyMapViewComponent_departure),
+                                Configuration.colors.getOrigin())
+                        ));
                 googleMap.addMarker(departureMarkerOptions);
+
+                // Configure arrival marker
                 MarkerOptions arrivalMarkerOptions = new MarkerOptions()
                         .position(getJourneyArrivalCoordinates(journey))
-                        .icon(BitmapDescriptorFactory.fromBitmap(getPlaceMarkerIcon(context, context.getString(R.string.component_JourneyMapViewComponent_arrival), Configuration.colors.getDestination())));
+                        .icon(BitmapDescriptorFactory.fromBitmap(getPlaceMarkerIcon(
+                                context,
+                                context.getString(R.string.component_JourneyMapViewComponent_arrival),
+                                Configuration.colors.getDestination())
+                        ));
                 googleMap.addMarker(arrivalMarkerOptions);
 
                 zoomToPolyline(googleMap, journeyPathElements.getJourneyPolylineCoords(), false);

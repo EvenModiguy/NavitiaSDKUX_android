@@ -4,13 +4,14 @@ import com.google.android.gms.maps.model.LatLng;
 
 import org.kisio.NavitiaSDK.models.Journey;
 import org.kisio.NavitiaSDK.models.Section;
+import org.kisio.NavitiaSDKUX.Util.SectionPolyline;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class JourneyPathElements {
     private List<LatLng> journeyPolylineCoords = new ArrayList<>();
-    private List<List<LatLng>> sectionsPolylinesCoords = new ArrayList<>();
+    private List<SectionPolyline> sectionPolylines = new ArrayList<>();
     private List<LatLng> intermediatePointsCirclesCoords = new ArrayList<>();
 
     public JourneyPathElements (Journey journey) {
@@ -25,7 +26,10 @@ public class JourneyPathElements {
                 for (List<Float> coordinate : sectionGeoJSONCoordinates) {
                     sectionPathCoordinates.add(new LatLng(coordinate.get(1), coordinate.get(0)));
                 }
-                sectionsPolylinesCoords.add(sectionPathCoordinates);
+
+                SectionPolyline sectionPolyline = new SectionPolyline(sectionPathCoordinates, section);
+                sectionPolylines.add(sectionPolyline);
+
                 intermediatePointsCirclesCoords.add(new LatLng(sectionGeoJSONCoordinates.get(sectionGeoJSONCoordinates.size() - 1).get(1), sectionGeoJSONCoordinates.get(sectionGeoJSONCoordinates.size() - 1).get(0)));
                 journeyPolylineCoords.addAll(sectionPathCoordinates);
             }
@@ -39,8 +43,8 @@ public class JourneyPathElements {
         return journeyPolylineCoords;
     }
 
-    public List<List<LatLng>> getSectionsPolylinesCoords() {
-        return sectionsPolylinesCoords;
+    public List<SectionPolyline> getSectionPolylines() {
+        return sectionPolylines;
     }
 
     public List<LatLng> getIntermediatePointsCirclesCoords() {
