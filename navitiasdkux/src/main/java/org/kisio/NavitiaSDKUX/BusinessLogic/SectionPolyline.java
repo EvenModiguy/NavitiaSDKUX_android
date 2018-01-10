@@ -1,4 +1,4 @@
-package org.kisio.NavitiaSDKUX.Util;
+package org.kisio.NavitiaSDKUX.BusinessLogic;
 
 
 import com.google.android.gms.maps.model.LatLng;
@@ -22,7 +22,7 @@ public class SectionPolyline {
     private String type;
     private String lineColor;
 
-    public SectionPolyline(List<LatLng> sectionPathCoordinates, Section section) {
+    SectionPolyline(List<LatLng> sectionPathCoordinates, Section section) {
         this.sectionPathCoordinates = sectionPathCoordinates;
         this.mode = section.getMode();
         this.type = section.getType();

@@ -39,7 +39,7 @@ import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.JourneyMapViewComponent
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.R;
 import org.kisio.NavitiaSDKUX.BusinessLogic.JourneyPathElements;
-import org.kisio.NavitiaSDKUX.Util.SectionPolyline;
+import org.kisio.NavitiaSDKUX.BusinessLogic.SectionPolyline;
 
 import java.util.ArrayList;
 import java.util.Arrays;
