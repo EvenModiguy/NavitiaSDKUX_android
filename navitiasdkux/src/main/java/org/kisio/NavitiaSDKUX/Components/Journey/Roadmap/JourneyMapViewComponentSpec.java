@@ -25,7 +25,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
-import com.google.android.gms.maps.model.Dash;
+import com.google.android.gms.maps.model.Dot;
 import com.google.android.gms.maps.model.Gap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
@@ -102,7 +102,7 @@ public class JourneyMapViewComponentSpec {
                     if (mode != null) {
                         switch (mode) {
                             case SectionPolyline.MODE_WALKING:
-                                List<PatternItem> patternItems = Arrays.asList(new Dash(10), new Gap(10));
+                                List<PatternItem> patternItems = Arrays.asList(new Dot(), new Gap(10));
                                 polylineOptions.width(15).color(Color.GRAY).pattern(patternItems);
                                 break;
                             case SectionPolyline.MODE_BIKE:
