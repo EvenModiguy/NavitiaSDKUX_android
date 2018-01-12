@@ -1,10 +1,12 @@
 package org.kisio.NavitiaSDKUX.BusinessLogic;
 
+import android.graphics.Color;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import org.kisio.NavitiaSDK.models.Section;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,21 +15,39 @@ import java.util.List;
 public class SectionPolyline {
 
     public static final String MODE_WALKING = "walking";
-    public static final String MODE_BIKE = "bike";
-    public static final String MODE_CAR = "car";
-    public static final String TYPE_PUBLIC_TRANSPORT = "public_transport";
+    public static final String TYPE_STREET_NETWORK = "street_network";
+    private static final String TYPE_PUBLIC_TRANSPORT = "public_transport";
+    private static final int NORMAL_WIDTH = 15;
+    private static final int LARGE_WIDTH = 25;
 
     private List<LatLng> sectionPathCoordinates;
     private String mode;
     private String type;
-    private String lineColor;
+    private int color;
+    private int width;
 
-    SectionPolyline(List<LatLng> sectionPathCoordinates, Section section) {
+    SectionPolyline(Section section) {
+        List<LatLng> sectionPathCoordinates = new ArrayList<>();
+        for (List<Float> coordinate : section.getGeojson().getCoordinates()) {
+            sectionPathCoordinates.add(new LatLng(coordinate.get(1), coordinate.get(0)));
+        }
+
         this.sectionPathCoordinates = sectionPathCoordinates;
         this.mode = section.getMode();
         this.type = section.getType();
-        this.lineColor = section.getDisplayInformations() != null ?
-                section.getDisplayInformations().getColor() : null;
+
+        if (type.equalsIgnoreCase(SectionPolyline.TYPE_PUBLIC_TRANSPORT)) {
+            String lineColor = section.getDisplayInformations() != null ?
+                    section.getDisplayInformations().getColor() : null;
+
+            this.color = org.kisio.NavitiaSDKUX.Util.Color.getColorFromHexadecimal(lineColor);
+            this.width = LARGE_WIDTH;
+
+        } else {
+            this.color = type.equalsIgnoreCase(SectionPolyline.TYPE_STREET_NETWORK) ?
+                    Color.GRAY : Color.BLACK;
+            this.width = NORMAL_WIDTH;
+        }
     }
 
     public List<LatLng> getSectionPathCoordinates() {
@@ -42,7 +62,11 @@ public class SectionPolyline {
         return type;
     }
 
-    public String getLineColor() {
-        return lineColor;
+    public int getColor() {
+        return color;
+    }
+
+    public int getWidth() {
+        return width;
     }
 }

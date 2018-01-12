@@ -20,17 +20,12 @@ public class JourneyPathElements {
     private void initJourneyPathElements(Journey journey) {
         for (Section section : journey.getSections()) {
             if (section.getGeojson() != null) {
-                List<List<Float>> sectionGeoJSONCoordinates = section.getGeojson().getCoordinates();
-                List<LatLng> sectionPathCoordinates = new ArrayList<>();
-                for (List<Float> coordinate : sectionGeoJSONCoordinates) {
-                    sectionPathCoordinates.add(new LatLng(coordinate.get(1), coordinate.get(0)));
-                }
-
-                SectionPolyline sectionPolyline = new SectionPolyline(sectionPathCoordinates, section);
+                SectionPolyline sectionPolyline = new SectionPolyline(section);
                 sectionPolylines.add(sectionPolyline);
 
+                List<List<Float>> sectionGeoJSONCoordinates = section.getGeojson().getCoordinates();
                 intermediatePointsCirclesCoords.add(new LatLng(sectionGeoJSONCoordinates.get(sectionGeoJSONCoordinates.size() - 1).get(1), sectionGeoJSONCoordinates.get(sectionGeoJSONCoordinates.size() - 1).get(0)));
-                journeyPolylineCoords.addAll(sectionPathCoordinates);
+                journeyPolylineCoords.addAll(sectionPolyline.getSectionPathCoordinates());
             }
         }
         if (intermediatePointsCirclesCoords.size() > 0) {

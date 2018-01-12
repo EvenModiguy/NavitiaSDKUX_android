@@ -71,7 +71,6 @@ public class JourneyMapViewComponentSpec {
             final MapView mapView,
             @Prop Bundle savedInstanceState,
             @Prop final Journey journey) {
-
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(new OnMapReadyCallback() {
             @SuppressWarnings("unchecked")
@@ -93,35 +92,14 @@ public class JourneyMapViewComponentSpec {
 
                 JourneyPathElements journeyPathElements = new JourneyPathElements(journey);
 
-                // Configure each section
                 for (SectionPolyline sectionPolyline : journeyPathElements.getSectionPolylines()) {
-                    String type = sectionPolyline.getType();
-                    String mode = sectionPolyline.getMode();
                     PolylineOptions polylineOptions = new PolylineOptions().zIndex(1);
 
-                    if (mode != null) {
-                        switch (mode) {
-                            case SectionPolyline.MODE_WALKING:
-                                List<PatternItem> patternItems = Arrays.asList(new Dot(), new Gap(10));
-                                polylineOptions.width(15).color(Color.GRAY).pattern(patternItems);
-                                break;
-                            case SectionPolyline.MODE_BIKE:
-                            case SectionPolyline.MODE_CAR:
-                                polylineOptions.width(15).color(Color.GRAY);
-                                break;
-                        }
-                    } else {
-                        if (type.equals(SectionPolyline.TYPE_PUBLIC_TRANSPORT)) {
-                            polylineOptions.width(25);
-
-                            if (sectionPolyline.getLineColor() != null) {
-                                polylineOptions.color(org.kisio.NavitiaSDKUX.Util.Color.getColorFromHexadecimal(sectionPolyline.getLineColor()));
-                            } else {
-                                polylineOptions.color(Color.BLACK);
-                            }
-
-                        }
+                    if (sectionPolyline.getType().equalsIgnoreCase(SectionPolyline.TYPE_STREET_NETWORK) &&
+                            sectionPolyline.getMode().equalsIgnoreCase(SectionPolyline.MODE_WALKING)) {
+                        polylineOptions.pattern(Arrays.asList(new Dot(), new Gap(10)));
                     }
+                    polylineOptions.width(sectionPolyline.getWidth()).color(sectionPolyline.getColor());
 
                     polylineOptions.addAll(sectionPolyline.getSectionPathCoordinates());
                     googleMap.addPolyline(polylineOptions);
@@ -138,7 +116,6 @@ public class JourneyMapViewComponentSpec {
                     intermediatePointsCircles.add(googleMap.addCircle(circleOptions));
                 }
 
-                // Configure departure marker
                 MarkerOptions departureMarkerOptions = new MarkerOptions()
                         .position(getJourneyDepartureCoordinates(journey))
                         .icon(BitmapDescriptorFactory.fromBitmap(getPlaceMarkerIcon(
@@ -147,8 +124,6 @@ public class JourneyMapViewComponentSpec {
                                 Configuration.colors.getOrigin())
                         ));
                 googleMap.addMarker(departureMarkerOptions);
-
-                // Configure arrival marker
                 MarkerOptions arrivalMarkerOptions = new MarkerOptions()
                         .position(getJourneyArrivalCoordinates(journey))
                         .icon(BitmapDescriptorFactory.fromBitmap(getPlaceMarkerIcon(
