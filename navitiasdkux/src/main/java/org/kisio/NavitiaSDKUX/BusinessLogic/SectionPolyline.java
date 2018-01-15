@@ -17,8 +17,6 @@ public class SectionPolyline {
     public static final String MODE_WALKING = "walking";
     public static final String TYPE_STREET_NETWORK = "street_network";
     private static final String TYPE_PUBLIC_TRANSPORT = "public_transport";
-    private static final int NORMAL_WIDTH = 15;
-    private static final int LARGE_WIDTH = 25;
 
     private List<LatLng> sectionPathCoordinates;
     private String mode;
@@ -27,26 +25,24 @@ public class SectionPolyline {
     private int width;
 
     SectionPolyline(Section section) {
-        List<LatLng> sectionPathCoordinates = new ArrayList<>();
+        this.sectionPathCoordinates = new ArrayList<>();
         for (List<Float> coordinate : section.getGeojson().getCoordinates()) {
             sectionPathCoordinates.add(new LatLng(coordinate.get(1), coordinate.get(0)));
         }
 
-        this.sectionPathCoordinates = sectionPathCoordinates;
         this.mode = section.getMode();
         this.type = section.getType();
 
         if (type.equalsIgnoreCase(SectionPolyline.TYPE_PUBLIC_TRANSPORT)) {
-            String lineColor = section.getDisplayInformations() != null ?
-                    section.getDisplayInformations().getColor() : null;
+            String lineColor = section.getDisplayInformations().getColor();
 
             this.color = org.kisio.NavitiaSDKUX.Util.Color.getColorFromHexadecimal(lineColor);
-            this.width = LARGE_WIDTH;
+            this.width = 25;
 
         } else {
             this.color = type.equalsIgnoreCase(SectionPolyline.TYPE_STREET_NETWORK) ?
                     Color.GRAY : Color.BLACK;
-            this.width = NORMAL_WIDTH;
+            this.width = 15;
         }
     }
 
