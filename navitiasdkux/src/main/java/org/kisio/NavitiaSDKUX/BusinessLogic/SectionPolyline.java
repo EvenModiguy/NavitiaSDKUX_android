@@ -16,6 +16,7 @@ public class SectionPolyline {
 
     public static final String MODE_WALKING = "walking";
     public static final String TYPE_STREET_NETWORK = "street_network";
+    private static final String TYPE_TRANSFER = "transfer";
     private static final String TYPE_PUBLIC_TRANSPORT = "public_transport";
 
     private List<LatLng> sectionPathCoordinates;
@@ -40,7 +41,8 @@ public class SectionPolyline {
             this.width = 25;
 
         } else {
-            this.color = type.equalsIgnoreCase(SectionPolyline.TYPE_STREET_NETWORK) ?
+            this.color = type.equalsIgnoreCase(SectionPolyline.TYPE_STREET_NETWORK) ||
+                    type.equalsIgnoreCase(SectionPolyline.TYPE_TRANSFER)?
                     Color.GRAY : Color.BLACK;
             this.width = 15;
         }
