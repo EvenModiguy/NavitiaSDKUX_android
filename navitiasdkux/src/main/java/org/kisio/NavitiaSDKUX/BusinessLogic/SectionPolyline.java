@@ -13,7 +13,6 @@ import java.util.List;
  * Represents a section of a polyline drawn on the map.
  */
 public class SectionPolyline {
-
     public static final String MODE_WALKING = "walking";
     public static final String TYPE_STREET_NETWORK = "street_network";
     private static final String TYPE_TRANSFER = "transfer";
@@ -33,13 +32,10 @@ public class SectionPolyline {
 
         this.mode = section.getMode();
         this.type = section.getType();
-
         if (type.equalsIgnoreCase(SectionPolyline.TYPE_PUBLIC_TRANSPORT)) {
             String lineColor = section.getDisplayInformations().getColor();
-
             this.color = org.kisio.NavitiaSDKUX.Util.Color.getColorFromHexadecimal(lineColor);
             this.width = 25;
-
         } else {
             this.color = type.equalsIgnoreCase(SectionPolyline.TYPE_STREET_NETWORK) ||
                     type.equalsIgnoreCase(SectionPolyline.TYPE_TRANSFER)?

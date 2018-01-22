@@ -91,16 +91,13 @@ public class JourneyMapViewComponentSpec {
                 });
 
                 JourneyPathElements journeyPathElements = new JourneyPathElements(journey);
-
                 for (SectionPolyline sectionPolyline : journeyPathElements.getSectionPolylines()) {
                     PolylineOptions polylineOptions = new PolylineOptions().zIndex(1);
-
                     if (sectionPolyline.getType().equalsIgnoreCase(SectionPolyline.TYPE_STREET_NETWORK) &&
                             sectionPolyline.getMode().equalsIgnoreCase(SectionPolyline.MODE_WALKING)) {
                         polylineOptions.pattern(Arrays.asList(new Dot(), new Gap(10)));
                     }
                     polylineOptions.width(sectionPolyline.getWidth()).color(sectionPolyline.getColor());
-
                     polylineOptions.addAll(sectionPolyline.getSectionPathCoordinates());
                     googleMap.addPolyline(polylineOptions);
                 }
