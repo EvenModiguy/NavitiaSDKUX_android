@@ -25,10 +25,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.Dot;
+import com.google.android.gms.maps.model.Gap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PatternItem;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.kisio.NavitiaSDK.models.Journey;
@@ -36,8 +39,10 @@ import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.JourneyMapViewComponent
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.R;
 import org.kisio.NavitiaSDKUX.BusinessLogic.JourneyPathElements;
+import org.kisio.NavitiaSDKUX.BusinessLogic.SectionPolyline;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @MountSpec
@@ -86,9 +91,14 @@ public class JourneyMapViewComponentSpec {
                 });
 
                 JourneyPathElements journeyPathElements = new JourneyPathElements(journey);
-                for (List<LatLng> sectionPolylineCoords : journeyPathElements.getSectionsPolylinesCoords()) {
-                    PolylineOptions polylineOptions = new PolylineOptions().width(15).color(Color.BLACK).zIndex(1);
-                    polylineOptions.addAll(sectionPolylineCoords);
+                for (SectionPolyline sectionPolyline : journeyPathElements.getSectionPolylines()) {
+                    PolylineOptions polylineOptions = new PolylineOptions().zIndex(1);
+                    if (sectionPolyline.getType().equalsIgnoreCase(SectionPolyline.TYPE_STREET_NETWORK) &&
+                            sectionPolyline.getMode().equalsIgnoreCase(SectionPolyline.MODE_WALKING)) {
+                        polylineOptions.pattern(Arrays.asList(new Dot(), new Gap(10)));
+                    }
+                    polylineOptions.width(sectionPolyline.getWidth()).color(sectionPolyline.getColor());
+                    polylineOptions.addAll(sectionPolyline.getSectionPathCoordinates());
                     googleMap.addPolyline(polylineOptions);
                 }
 
@@ -105,11 +115,19 @@ public class JourneyMapViewComponentSpec {
 
                 MarkerOptions departureMarkerOptions = new MarkerOptions()
                         .position(getJourneyDepartureCoordinates(journey))
-                        .icon(BitmapDescriptorFactory.fromBitmap(getPlaceMarkerIcon(context, context.getString(R.string.component_JourneyMapViewComponent_departure), Configuration.colors.getOrigin())));
+                        .icon(BitmapDescriptorFactory.fromBitmap(getPlaceMarkerIcon(
+                                context,
+                                context.getString(R.string.component_JourneyMapViewComponent_departure),
+                                Configuration.colors.getOrigin())
+                        ));
                 googleMap.addMarker(departureMarkerOptions);
                 MarkerOptions arrivalMarkerOptions = new MarkerOptions()
                         .position(getJourneyArrivalCoordinates(journey))
-                        .icon(BitmapDescriptorFactory.fromBitmap(getPlaceMarkerIcon(context, context.getString(R.string.component_JourneyMapViewComponent_arrival), Configuration.colors.getDestination())));
+                        .icon(BitmapDescriptorFactory.fromBitmap(getPlaceMarkerIcon(
+                                context,
+                                context.getString(R.string.component_JourneyMapViewComponent_arrival),
+                                Configuration.colors.getDestination())
+                        ));
                 googleMap.addMarker(arrivalMarkerOptions);
 
                 zoomToPolyline(googleMap, journeyPathElements.getJourneyPolylineCoords(), false);
