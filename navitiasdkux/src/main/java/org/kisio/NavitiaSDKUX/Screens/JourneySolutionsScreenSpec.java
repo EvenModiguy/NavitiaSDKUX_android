@@ -202,6 +202,9 @@ public class JourneySolutionsScreenSpec {
             if (parameters.datetimeRepresents != null) {
                 journeysRequestBuilder.withDatetimeRepresents(parameters.datetimeRepresents);
             }
+            if (parameters.allowedId != null) {
+                journeysRequestBuilder.withAllowedId(parameters.allowedId);
+            }
             if (parameters.forbiddenUris != null) {
                 journeysRequestBuilder.withForbiddenUris(parameters.forbiddenUris);
             }

@@ -15,6 +15,7 @@ public class JourneySolutionsInParameters implements Parcelable {
     public String destinationLabel = "";
     public DateTime datetime;
     public String datetimeRepresents;
+    public List<String> allowedId = new ArrayList<>();
     public List<String> forbiddenUris = new ArrayList<>();
     public List<String> firstSectionModes = new ArrayList<>();
     public List<String> lastSectionModes = new ArrayList<>();
@@ -47,6 +48,7 @@ public class JourneySolutionsInParameters implements Parcelable {
         parcel.writeString(destinationLabel);
         parcel.writeString(datetime != null ? datetime.toString() : null);
         parcel.writeString(datetimeRepresents);
+        parcel.writeStringList(allowedId);
         parcel.writeStringList(forbiddenUris);
         parcel.writeStringList(firstSectionModes);
         parcel.writeStringList(lastSectionModes);
@@ -88,6 +90,7 @@ public class JourneySolutionsInParameters implements Parcelable {
         }
 
         datetimeRepresents = in.readString();
+        in.readStringList(allowedId);
         in.readStringList(forbiddenUris);
         in.readStringList(firstSectionModes);
         in.readStringList(lastSectionModes);
