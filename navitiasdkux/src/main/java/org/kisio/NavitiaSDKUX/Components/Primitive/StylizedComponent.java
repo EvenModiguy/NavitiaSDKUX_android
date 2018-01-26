@@ -18,8 +18,7 @@ import java.util.Map;
 /**
  * NavitiaSDKUX_android
  *
- * Created by Johan Rouve on 23/08/2017.
- * Copyright © 2017 Kisio. All rights reserved.
+ * Copyright \u00a9 2018 Kisio. All rights reserved.
  */
 
 public class StylizedComponent {
