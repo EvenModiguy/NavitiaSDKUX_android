@@ -1,6 +1,16 @@
 apply plugin: 'com.android.library'
-apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+
+ext {
+    navitiaSdkVersion = '1.0.0'
+    supportLibraryVersion = '26.1.0'
+    lithoVersion = '0.6.1'
+
+    groupId = 'org.kisio.sdk'
+    artifactId = 'navitia-sdk-ux'
+    description = "Navitia SDK UX Android ${navitiaSdkVersion}"
+}
 
 buildscript {
     repositories {
@@ -14,7 +24,7 @@ buildscript {
 allprojects {
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xmaxerrs" << "1000"
+            options.compilerArgs << '-Xmaxerrs' << '1000'
         }
     }
 }
@@ -27,9 +37,9 @@ android {
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName navitiaSdkVersion
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
         release {
@@ -41,26 +51,22 @@ android {
 
 repositories {
     maven {
-        url "https://dl.bintray.com/navitiasdkteam/NavitiaSDK"
+        url 'https://dl.bintray.com/navitiasdkteam/NavitiaSDK'
     }
 }
 
 dependencies {
-    compile 'org.kisio.sdk:navitia-sdk:0.3.0'
-
-    // Litho
-    compile 'com.facebook.litho:litho-core:0.6.1'
-    compile 'com.facebook.litho:litho-widget:0.6.1'
-    provided 'com.facebook.litho:litho-annotations:0.6.1'
-
-    annotationProcessor 'com.facebook.litho:litho-processor:0.6.1'
-
-    // SoLoader
-    compile 'com.facebook.soloader:soloader:0.2.0'
-
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
+    implementation "com.android.support:appcompat-v7:${supportLibraryVersion}"
+    implementation "com.android.support:recyclerview-v7:${supportLibraryVersion}"
+    implementation "com.facebook.litho:litho-core:${lithoVersion}"
+    implementation "com.facebook.litho:litho-widget:${lithoVersion}"
+    implementation "com.facebook.litho:litho-annotations:${lithoVersion}"
+    implementation 'com.facebook.soloader:soloader:0.2.0'
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
+    implementation 'org.kisio.sdk:navitia-sdk:0.3.0' // use navitiaSdkVersion later
+
+    annotationProcessor "com.facebook.litho:litho-processor:${lithoVersion}"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -84,34 +90,32 @@ task androidSourcesJar(type: Jar) {
 def pomConfig = {
     licenses {
         license {
-            name "GNU General Public License, Version 3"
-            url "https://www.navitia.io/api-term-of-use"
-            distribution "repo"
+            name 'GNU General Public License, Version 3'
+            url 'https://www.navitia.io/api-term-of-use'
+            distribution 'repo'
         }
     }
-
     developers {
         developer {
-            name "Kisio Digital SDK"
-            email "team.sdk@kisio.org"
-            organization "Kisio Digital"
-            organizationUrl "http://www.kisiodigital.com/"
+            name 'Kisio Digital SDK'
+            email 'team.sdk@kisio.org'
+            organization 'Kisio Digital'
+            organizationUrl 'http://www.kisiodigital.com/'
         }
     }
-
     scm {
-        connection "scm:git:git://github.com/CanalTP/NavitiaSDKUX_android.git"
-        developerConnection "scm:git:ssh://github.com:CanalTP/NavitiaSDKUX_android.git"
-        url "https://github.com/CanalTP/NavitiaSDKUX_android/tree/master"
+        connection 'scm:git:git://github.com/CanalTP/NavitiaSDKUX_android.git'
+        developerConnection 'scm:git:ssh://github.com:CanalTP/NavitiaSDKUX_android.git'
+        url 'https://github.com/CanalTP/NavitiaSDKUX_android/tree/master'
     }
 }
 
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId 'org.kisio.sdk'
-            artifactId 'navitia-sdk-ux'
-            version '0.3.2'
+            groupId groupId
+            artifactId artifactId
+            version navitiaSdkVersion
             // Or use same version as in android branch
             // version = android.defaultConfig.versionName
 
@@ -121,15 +125,15 @@ publishing {
 
             pom.withXml {
                 def root = asNode()
-                root.appendNode('description', 'NavitiaSDKUX android 0.3.2')
-                root.appendNode('name', 'navitia-sdk-ux')
+                root.appendNode('description', description)
+                root.appendNode('name', artifactId)
                 root.appendNode('url', 'https://github.com/CanalTP/NavitiaSDKUX_android')
 
                 def dependenciesNode = root.appendNode('dependencies')
 
                 // List all compile dependencies and write to POM
                 configurations.compile.getAllDependencies().each { Dependency dep ->
-                    if (dep.group == null || dep.version == null || dep.name == null || dep.name == "unspecified")
+                    if (dep.group == null || dep.version == null || dep.name == null || dep.name == 'unspecified')
                         return // ignore invalid dependencies
 
                     def dependencyNode = dependenciesNode.appendNode('dependency')
@@ -168,14 +172,14 @@ bintray {
     publish = false //[Default: false] Whether version should be auto published after an upload
     pkg {
         repo = 'NavitiaSDK'
-        name = 'navitia-sdk-ux'
+        name = artifactId
         licenses = ['GPL-3.0']
         vcsUrl = 'https://github.com/CanalTP/NavitiaSDKUX_android.git'
         version {
-            name = '0.3.2'
-            desc = 'NavitiaSDKUX android 0.3.2'
+            name = navitiaSdkVersion
+            desc = description
             released  = new Date()
-            vcsTag = '0.3.2'
+            vcsTag = navitiaSdkVersion
             gpg {
                 sign = true
             }
