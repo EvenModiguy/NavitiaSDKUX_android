@@ -1,5 +1,7 @@
 package org.kisio.NavitiaSDKUX.Util;
 
+import android.text.TextUtils;
+
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 
 /**
@@ -11,7 +13,7 @@ import org.kisio.NavitiaSDKUX.Config.Configuration;
 
 public class Color {
     public static Integer getColorFromHexadecimal(String hex) {
-        return android.graphics.Color.parseColor("#" + hex);
+        return !TextUtils.isEmpty(hex) ? android.graphics.Color.parseColor("#" + hex) : android.graphics.Color.GRAY;
     }
 
     public static Integer contrastColor(Integer color) {
