@@ -31,7 +31,7 @@ public class JourneySolutionsActivity extends AppCompatActivity {
         final ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setElevation(0);
-            actionBar.setTitle(R.string.controller_JourneySolutionsController_title);
+            actionBar.setTitle(R.string.journeys);
             actionBar.setDisplayHomeAsUpEnabled(true);
 
         }

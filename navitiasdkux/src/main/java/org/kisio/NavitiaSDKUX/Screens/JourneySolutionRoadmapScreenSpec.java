@@ -66,7 +66,7 @@ public class JourneySolutionRoadmapScreenSpec {
                     PlaceStepComponent.create(c)
                         .styles(originSectionStyles)
                         .datetime(journey.getDepartureDateTime())
-                        .placeType(c.getString(R.string.component_Journey_Roadmap_Steps_PlaceStepComponent_departure))
+                        .placeType(c.getString(R.string.departure_with_colon))
                         .placeLabel(section.getFrom().getName())
                         .backgroundColor(Configuration.colors.getOrigin())
                         .build()
@@ -121,7 +121,7 @@ public class JourneySolutionRoadmapScreenSpec {
                     PlaceStepComponent.create(c)
                         .styles(destinationSectionStyles)
                         .datetime(journey.getArrivalDateTime())
-                        .placeType(c.getString(R.string.component_Journey_Roadmap_Steps_PlaceStepComponent_arrival))
+                        .placeType(c.getString(R.string.arrival_with_colon))
                         .placeLabel(section.getTo().getName())
                         .backgroundColor(Configuration.colors.getDestination())
                         .build()
@@ -144,7 +144,7 @@ public class JourneySolutionRoadmapScreenSpec {
 
         if (network != null) {
             // bss mode
-            String takeStringTemplate = c.getString(R.string.component_Journey_Roadmap_Sections_StreetNetwork_Description_mode_bss_take) + " ";
+            String takeStringTemplate = c.getString(R.string.take_a_bike_at) + " ";
             String take = String.format(takeStringTemplate, network);
             SpannableString takeSpannableString = new SpannableString(take);
             descriptionLabel.append(takeSpannableString);
@@ -153,11 +153,11 @@ public class JourneySolutionRoadmapScreenSpec {
             departureSpannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, fromLabel.length(), 0);
             descriptionLabel.append(departureSpannableString);
 
-            String inDirection = " " + c.getString(R.string.component_Journey_Roadmap_Sections_StreetNetwork_Description_mode_bss_to) + " ";
+            String inDirection = " " + c.getString(R.string.to) + " ";
             SpannableString inDirectionSpannableString = new SpannableString(inDirection);
             descriptionLabel.append(inDirectionSpannableString);
         } else {
-            String to = c.getString(R.string.component_Journey_Roadmap_Sections_StreetNetwork_Description_to) + " ";
+            String to = c.getString(R.string.to_with_uppercase) + " ";
             SpannableString toSpannableString = new SpannableString(to);
             descriptionLabel.append(toSpannableString);
         }
@@ -169,15 +169,15 @@ public class JourneySolutionRoadmapScreenSpec {
         String durationString = "\n";
         switch (mode) {
             case "walking":
-                String walkingStringTemplate = c.getString(R.string.component_Journey_Roadmap_Sections_StreetNetwork_Description_mode_walking);
+                String walkingStringTemplate = c.getString(R.string.a_time_walk);
                 durationString += String.format(walkingStringTemplate, durationText);
                 break;
             case "bike":
-                final String bikeStringTemplate = c.getString(R.string.component_Journey_Roadmap_Sections_StreetNetwork_Description_mode_bike);
+                final String bikeStringTemplate = c.getString(R.string.a_time_ride);
                 durationString += String.format(bikeStringTemplate, durationText);
                 break;
             case "car":
-                final String carStringTemplate = c.getString(R.string.component_Journey_Roadmap_Sections_StreetNetwork_Description_mode_car);
+                final String carStringTemplate = c.getString(R.string.a_time_drive);
                 durationString += String.format(carStringTemplate, durationText);
                 break;
             default:

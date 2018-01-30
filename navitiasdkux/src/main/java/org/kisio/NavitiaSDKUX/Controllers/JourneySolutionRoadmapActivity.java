@@ -1,6 +1,5 @@
 package org.kisio.NavitiaSDKUX.Controllers;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +29,7 @@ public class JourneySolutionRoadmapActivity extends AppCompatActivity {
         final ActionBar actionBar = this.getSupportActionBar();
         if (actionBar != null) {
             actionBar.setElevation(0);
-            actionBar.setTitle(R.string.controller_JourneySolutionRoadmapController_title);
+            actionBar.setTitle(R.string.roadmap);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 

@@ -86,9 +86,9 @@ class DisruptionDescriptionPartSpec {
             );
         }
 
-        String fromText = c.getString(R.string.component_Journey_Roadmap_Sections_PublicTransport_Description_Disruption_Description_Period_from);
-        String toText = c.getString(R.string.component_Journey_Roadmap_Sections_PublicTransport_Description_Disruption_Description_Period_to);
-        String undefinedToText = c.getString(R.string.component_Journey_Roadmap_Sections_PublicTransport_Description_Disruption_Description_Period_to_fallback);
+        String fromText = c.getString(R.string.from);
+        String toText = c.getString(R.string.to_period);
+        String undefinedToText = c.getString(R.string.until_further_notice);
         for (Period period : disruption.getApplicationPeriods()) {
             String beginText = fromText + " " + Metrics.shortDateText(new DateTime(Metrics.navitiaDate(period.getBegin())));
             String endText = undefinedToText;

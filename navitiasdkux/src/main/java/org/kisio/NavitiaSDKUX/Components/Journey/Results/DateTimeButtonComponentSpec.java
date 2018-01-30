@@ -46,8 +46,8 @@ public class DateTimeButtonComponentSpec {
 
     static Map<String, Integer> datetimeRepresentsLabel = new HashMap<>();
     static {
-        datetimeRepresentsLabel.put("departure", R.string.component_DateTimeButtonComponent_representation_departure);
-        datetimeRepresentsLabel.put("arrival", R.string.component_DateTimeButtonComponent_representation_arrival);
+        datetimeRepresentsLabel.put("departure", R.string.departure_with_colon);
+        datetimeRepresentsLabel.put("arrival", R.string.arrival_with_colon);
     }
 
     static Map<String, Object> buttonStyles = new HashMap<>();

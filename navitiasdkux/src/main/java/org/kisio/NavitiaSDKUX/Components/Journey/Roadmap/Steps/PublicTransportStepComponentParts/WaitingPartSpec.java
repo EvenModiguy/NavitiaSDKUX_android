@@ -44,7 +44,7 @@ public class WaitingPartSpec {
                             .build(),
                         TextComponent.create(c)
                             .styles(labelStyles)
-                            .text(c.getString(R.string.journey_roadmap_action_wait) + " " + Metrics.durationText(c, duration, true))
+                            .text(c.getString(R.string.wait) + " " + Metrics.durationText(c, duration, true))
                             .build()
                     })
                     .build()
