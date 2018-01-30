@@ -35,6 +35,7 @@ import com.google.android.gms.maps.model.PatternItem;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.kisio.NavitiaSDK.models.Journey;
+import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.NavitiaSDKUX.Components.Journey.Roadmap.JourneyMapViewComponentParts.PlaceMarkerComponent;
 import org.kisio.NavitiaSDKUX.Config.Configuration;
 import org.kisio.NavitiaSDKUX.R;
@@ -136,13 +137,23 @@ public class JourneyMapViewComponentSpec {
     }
 
     private static LatLng getJourneyDepartureCoordinates(Journey journey) {
-        List<List<Float>> firstSectionCoordinates = journey.getSections().get(0).getGeojson().getCoordinates();
-        return new LatLng(firstSectionCoordinates.get(0).get(1), firstSectionCoordinates.get(0).get(0));
+        for (Section section: journey.getSections()) {
+            if (section.getGeojson() != null) {
+                List<List<Float>> firstSectionCoordinates = section.getGeojson().getCoordinates();
+                return new LatLng(firstSectionCoordinates.get(0).get(1), firstSectionCoordinates.get(0).get(0));
+            }
+        }
+        return new LatLng(0, 0);
     }
 
     private static LatLng getJourneyArrivalCoordinates(Journey journey) {
-        List<List<Float>> lastSectionCoordinates = journey.getSections().get(journey.getSections().size() - 1).getGeojson().getCoordinates();
-        return new LatLng(lastSectionCoordinates.get(lastSectionCoordinates.size() - 1).get(1), lastSectionCoordinates.get(lastSectionCoordinates.size() - 1).get(0));
+        for (int sectionIndex = journey.getSections().size() - 1; sectionIndex >= 0; sectionIndex--) {
+            if (journey.getSections().get(sectionIndex).getGeojson() != null) {
+                List<List<Float>> lastSectionCoordinates = journey.getSections().get(sectionIndex).getGeojson().getCoordinates();
+                return new LatLng(lastSectionCoordinates.get(lastSectionCoordinates.size() - 1).get(1), lastSectionCoordinates.get(lastSectionCoordinates.size() - 1).get(0));
+            }
+        }
+        return new LatLng(0, 0);
     }
 
     private static void zoomToPolyline(GoogleMap googleMap, List<LatLng> polylineCoords, boolean animated) {
