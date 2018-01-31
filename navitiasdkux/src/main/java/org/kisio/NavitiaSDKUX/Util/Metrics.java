@@ -64,7 +64,7 @@ public class Metrics {
 
     public static String distanceText(ComponentContext c, Integer meters) {
         if (meters < 1000) {
-            return String.format("%1$s %2$s", meters, c.getString(R.string.units_meters));
+            return String.format(Locale.getDefault(),"%d %s", meters, c.getString(R.string.units_meters));
         } else {
             return String.format(Locale.getDefault(),"%.1f %s", meters / 1000.f, c.getString(R.string.units_km));
         }
@@ -81,13 +81,13 @@ public class Metrics {
             return String.format("1 %s", c.getString(R.string.units_minute));
         } else if (seconds < 3600) {
             Integer minutes = seconds / 60;
-            return String.format("%1$s %2$s", String.valueOf(minutes), c.getString(R.string.units_minutes));
+            return String.format(Locale.getDefault(), "%d %s", minutes, c.getString(R.string.units_minutes));
         } else {
             Integer hours = seconds / 3600;
             Integer remainingMinutes = (seconds / 60) - (hours * 60);
             String minutes = String.valueOf(remainingMinutes);
             if (remainingMinutes < 10) {
-                minutes = String.format("0%s", String.valueOf(remainingMinutes));
+                minutes = String.format(Locale.getDefault(),"0%d", remainingMinutes);
             }
 
             if (useFullFormat) {
@@ -105,7 +105,7 @@ public class Metrics {
                     }
                 }
             } else {
-                return String.format("%1$s%2$s%3$s", String.valueOf(hours), c.getString(R.string.units_h), minutes);
+                return String.format(Locale.getDefault(),"%1$d%2$s%3$s", hours, c.getString(R.string.units_h), minutes);
             }
         }
     }
