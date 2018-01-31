@@ -67,7 +67,7 @@ public class RowPartSpec {
     }
 
     static ComponentLayout.ContainerBuilder getHeaderComponent(ComponentContext c, String departureTime, String arrivalTime, Integer totalDuration, Boolean hasArrow) {
-        final String timesText = Metrics.timeText(departureTime) + " - " + Metrics.timeText(arrivalTime);
+        final String timesText = String.format("%1$s - %2$s", Metrics.timeText(departureTime), Metrics.timeText(arrivalTime));
         final ComponentLayout.ContainerBuilder builder = HorizontalViewComponent.create(c);
         builder
             .child(

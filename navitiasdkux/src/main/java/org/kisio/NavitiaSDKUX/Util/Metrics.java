@@ -11,6 +11,7 @@ import org.kisio.NavitiaSDKUX.R;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * NavitiaSDKUX_android
@@ -48,7 +49,7 @@ public class Metrics {
         final String hours = timeData[1].substring(0, 2);
         final String minutes = timeData[1].substring(2, 4);
 
-        return hours + ":" + minutes;
+        return String.format("%1$s:%2$s", hours, minutes);
     }
 
     public static String shortDateText(DateTime datetime) {
@@ -63,9 +64,9 @@ public class Metrics {
 
     public static String distanceText(ComponentContext c, Integer meters) {
         if (meters < 1000) {
-            return meters + " " + c.getString(R.string.units_meter_plural);
+            return String.format(Locale.getDefault(),"%d %s", meters, c.getString(R.string.units_meters));
         } else {
-            return String.format("%.1f", meters / 1000.f) + " " + c.getString(R.string.units_kilometer_abbr);
+            return String.format(Locale.getDefault(),"%.1f %s", meters / 1000.f, c.getString(R.string.units_km));
         }
     }
 
@@ -75,36 +76,36 @@ public class Metrics {
 
     public static String durationText(ComponentContext c, Integer seconds, Boolean useFullFormat) {
         if (seconds < 60) {
-            return "< 1 " + c.getString(R.string.units_minute);
+            return String.format("%1$s %2$s", c.getString(R.string.less_than_a), c.getString(R.string.units_minute));
         } else if (seconds < 120) {
-            return "1 " + c.getString(R.string.units_minute);
+            return String.format("1 %s", c.getString(R.string.units_minute));
         } else if (seconds < 3600) {
             Integer minutes = seconds / 60;
-            return String.valueOf(minutes) + " " + c.getString(R.string.units_minute_plural);
+            return String.format(Locale.getDefault(), "%d %s", minutes, c.getString(R.string.units_minutes));
         } else {
             Integer hours = seconds / 3600;
             Integer remainingMinutes = (seconds / 60) - (hours * 60);
             String minutes = String.valueOf(remainingMinutes);
             if (remainingMinutes < 10) {
-                minutes = "0" + String.valueOf(remainingMinutes);
+                minutes = String.format(Locale.getDefault(),"0%d", remainingMinutes);
             }
 
             if (useFullFormat) {
                 if (hours > 1) {
                     if (remainingMinutes > 1) {
-                        return String.format(c.getString(R.string.units_hour_plural_and_minute_plural), hours, remainingMinutes);
+                        return String.format(c.getString(R.string.units_hours_and_minutes), hours, remainingMinutes);
                     } else {
-                        return String.format(c.getString(R.string.units_hour_plural_and_minute), hours, remainingMinutes);
+                        return String.format(c.getString(R.string.units_hours_and_minute), hours, remainingMinutes);
                     }
                 } else {
                     if (remainingMinutes > 1) {
-                        return String.format(c.getString(R.string.units_hour_and_minute_plural), hours, remainingMinutes);
+                        return String.format(c.getString(R.string.units_hour_and_minutes), hours, remainingMinutes);
                     } else {
                         return String.format(c.getString(R.string.units_hour_and_minute), hours, remainingMinutes);
                     }
                 }
             } else {
-                return String.valueOf(hours) + c.getString(R.string.units_hour_abbr) + minutes;
+                return String.format(Locale.getDefault(),"%1$d%2$s%3$s", hours, c.getString(R.string.units_h), minutes);
             }
         }
     }

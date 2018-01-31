@@ -33,7 +33,7 @@ class DetailButtonPartSpec {
         @Prop Boolean collapsed) {
 
         if (text == null) {
-            text = c.getString(R.string.component_Journey_Roadmap_Sections_PublicTransport_Details_details);
+            text = c.getString(R.string.details);
         }
 
         final ComponentLayout.ContainerBuilder builder = BaseViewComponent.create(c).testKey(testKey).child(

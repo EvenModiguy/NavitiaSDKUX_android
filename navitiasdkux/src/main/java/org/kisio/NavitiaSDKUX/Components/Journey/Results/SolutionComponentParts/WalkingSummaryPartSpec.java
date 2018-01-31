@@ -32,7 +32,7 @@ public class WalkingSummaryPartSpec {
         builder
             .child(
                 TextComponent.create(c)
-                    .text(c.getString(R.string.component_JourneyWalkingSummaryComponent_With) + " ")
+                    .text(String.format("%s ", c.getString(R.string.with)))
             )
             .child(
                 TextComponent.create(c)
@@ -41,7 +41,7 @@ public class WalkingSummaryPartSpec {
             )
             .child(
                 TextComponent.create(c)
-                    .text(" " + c.getString(R.string.component_JourneyWalkingSummaryComponent_walking) + " (" + Metrics.distanceText(c, distance) + ")")
+                    .text(String.format(" %1$s (%2$s)", c.getString(R.string.walking), Metrics.distanceText(c, distance)))
             )
         ;
         final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder, styles);

@@ -107,16 +107,16 @@ public class PublicTransportStepComponentSpec {
     private static Component[] getRightChildren(ComponentContext c, List<Disruption> disruptions, Section section, Integer waitingDuration) {
         SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
-        String at = c.getString(R.string.component_Journey_Roadmap_Sections_PublicTransport_instructions_at) + " ";
+        String at = String.format("%s ", c.getString(R.string.at));
         SpannableString atSpannableString = new SpannableString(at);
         stringBuilder.append(atSpannableString);
 
-        String departure = section.getFrom().getName() + "\n";
+        String departure = String.format("%s\n", section.getFrom().getName());
         SpannableString departureSpannableString = new SpannableString(departure);
         departureSpannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, departure.length(), 0);
         stringBuilder.append(departureSpannableString);
 
-        String inDirection = c.getString(R.string.component_Journey_Roadmap_Sections_PublicTransport_instructions_direction) + " ";
+        String inDirection = String.format("%s ", c.getString(R.string.in_the_direction_of));
         SpannableString inDirectionSpannableString = new SpannableString(inDirection);
         stringBuilder.append(inDirectionSpannableString);
 
@@ -131,7 +131,7 @@ public class PublicTransportStepComponentSpec {
                 .styles(modeLineLabelStyles)
                 .children(new Component[]{
                     TextComponent.create(c)
-                        .text(c.getString(R.string.component_Journey_Roadmap_Sections_PublicTransport_instructions_take) + " " + Modes.getPhysicalMode(section))
+                        .text(String.format("%1$s %2$s", c.getString(R.string.take_the), Modes.getPhysicalMode(section)))
                         .styles(modeStyles)
                         .build(),
                     LineCodeWithDisruptionStatusComponent.create(c)

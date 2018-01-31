@@ -28,6 +28,7 @@ import org.kisio.NavitiaSDKUX.Util.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -59,7 +60,6 @@ class DetailsPartSpec {
                 intermediateStopsComponent = getIntermediateStops(c, section);
             }
 
-            final String textTemplate = c.getString(R.string.component_Journey_Roadmap_Sections_PublicTransport_Details_nb_stops);
             builder
                 .child(
                     ActionComponent.create(c).actionToCall(new Callable<Void>() { public Void call() {
@@ -70,7 +70,8 @@ class DetailsPartSpec {
                             .rightChildren(new Component[]{
                                 DetailButtonPart.create(c)
                                     .collapsed(collapsed)
-                                    .text(String.format(textTemplate, section.getStopDateTimes().size() - 1))
+                                    .text(String.format(Locale.getDefault(),"%d %s",
+                                            section.getStopDateTimes().size() - 1, c.getString(R.string.stops)))
                                     .build()
                             })
                     )

@@ -37,7 +37,7 @@ public class DateTimeButtonComponentSpec {
             .child(
                 TextComponent.create(c)
                     .styles(textStyles)
-                    .text(c.getString(datetimeRepresentsLabel.get(datetimeRepresents)) + " " + Metrics.longDateText(datetime))
+                    .text(String.format("%1$s %2$s", c.getString(datetimeRepresentsLabel.get(datetimeRepresents)), Metrics.longDateText(datetime)))
             );
         final Map<String, Object> computedStyles = StylizedComponent.mergeStyles(buttonStyles, styles);
         final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder, computedStyles);
@@ -46,8 +46,8 @@ public class DateTimeButtonComponentSpec {
 
     static Map<String, Integer> datetimeRepresentsLabel = new HashMap<>();
     static {
-        datetimeRepresentsLabel.put("departure", R.string.component_DateTimeButtonComponent_representation_departure);
-        datetimeRepresentsLabel.put("arrival", R.string.component_DateTimeButtonComponent_representation_arrival);
+        datetimeRepresentsLabel.put("departure", R.string.departure_with_colon);
+        datetimeRepresentsLabel.put("arrival", R.string.arrival_with_colon);
     }
 
     static Map<String, Object> buttonStyles = new HashMap<>();

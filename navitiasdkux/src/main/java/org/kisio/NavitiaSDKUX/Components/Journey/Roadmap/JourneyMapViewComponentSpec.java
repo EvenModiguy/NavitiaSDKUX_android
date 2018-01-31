@@ -31,7 +31,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PatternItem;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import org.kisio.NavitiaSDK.models.Journey;
@@ -117,7 +116,7 @@ public class JourneyMapViewComponentSpec {
                         .position(getJourneyDepartureCoordinates(journey))
                         .icon(BitmapDescriptorFactory.fromBitmap(getPlaceMarkerIcon(
                                 context,
-                                context.getString(R.string.component_JourneyMapViewComponent_departure),
+                                context.getString(R.string.departure),
                                 Configuration.colors.getOrigin())
                         ));
                 googleMap.addMarker(departureMarkerOptions);
@@ -125,7 +124,7 @@ public class JourneyMapViewComponentSpec {
                         .position(getJourneyArrivalCoordinates(journey))
                         .icon(BitmapDescriptorFactory.fromBitmap(getPlaceMarkerIcon(
                                 context,
-                                context.getString(R.string.component_JourneyMapViewComponent_arrival),
+                                context.getString(R.string.arrival),
                                 Configuration.colors.getDestination())
                         ));
                 googleMap.addMarker(arrivalMarkerOptions);

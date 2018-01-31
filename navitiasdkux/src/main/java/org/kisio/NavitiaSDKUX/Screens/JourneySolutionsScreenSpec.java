@@ -79,7 +79,7 @@ public class JourneySolutionsScreenSpec {
         } else if (error){
             journeyComponent = new Component<?>[]{
                 AlertComponent.create(c)
-                    .text(c.getString(R.string.screen_JourneySolutionsScreen_error))
+                    .text(c.getString(R.string.no_journey_found))
                     .build()
             };
         } else {
