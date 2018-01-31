@@ -3,7 +3,7 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
 ext {
-    navitiaSdkVersion = '1.0.0'
+    navitiaSdkVersion = '0.3.2'
     supportLibraryVersion = '26.1.0'
     lithoVersion = '0.6.1'
 
