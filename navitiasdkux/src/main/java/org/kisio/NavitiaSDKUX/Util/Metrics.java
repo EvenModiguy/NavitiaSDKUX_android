@@ -11,6 +11,7 @@ import org.kisio.NavitiaSDKUX.R;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * NavitiaSDKUX_android
@@ -48,7 +49,7 @@ public class Metrics {
         final String hours = timeData[1].substring(0, 2);
         final String minutes = timeData[1].substring(2, 4);
 
-        return hours + ":" + minutes;
+        return String.format("%1$s:%2$s", hours, minutes);
     }
 
     public static String shortDateText(DateTime datetime) {
@@ -63,9 +64,9 @@ public class Metrics {
 
     public static String distanceText(ComponentContext c, Integer meters) {
         if (meters < 1000) {
-            return meters + " " + c.getString(R.string.units_meters);
+            return String.format("%1$s %2$s", meters, c.getString(R.string.units_meters));
         } else {
-            return String.format("%.1f", meters / 1000.f) + " " + c.getString(R.string.units_km);
+            return String.format(Locale.getDefault(),"%.1f %s", meters / 1000.f, c.getString(R.string.units_km));
         }
     }
 
@@ -77,16 +78,16 @@ public class Metrics {
         if (seconds < 60) {
             return String.format("%1$s %2$s", c.getString(R.string.less_than_a), c.getString(R.string.units_minute));
         } else if (seconds < 120) {
-            return "1 " + c.getString(R.string.units_minute);
+            return String.format("1 %s", c.getString(R.string.units_minute));
         } else if (seconds < 3600) {
             Integer minutes = seconds / 60;
-            return String.valueOf(minutes) + " " + c.getString(R.string.units_minutes);
+            return String.format("%1$s %2$s", String.valueOf(minutes), c.getString(R.string.units_minutes));
         } else {
             Integer hours = seconds / 3600;
             Integer remainingMinutes = (seconds / 60) - (hours * 60);
             String minutes = String.valueOf(remainingMinutes);
             if (remainingMinutes < 10) {
-                minutes = "0" + String.valueOf(remainingMinutes);
+                minutes = String.format("0%s", String.valueOf(remainingMinutes));
             }
 
             if (useFullFormat) {
@@ -104,7 +105,7 @@ public class Metrics {
                     }
                 }
             } else {
-                return String.valueOf(hours) + c.getString(R.string.units_h) + minutes;
+                return String.format("%1$s%2$s%3$s", String.valueOf(hours), c.getString(R.string.units_h), minutes);
             }
         }
     }

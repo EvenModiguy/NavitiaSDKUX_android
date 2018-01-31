@@ -28,6 +28,7 @@ import org.kisio.NavitiaSDKUX.Util.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -69,8 +70,8 @@ class DetailsPartSpec {
                             .rightChildren(new Component[]{
                                 DetailButtonPart.create(c)
                                     .collapsed(collapsed)
-                                    .text(String.format("%d %s", section.getStopDateTimes().size() - 1,
-                                            c.getString(R.string.stops)))
+                                    .text(String.format(Locale.getDefault(),"%d %s",
+                                            section.getStopDateTimes().size() - 1, c.getString(R.string.stops)))
                                     .build()
                             })
                     )

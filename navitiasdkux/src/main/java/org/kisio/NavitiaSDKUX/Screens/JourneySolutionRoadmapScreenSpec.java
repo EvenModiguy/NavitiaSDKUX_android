@@ -144,7 +144,7 @@ public class JourneySolutionRoadmapScreenSpec {
 
         if (network != null) {
             // bss mode
-            String takeStringTemplate = c.getString(R.string.take_a_bike_at) + " ";
+            String takeStringTemplate = String.format("%s ", c.getString(R.string.take_a_bike_at));
             String take = String.format(takeStringTemplate, network);
             SpannableString takeSpannableString = new SpannableString(take);
             descriptionLabel.append(takeSpannableString);
@@ -153,11 +153,11 @@ public class JourneySolutionRoadmapScreenSpec {
             departureSpannableString.setSpan(new StyleSpan(Typeface.BOLD), 0, fromLabel.length(), 0);
             descriptionLabel.append(departureSpannableString);
 
-            String inDirection = " " + c.getString(R.string.to) + " ";
+            String inDirection = String.format(" %s ", c.getString(R.string.to));
             SpannableString inDirectionSpannableString = new SpannableString(inDirection);
             descriptionLabel.append(inDirectionSpannableString);
         } else {
-            String to = c.getString(R.string.to_with_uppercase) + " ";
+            String to = String.format("%s ", c.getString(R.string.to_with_uppercase));
             SpannableString toSpannableString = new SpannableString(to);
             descriptionLabel.append(toSpannableString);
         }

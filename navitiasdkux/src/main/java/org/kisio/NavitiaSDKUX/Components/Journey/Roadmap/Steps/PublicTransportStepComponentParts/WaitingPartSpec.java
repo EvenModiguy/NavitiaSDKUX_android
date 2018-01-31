@@ -44,7 +44,7 @@ public class WaitingPartSpec {
                             .build(),
                         TextComponent.create(c)
                             .styles(labelStyles)
-                            .text(c.getString(R.string.wait) + " " + Metrics.durationText(c, duration, true))
+                            .text(String.format("%1$s %2$s", c.getString(R.string.wait), Metrics.durationText(c, duration, true)))
                             .build()
                     })
                     .build()

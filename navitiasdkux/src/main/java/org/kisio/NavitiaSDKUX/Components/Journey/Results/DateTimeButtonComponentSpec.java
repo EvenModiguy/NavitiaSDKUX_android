@@ -37,7 +37,7 @@ public class DateTimeButtonComponentSpec {
             .child(
                 TextComponent.create(c)
                     .styles(textStyles)
-                    .text(c.getString(datetimeRepresentsLabel.get(datetimeRepresents)) + " " + Metrics.longDateText(datetime))
+                    .text(String.format("%1$s %2$s", c.getString(datetimeRepresentsLabel.get(datetimeRepresents)), Metrics.longDateText(datetime)))
             );
         final Map<String, Object> computedStyles = StylizedComponent.mergeStyles(buttonStyles, styles);
         final ComponentLayout.Builder styledBuilder = StylizedComponent.applyStyles(builder, computedStyles);
