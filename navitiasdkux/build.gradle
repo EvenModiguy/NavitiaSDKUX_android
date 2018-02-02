@@ -160,7 +160,6 @@ publishing {
     }
 }
 
-// "gradle -Puser=someuser -Pkey=ASDFASDFASDF androidSourcesJar androidJavadocsJar bundleRelease bintrayUpload" to build and send to jcenter
 bintray {
     user = project.hasProperty('user') ? property('user') : ''
     key = project.hasProperty('key') ? property('key') : ''
