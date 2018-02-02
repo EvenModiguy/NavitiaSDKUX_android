@@ -28,7 +28,7 @@ public class SectionMatcherTest {
         try {
             Path jsonFilePath = Paths.get(System.getProperty("user.dir") + "/src/test/java/org/kisio/NavitiaSDKUX/journeysWithDisruptionsResponse.json");
             Gson gson = new Gson();
-            journeysResponse = gson.fromJson(new String(Files.readAllBytes(jsonFilePath)), Journeys.class);
+            journeysResponse = gson.fromJson(new String(Files.readAllBytes(jsonFilePath), "UTF-8"), Journeys.class);
         } catch (IOException e) {
             assertTrue("Test file not loaded : " + e.getMessage(), false);
         } catch (JsonSyntaxException e) {
