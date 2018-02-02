@@ -2,15 +2,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'maven-publish'
 
-ext {
-    navitiaSdkVersion = '0.3.2'
-    supportLibraryVersion = '26.1.0'
-    lithoVersion = '0.6.1'
-
-    groupId = 'org.kisio.sdk'
-    artifactId = 'navitia-sdk-ux'
-    description = "Navitia SDK UX Android ${navitiaSdkVersion}"
-}
+def navitiaSdkVersion = '1.0.0'
+def supportLibraryVersion = '26.1.0'
+def lithoVersion = '0.6.1'
+def group = 'org.kisio.sdk'
+def artifactName = 'navitia-sdk-ux'
+def description = "Navitia SDK UX Android ${navitiaSdkVersion}"
 
 buildscript {
     repositories {
@@ -56,14 +53,14 @@ repositories {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:${supportLibraryVersion}"
-    implementation "com.android.support:recyclerview-v7:${supportLibraryVersion}"
-    implementation "com.facebook.litho:litho-core:${lithoVersion}"
-    implementation "com.facebook.litho:litho-widget:${lithoVersion}"
-    implementation "com.facebook.litho:litho-annotations:${lithoVersion}"
-    implementation 'com.facebook.soloader:soloader:0.2.0'
-    implementation 'com.google.android.gms:play-services-maps:11.8.0'
-    implementation 'org.kisio.sdk:navitia-sdk:0.3.0' // use navitiaSdkVersion later
+    compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
+    compile "com.android.support:recyclerview-v7:${supportLibraryVersion}"
+    compile "com.facebook.litho:litho-core:${lithoVersion}"
+    compile "com.facebook.litho:litho-widget:${lithoVersion}"
+    compile "com.facebook.litho:litho-annotations:${lithoVersion}"
+    compile 'com.facebook.soloader:soloader:0.2.0'
+    compile 'com.google.android.gms:play-services-maps:11.8.0'
+    compile 'org.kisio.sdk:navitia-sdk:0.3.0' // use navitiaSdkVersion later
 
     annotationProcessor "com.facebook.litho:litho-processor:${lithoVersion}"
 
@@ -113,8 +110,8 @@ def pomConfig = {
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId groupId
-            artifactId artifactId
+            groupId group
+            artifactId artifactName
             version navitiaSdkVersion
             // Or use same version as in android branch
             // version = android.defaultConfig.versionName
@@ -172,7 +169,7 @@ bintray {
     publish = false //[Default: false] Whether version should be auto published after an upload
     pkg {
         repo = 'NavitiaSDK'
-        name = artifactId
+        name = artifactName
         licenses = ['GPL-3.0']
         vcsUrl = 'https://github.com/CanalTP/NavitiaSDKUX_android.git'
         version {
