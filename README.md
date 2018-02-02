@@ -1,11 +1,12 @@
 # NavitiaSDKUX_android
+[ ![Download](https://api.bintray.com/packages/navitiasdkteam/NavitiaSDK/navitia-sdk-ux/images/download.svg) ](https://bintray.com/navitiasdkteam/NavitiaSDK/navitia-sdk-ux/_latestVersion)
 An Android module you can use in your app to offer cool transport stuff to your users.
 
 ## Installation
 Add the following dependency to your `build.gradle` file:
 ```ruby
 dependencies {
-    implementation 'org.kisio.sdk:navitia-sdk-ux:0.3.3'
+    implementation 'org.kisio.sdk:navitia-sdk-ux:1.0.0'
 }
 ```
 
