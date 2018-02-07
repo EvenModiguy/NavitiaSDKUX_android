@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.kisio.sample.NavitiaSDKUX.MainActivity">
+    tools:context="org.kisio.sample.navitiasdkui.MainActivity">
 
     <Button
         android:id="@+id/sdk_open"
