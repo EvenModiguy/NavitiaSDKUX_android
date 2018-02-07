@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Journeys;
 import org.kisio.NavitiaSDK.models.Section;
-import org.kisio.NavitiaSDKUX.BusinessLogic.SectionMatcher;
+import org.kisio.NavitiaSDKUX.business.SectionMatcher;
 
 import java.io.IOException;
 import java.nio.file.Files;

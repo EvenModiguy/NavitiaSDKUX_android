@@ -15,8 +15,8 @@
 
     <application
         android:name="org.kisio.NavitiaSDKUX.NavitiaSDKUX">
-        <activity android:name="org.kisio.NavitiaSDKUX.Controllers.JourneySolutionsActivity"/>
-        <activity android:name="org.kisio.NavitiaSDKUX.Controllers.JourneySolutionRoadmapActivity"/>
+        <activity android:name="org.kisio.NavitiaSDKUX.controller.JourneySolutionsActivity"/>
+        <activity android:name="org.kisio.NavitiaSDKUX.controller.JourneySolutionRoadmapActivity"/>
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

@@ -3,8 +3,8 @@ package org.kisio.NavitiaSDKUX;
 import org.junit.Test;
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Severity;
-import org.kisio.NavitiaSDKUX.BusinessLogic.DisruptionLevel;
-import org.kisio.NavitiaSDKUX.BusinessLogic.DisruptionMatcher;
+import org.kisio.NavitiaSDKUX.business.DisruptionLevel;
+import org.kisio.NavitiaSDKUX.business.DisruptionMatcher;
 
 import java.util.ArrayList;
 import java.util.List;

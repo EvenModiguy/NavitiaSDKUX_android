@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.Button;
 
 import org.joda.time.DateTime;
-import org.kisio.NavitiaSDKUX.Config.Configuration;
-import org.kisio.NavitiaSDKUX.Controllers.JourneySolutionsActivity;
-import org.kisio.NavitiaSDKUX.Controllers.JourneySolutionsInParameters;
+import org.kisio.NavitiaSDKUX.config.Configuration;
+import org.kisio.NavitiaSDKUX.controller.JourneySolutionsActivity;
+import org.kisio.NavitiaSDKUX.controller.JourneySolutionsInParameters;
 
 import java.util.Arrays;
 

@@ -11,8 +11,8 @@ import com.facebook.litho.testing.espresso.LithoViewMatchers;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kisio.NavitiaSDKUX.Controllers.JourneySolutionRoadmapActivity;
-import org.kisio.NavitiaSDKUX.Controllers.JourneySolutionsActivity;
+import org.kisio.NavitiaSDKUX.controller.JourneySolutionRoadmapActivity;
+import org.kisio.NavitiaSDKUX.controller.JourneySolutionsActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
