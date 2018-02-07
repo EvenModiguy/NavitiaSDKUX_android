@@ -4,7 +4,6 @@ apply plugin: 'maven-publish'
 
 def navitiaSdkVersion = '1.0.0'
 def supportLibraryVersion = '26.1.0'
-def lithoVersion = '0.6.1'
 def group = 'org.kisio.sdk'
 def artifactName = 'navitia-sdk-ux'
 def description = "Navitia SDK UX Android ${navitiaSdkVersion}"
@@ -55,14 +54,9 @@ repositories {
 dependencies {
     compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
     compile "com.android.support:recyclerview-v7:${supportLibraryVersion}"
-    compile "com.facebook.litho:litho-core:${lithoVersion}"
-    compile "com.facebook.litho:litho-widget:${lithoVersion}"
-    compile "com.facebook.litho:litho-annotations:${lithoVersion}"
     compile 'com.facebook.soloader:soloader:0.2.0'
     compile 'com.google.android.gms:play-services-maps:11.8.0'
     compile 'org.kisio.sdk:navitia-sdk:0.3.0' // use navitiaSdkVersion later
-
-    annotationProcessor "com.facebook.litho:litho-processor:${lithoVersion}"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
