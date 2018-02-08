@@ -34,4 +34,5 @@
     <string name="wait">Wait</string>
     <string name="walking">walking</string>
     <string name="with">With</string>
+    <string name="title_activity_journey_search">JourneySearchActivity</string>
 </resources>
