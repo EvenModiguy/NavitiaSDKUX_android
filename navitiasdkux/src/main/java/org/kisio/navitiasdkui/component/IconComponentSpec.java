@@ -8,7 +8,6 @@ import com.facebook.litho.annotations.Prop;
 import com.facebook.litho.annotations.PropDefault;
 
 import org.kisio.navitiasdkui.component.primitive.StylizedComponent;
-import org.kisio.navitiasdkui.util.Icons;
 
 import java.util.HashMap;
 import java.util.Map;
