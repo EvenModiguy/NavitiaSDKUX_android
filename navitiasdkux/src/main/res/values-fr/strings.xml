@@ -6,6 +6,7 @@
     <string name="arrival">Arrivée</string>
     <string name="arrival_with_colon">Arrivée :</string>
     <string name="at">à</string>
+    <string name="carpooling">covoiturage</string>
     <string name="departure">Départ</string>
     <string name="departure_with_colon">Départ :</string>
     <string name="details">Détails</string>
