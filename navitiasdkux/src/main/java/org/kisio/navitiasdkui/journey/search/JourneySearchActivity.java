@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import org.kisio.navitiasdkui.R;
+import org.kisio.navitiasdkui.journey.ListModel;
 
 public class JourneySearchActivity extends AppCompatActivity implements ResultAdapter.ClickListener {
 
@@ -17,7 +18,7 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
     }
 
     @Override
-    public void onSolutionClick(ResultModel solution) {
+    public void onSolutionClick(ListModel solution) {
 
     }
 }

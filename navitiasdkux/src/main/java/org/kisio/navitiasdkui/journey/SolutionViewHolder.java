@@ -1,4 +1,4 @@
-package org.kisio.navitiasdkui.journey.search;
+package org.kisio.navitiasdkui.journey;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,12 +10,10 @@ import org.kisio.navitiasdkui.R;
 /**
  * View holder for a view representing an journey result.
  */
-class SolutionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
+public class SolutionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private final TextView gTravelTime;
     private final TextView gTravelDuration;
     private final TextView gWalkInfo;
-
     private ClickListener mListener;
 
     /**
@@ -30,7 +28,7 @@ class SolutionViewHolder extends RecyclerView.ViewHolder implements View.OnClick
      *
      * @param v held view.
      */
-    SolutionViewHolder(View v) {
+    public SolutionViewHolder(View v) {
         super(v);
         gTravelTime = v.findViewById(R.id.listitem_solution_travel_time);
         gTravelDuration = v.findViewById(R.id.listitem_solution_travel_duration);
@@ -51,7 +49,7 @@ class SolutionViewHolder extends RecyclerView.ViewHolder implements View.OnClick
      *
      * @param listener click listener to be registered.
      */
-    void setClickListener(ClickListener listener) {
+    public void setClickListener(ClickListener listener) {
         this.mListener = listener;
     }
 
@@ -59,12 +57,11 @@ class SolutionViewHolder extends RecyclerView.ViewHolder implements View.OnClick
      * Fill the held view.
      *
      * @param model Model to display.
-     * @param context context of the activity if needed for setting data into views
+     * @param context context of the activity.
      */
-    void fillView(ResultModel model, Context context) {
+    public void fillView(ListModel model, Context context) {
         gTravelTime.setText(model.getTravelTime());
-        gTravelDuration.setText(model.getWalkInfo());
+        gTravelDuration.setText(model.getTravelDuration());
         gWalkInfo.setText(model.getWalkInfo());
-
     }
 }

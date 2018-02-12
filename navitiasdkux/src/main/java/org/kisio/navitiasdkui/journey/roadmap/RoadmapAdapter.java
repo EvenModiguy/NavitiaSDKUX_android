@@ -1,5 +1,4 @@
-package org.kisio.navitiasdkui.journey.search;
-
+package org.kisio.navitiasdkui.journey.roadmap;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -13,19 +12,13 @@ import org.kisio.navitiasdkui.journey.SolutionViewHolder;
 
 import java.util.List;
 
-public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<ListModel> listModelList;
-    private ClickListener clickListener;
+public class RoadmapAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    private List<ListModel> listModels;
     private Context context;
 
-    interface ClickListener {
-        void onSolutionClick(ListModel solution);
-    }
-
-    public ResultAdapter(List<ListModel> listModelList, JourneySearchActivity activity) {
-        this.listModelList = listModelList;
+    public RoadmapAdapter(List<ListModel> listModels, RoadmapActivity activity) {
+        this.listModels = listModels;
         this.context = activity;
-        this.clickListener = activity;
     }
 
     @Override
@@ -39,8 +32,18 @@ public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 break;
             case 1:
                 View headerView = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.listitem_header, parent, false);
-                viewHolder = new HeaderViewHolder(headerView);
+                        .inflate(R.layout.listitem_departure_arrival, parent, false);
+                viewHolder = new DepartureArrivalViewHolder(headerView);
+                break;
+            case 2:
+                View transferView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.listitem_transfer, parent, false);
+                viewHolder = new TransferViewHolder(transferView);
+                break;
+            case 3:
+                View transitView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.listitem_transit, parent, false);
+                viewHolder = new TransitViewHolder(transitView);
                 break;
         }
         return viewHolder;
@@ -48,27 +51,26 @@ public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-        final ListModel listModel = listModelList.get(holder.getAdapterPosition());
+        final ListModel listModel = listModels.get(holder.getAdapterPosition());
 
         switch (listModel.getViewType()) {
             case 0:
                 ((SolutionViewHolder) holder).fillView(listModel, context);
-                ((SolutionViewHolder) holder).setClickListener(new SolutionViewHolder.ClickListener() {
-                    @Override
-                    public void onClick() {
-                        clickListener.onSolutionClick(listModel);
-                    }
-                });
                 break;
             case 1:
-                ((HeaderViewHolder) holder).fillView();
+                ((DepartureArrivalViewHolder) holder).fillView(listModel);
+                break;
+            case 2:
+                ((TransferViewHolder) holder).fillView(listModel);
+                break;
+            case 3:
+                ((TransitViewHolder) holder).fillView(listModel, context);
                 break;
         }
     }
 
     @Override
     public int getItemCount() {
-        return listModelList.size();
+        return listModels.size();
     }
-
 }
