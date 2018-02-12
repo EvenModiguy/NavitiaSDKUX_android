@@ -11,7 +11,7 @@ import org.kisio.navitiasdkui.journey.ListModel;
 class TransitViewHolder extends RecyclerView.ViewHolder {
     private final TextView gIcon;
     private final TextView gTransit;
-    private final TextView gLine;
+    private final View gLine;
     private final TextView gOrigin;
     private final TextView gDisruption;
     private final TextView gDisruptionTime;
@@ -51,7 +51,7 @@ class TransitViewHolder extends RecyclerView.ViewHolder {
     void fillView(ListModel model, Context context) {
         gIcon.setText(model.getIcon());
         gTransit.setText(model.getTransit());
-        gLine.setText(model.getLine());
+        //gLine.setText(model.getLine());
         gOrigin.setText(model.getOrigin());
         gDisruption.setText(model.getDisruption());
         gDisruptionTime.setText(model.getDisruptionTime());

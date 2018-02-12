@@ -9,4 +9,5 @@
     <color name="colorGreyish">#404040</color>
     <color name="colorDeparture">#00BB75</color>
     <color name="colorArrival">#B00353</color>
+    <color name="colorRed">#ff0000</color>
 </resources>
