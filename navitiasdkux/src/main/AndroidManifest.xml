@@ -22,11 +22,10 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".journey.JourneySearchActivity"
+            android:name=".journey.search.JourneySearchActivity"
             android:label="@string/title_activity_journey_search"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".journey.JourneyResultActivity" />
-        <activity android:name=".journey.RoadmapActivity"></activity>
+        <activity android:name=".journey.roadmap.RoadmapActivity"/>
     </application>
 
 </manifest>
