@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -142,15 +143,15 @@
 
             <View
                 android:id="@+id/listitem_transit_line"
-                android:layout_width="8dp"
+                android:layout_width="4dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
-                android:layout_marginStart="56dp"
+                android:layout_marginStart="64dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/colorArrival"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@color/colorArrival"/>
 
             <TextView
                 android:id="@+id/listitem_transit_origin"
@@ -161,7 +162,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/SDKIcons"
                 android:textColor="@color/colorBlack"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -173,7 +174,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
                 android:gravity="center_vertical"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -187,13 +188,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginStart="56dp"
+                android:layout_marginStart="59dp"
                 android:layout_marginTop="24dp"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/listitem_transit_stations_count"
-                tools:layout_height="120dp" />
+                tools:layout_height="120dp"
+                tools:listitem="@layout/listitem_station"/>
 
             <TextView
                 android:id="@+id/listitem_transit_destination"
@@ -205,7 +207,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/SDKIcons"
                 android:textColor="@color/colorBlack"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
