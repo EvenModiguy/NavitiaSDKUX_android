@@ -17,6 +17,9 @@ import java.util.Map;
  * Copyright \u00a9 2018 Kisio. All rights reserved.
  */
 public class Configuration {
+    public static final String TIME_FORMAT = "HH:mm";
+    public static final String LONG_DATE_TIME_FORMAT = "EEE d MMM - HH:mm";
+
     public static String getToken(Context context) {
         try {
             ApplicationInfo ai = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
@@ -30,18 +33,6 @@ public class Configuration {
             Log.e("Navitia SDK UI", "Don't forget to configure <meta-data android:name=\"org.kisio.navitia.API_KEY\" android:value=\"YOUR_API_KEY\"/> in your AndroidManifest.xml file.");
             return null;
         }
-    }
-
-    public static class metrics {
-        public static Integer space = 4;
-        public static Integer radius = 5;
-        public static Integer marginS = 4;
-        public static Integer margin = 8;
-        public static Integer marginL = 16;
-        public static Integer textS = 13;
-        public static Integer text = 17;
-        public static String timeFormat = "HH:mm";
-        public static String longDateFormat = "EEE d MMM - HH:mm";
     }
 
     public static class colors {
@@ -161,52 +152,5 @@ public class Configuration {
         public static Integer getTransparentBlack() {
             return transparentBlack;
         }
-    }
-
-    public static Map<String, String> iconFontCodes = new HashMap<>();
-    static {
-        iconFontCodes.put("address", "\uea02");
-        iconFontCodes.put("administrative-region", "\uea03");
-        iconFontCodes.put("air", "\uea04");
-        iconFontCodes.put("arrow-details-down", "\uea05");
-        iconFontCodes.put("arrow-details-up", "\uea06");
-        iconFontCodes.put("arrow-direction-left", "\uea07");
-        iconFontCodes.put("arrow-direction-right", "\uea08");
-        iconFontCodes.put("arrow-direction-straight", "\uea09");
-        iconFontCodes.put("arrow-left-long", "\uea0a");
-        iconFontCodes.put("arrow-right-long", "\uea0b");
-        iconFontCodes.put("arrow-right", "\uea0c");
-        iconFontCodes.put("bike", "\uea0d");
-        iconFontCodes.put("ferry", "\uea0e");
-        iconFontCodes.put("bss", "\uea0f");
-        iconFontCodes.put("bus", "\uea10");
-        iconFontCodes.put("calendar", "\uea11");
-        iconFontCodes.put("car", "\uea12");
-        iconFontCodes.put("clock", "\uea13");
-        iconFontCodes.put("coach", "\uea14");
-        iconFontCodes.put("destination", "\uea15");
-        iconFontCodes.put("direction", "\uea16");
-        iconFontCodes.put("edit", "\uea17");
-        iconFontCodes.put("funicular", "\uea18");
-        iconFontCodes.put("geolocation", "\uea19");
-        iconFontCodes.put("home", "\uea1a");
-        iconFontCodes.put("location-pin", "\uea15");
-        iconFontCodes.put("metro", "\uea1b");
-        iconFontCodes.put("notice", "\uea1c");
-        iconFontCodes.put("origin", "\uea1d");
-        iconFontCodes.put("poi", "\uea1e");
-        iconFontCodes.put("realtime", "\uea1f");
-        iconFontCodes.put("stop", "\uea21");
-        iconFontCodes.put("localtrain", "\uea23");
-        iconFontCodes.put("rapidtransit", "\uea23");
-        iconFontCodes.put("longdistancetrain", "\uea23");
-        iconFontCodes.put("tramway", "\uea24");
-        iconFontCodes.put("walking", "\uea25");
-        iconFontCodes.put("work", "\uea26");
-        iconFontCodes.put("circle-filled", "\uea27");
-        iconFontCodes.put("circle", "\uea28");
-        iconFontCodes.put("disruption-blocking", "\uea29");
-        iconFontCodes.put("disruption-nonblocking", "\uea2a");
-        iconFontCodes.put("disruption-information", "\uea2b");
     }
 }
