@@ -24,7 +24,7 @@ public class IconComponentSpec {
         @Prop(optional = true) String name) {
 
         Map<String, Object> iconStyles = new HashMap<>(iconBaseStyles);
-        iconStyles.put("fontFamily", StylizedComponent.getFont(c,"SDKIcons"));
+        iconStyles.put("fontFamily", StylizedComponent.getFont(c,"sdk_icons"));
         final Map<String, Object> computedStyles = StylizedComponent.mergeStyles(iconStyles, styles);
 
         return TextComponent.create(c)
