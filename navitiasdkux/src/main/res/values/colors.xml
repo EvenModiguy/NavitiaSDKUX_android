@@ -10,4 +10,9 @@
     <color name="colorDeparture">#00BB75</color>
     <color name="colorArrival">#B00353</color>
     <color name="colorRed">#ff0000</color>
+
+    <color name="disruptionBlocking">#A94442</color>
+    <color name="disruptionNonNlocking">#8A6D3B</color>
+    <color name="disruptionInformation">#31708F</color>
+    <color name="disruptionDefault">#888888</color>
 </resources>
