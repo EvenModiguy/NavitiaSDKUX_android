@@ -79,5 +79,5 @@
     <string name="disruption_blocking">\uea29</string>
     <string name="disruption_non_blocking">\uea2a</string>
     <string name="disruption_information">\uea2b</string>
-    <string name="carpool">\uea2c</string>
+    <string name="ridesharing">\uea2c</string>
 </resources>
