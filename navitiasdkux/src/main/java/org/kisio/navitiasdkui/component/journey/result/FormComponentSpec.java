@@ -12,7 +12,7 @@ import org.kisio.navitiasdkui.component.FormComponent;
 import org.kisio.navitiasdkui.component.journey.result.form.AutocompleteInputPart;
 import org.kisio.navitiasdkui.component.journey.result.Parts.SeparatorPart;
 import org.kisio.navitiasdkui.component.primitive.StylizedComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;

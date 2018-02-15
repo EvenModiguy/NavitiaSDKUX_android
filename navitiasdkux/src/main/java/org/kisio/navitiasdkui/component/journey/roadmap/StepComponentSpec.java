@@ -16,7 +16,7 @@ import org.kisio.navitiasdkui.component.journey.roadmap.step.SharedStepComponent
 import org.kisio.navitiasdkui.component.journey.roadmap.step.SimpleStepComponent;
 import org.kisio.navitiasdkui.component.primitive.BaseViewComponent;
 import org.kisio.navitiasdkui.component.primitive.StylizedComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 
 import java.util.ArrayList;
 import java.util.HashMap;

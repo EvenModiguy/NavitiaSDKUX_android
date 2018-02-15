@@ -2,8 +2,6 @@ package org.kisio.navitiasdkui.util;
 
 import android.text.TextUtils;
 
-import org.kisio.navitiasdkui.config.Configuration;
-
 /**
  * NavitiaSDKUX_android
  *

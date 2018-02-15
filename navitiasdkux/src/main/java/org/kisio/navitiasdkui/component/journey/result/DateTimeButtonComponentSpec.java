@@ -12,7 +12,7 @@ import org.joda.time.DateTime;
 import org.kisio.navitiasdkui.component.primitive.ButtonComponent;
 import org.kisio.navitiasdkui.component.primitive.StylizedComponent;
 import org.kisio.navitiasdkui.component.TextComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 import org.kisio.navitiasdkui.R;
 import org.kisio.navitiasdkui.util.Metrics;
 

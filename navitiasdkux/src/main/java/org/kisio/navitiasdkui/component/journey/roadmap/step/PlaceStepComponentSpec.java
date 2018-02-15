@@ -17,7 +17,7 @@ import org.kisio.navitiasdkui.component.journey.roadmap.Roadmap3ColumnsLayout;
 import org.kisio.navitiasdkui.component.journey.roadmap.step.Parts.TimePart;
 import org.kisio.navitiasdkui.component.TextComponent;
 import org.kisio.navitiasdkui.component.ViewComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 import org.kisio.navitiasdkui.util.Color;
 
 import java.util.HashMap;

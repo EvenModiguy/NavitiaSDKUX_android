@@ -12,7 +12,7 @@ import com.facebook.litho.LithoView;
 
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Journey;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 import org.kisio.navitiasdkui.R;
 import org.kisio.navitiasdkui.screen.JourneySolutionRoadmapScreen;
 import org.kisio.navitiasdkui.util.JourneySolutionCache;

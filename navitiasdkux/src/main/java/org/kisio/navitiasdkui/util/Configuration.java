@@ -1,4 +1,4 @@
-package org.kisio.navitiasdkui.config;
+package org.kisio.navitiasdkui.util;
 
 import android.graphics.Color;
 
@@ -10,7 +10,6 @@ import java.util.Map;
  *
  * Copyright \u00a9 2018 Kisio. All rights reserved.
  */
-
 public class Configuration {
     public static String token = "";
 

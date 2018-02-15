@@ -10,7 +10,7 @@ import com.facebook.litho.annotations.PropDefault;
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.navitiasdkui.business.Modes;
 import org.kisio.navitiasdkui.component.primitive.StylizedComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;

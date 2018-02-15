@@ -13,7 +13,7 @@ import org.kisio.navitiasdkui.component.primitive.BaseViewComponent;
 import org.kisio.navitiasdkui.component.primitive.ButtonComponent;
 import org.kisio.navitiasdkui.component.primitive.HorizontalViewComponent;
 import org.kisio.navitiasdkui.component.primitive.StylizedComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;

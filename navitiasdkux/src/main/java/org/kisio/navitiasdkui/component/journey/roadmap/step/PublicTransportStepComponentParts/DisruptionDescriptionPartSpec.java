@@ -20,7 +20,7 @@ import org.kisio.navitiasdkui.component.HorizontalContainerComponent;
 import org.kisio.navitiasdkui.component.IconComponent;
 import org.kisio.navitiasdkui.component.TextComponent;
 import org.kisio.navitiasdkui.component.ViewComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 import org.kisio.navitiasdkui.R;
 import org.kisio.navitiasdkui.util.Color;
 import org.kisio.navitiasdkui.util.Metrics;

@@ -36,7 +36,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import org.kisio.NavitiaSDK.models.Journey;
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.navitiasdkui.component.journey.roadmap.JourneyMapViewComponentParts.PlaceMarkerComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 import org.kisio.navitiasdkui.R;
 import org.kisio.navitiasdkui.business.JourneyPathElements;
 import org.kisio.navitiasdkui.business.SectionPolyline;

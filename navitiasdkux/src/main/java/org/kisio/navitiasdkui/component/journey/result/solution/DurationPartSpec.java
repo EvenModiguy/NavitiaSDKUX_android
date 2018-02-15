@@ -11,7 +11,7 @@ import org.kisio.navitiasdkui.component.IconComponent;
 import org.kisio.navitiasdkui.component.primitive.HorizontalViewComponent;
 import org.kisio.navitiasdkui.component.primitive.StylizedComponent;
 import org.kisio.navitiasdkui.component.TextComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 import org.kisio.navitiasdkui.util.Metrics;
 
 import java.util.HashMap;

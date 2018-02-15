@@ -14,7 +14,7 @@ import org.kisio.navitiasdkui.component.IconComponent;
 import org.kisio.navitiasdkui.component.primitive.BaseViewComponent;
 import org.kisio.navitiasdkui.component.primitive.StylizedComponent;
 import org.kisio.navitiasdkui.component.TextComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 import org.kisio.navitiasdkui.R;
 
 import java.util.HashMap;

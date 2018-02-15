@@ -19,7 +19,7 @@ import org.kisio.navitiasdkui.component.CardComponent;
 import org.kisio.navitiasdkui.component.journey.result.solution.RowPart;
 import org.kisio.navitiasdkui.component.primitive.BaseViewComponent;
 import org.kisio.navitiasdkui.component.primitive.StylizedComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 import org.kisio.navitiasdkui.controller.JourneySolutionRoadmapActivity;
 import org.kisio.navitiasdkui.util.JourneySolutionCache;
 

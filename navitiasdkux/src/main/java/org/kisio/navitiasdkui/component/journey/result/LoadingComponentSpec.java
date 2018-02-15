@@ -12,7 +12,7 @@ import com.facebook.litho.annotations.PropDefault;
 import org.kisio.navitiasdkui.component.CardComponent;
 import org.kisio.navitiasdkui.component.journey.result.loading.ShimCardContentPart;
 import org.kisio.navitiasdkui.component.primitive.StylizedComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;

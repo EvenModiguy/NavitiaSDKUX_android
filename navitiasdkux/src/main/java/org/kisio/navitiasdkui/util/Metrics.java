@@ -5,7 +5,6 @@ import com.facebook.litho.ComponentContext;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.kisio.NavitiaSDK.models.Path;
-import org.kisio.navitiasdkui.config.Configuration;
 import org.kisio.navitiasdkui.R;
 
 import java.util.Calendar;

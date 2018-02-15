@@ -21,7 +21,7 @@ import org.kisio.navitiasdkui.component.journey.roadmap.step.PublicTransportStep
 import org.kisio.navitiasdkui.component.primitive.BaseViewComponent;
 import org.kisio.navitiasdkui.component.primitive.StylizedComponent;
 import org.kisio.navitiasdkui.component.ViewComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 import org.kisio.navitiasdkui.R;
 import org.kisio.navitiasdkui.util.Color;
 

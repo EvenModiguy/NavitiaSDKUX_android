@@ -10,7 +10,7 @@ import com.facebook.yoga.YogaAlign;
 import org.kisio.navitiasdkui.component.ContainerComponent;
 import org.kisio.navitiasdkui.component.IconComponent;
 import org.kisio.navitiasdkui.component.TextComponent;
-import org.kisio.navitiasdkui.config.Configuration;
+import org.kisio.navitiasdkui.util.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
