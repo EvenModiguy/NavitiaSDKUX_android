@@ -23,6 +23,7 @@ public class ListModel {
     private String endTime;
     private String destination;
     private List<String> stations;
+    private boolean isCarpool;
 
     public int getViewType() {
         return viewType;
@@ -174,5 +175,13 @@ public class ListModel {
 
     public void setStations(List<String> stations) {
         this.stations = stations;
+    }
+
+    public boolean isCarpool() {
+        return isCarpool;
+    }
+
+    public void setCarpool(boolean carpool) {
+        isCarpool = carpool;
     }
 }

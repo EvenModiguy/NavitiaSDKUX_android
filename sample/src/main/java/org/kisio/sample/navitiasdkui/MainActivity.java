@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.Button;
 
 import org.joda.time.DateTime;
-import org.kisio.navitiasdkui.config.Configuration;
-import org.kisio.navitiasdkui.controller.JourneySolutionsActivity;
-import org.kisio.navitiasdkui.controller.JourneySolutionsInParameters;
+import org.kisio.navitiasdkui.util.Configuration;
+import org.kisio.navitiasdkui.journey.search.JourneySearchActivity;
+import org.kisio.navitiasdkui.journey.search.JourneysRequest;
 
 import java.util.Arrays;
 
@@ -27,20 +27,20 @@ public class MainActivity extends AppCompatActivity {
         final Button button = findViewById(R.id.sdk_open);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                final Intent intent = new Intent(v.getContext(), JourneySolutionsActivity.class);
+                final Intent intent = new Intent(v.getContext(), JourneySearchActivity.class);
 
-                final JourneySolutionsInParameters parameters = new JourneySolutionsInParameters("2.3665844;48.8465337", "2.2979169;48.8848719");
-                parameters.originLabel = "Chez moi";
-                parameters.destinationLabel = "Au travail";
-                parameters.datetime = DateTime.now().plusDays(1);
-                parameters.datetimeRepresents = "departure";
-                parameters.forbiddenUris = Arrays.asList("physical_mode:Bus");
-                parameters.firstSectionModes = Arrays.asList("bss");
-                parameters.lastSectionModes = Arrays.asList("car");
-                parameters.count = 5;
+                final JourneysRequest request = new JourneysRequest("2.3665844;48.8465337", "2.2979169;48.8848719");
+                request.setOriginLabel("Home")
+                    .setDestinationLabel("Work")
+                    .setDatetime(DateTime.now().plusDays(1))
+                    .setDatetimeRepresents("departure")
+                    .setForbiddenUris(Arrays.asList("physical_mode:Bus"))
+                    .setFirstSectionModes(Arrays.asList("bss"))
+                    .setLastSectionModes(Arrays.asList("car"))
+                    .setCount(5)
+                ;
 
-                intent.putExtra(JourneySolutionsActivity.IntentParameters.parameters.name(), parameters);
-
+                intent.putExtra(JourneySearchActivity.INTENT_PARAM, request);
                 startActivity(intent);
             }
         });
