@@ -14,6 +14,7 @@
     <string name="in_the_direction_of">in the direction of</string>
     <string name="journeys">Journeys</string>
     <string name="less_than_a">less than a</string>
+    <string name="no_carpooling_options_found">No carpooling options found</string>
     <string name="no_journey_found">No journey found</string>
     <string name="roadmap">Roadmap</string>
     <string name="stops">stops</string>

@@ -14,6 +14,7 @@
     <string name="in_the_direction_of">en direction de</string>
     <string name="journeys">Itinéraires</string>
     <string name="less_than_a">Moins d\'une</string>
+    <string name="no_carpooling_options_found">Aucune offre de covoiturage disponible</string>
     <string name="no_journey_found">Aucun itinéraire trouvé</string>
     <string name="roadmap">Feuille de route</string>
     <string name="stops">arrêts</string>

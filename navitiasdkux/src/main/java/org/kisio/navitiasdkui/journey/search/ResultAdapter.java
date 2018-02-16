@@ -13,6 +13,11 @@ import org.kisio.navitiasdkui.journey.SolutionViewHolder;
 
 import java.util.List;
 
+import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_EMPTY_STATE;
+import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_HEADER;
+import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_LOADING;
+import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_SOLUTION;
+
 public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<ListModel> listModelList;
     private ClickListener clickListener;
@@ -22,7 +27,7 @@ public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         void onSolutionClick(ListModel solution);
     }
 
-    public ResultAdapter(List<ListModel> listModelList, JourneySearchActivity activity) {
+    ResultAdapter(List<ListModel> listModelList, JourneySearchActivity activity) {
         this.listModelList = listModelList;
         this.context = activity;
         this.clickListener = activity;
@@ -32,15 +37,25 @@ public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder viewHolder = null;
         switch (viewType) {
-            case 0:
+            case VIEW_TYPE_SOLUTION:
                 View solutionView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.listitem_solution, parent, false);
                 viewHolder = new SolutionViewHolder(solutionView);
                 break;
-            case 1:
+            case VIEW_TYPE_HEADER:
                 View headerView = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.listitem_header, parent, false);
                 viewHolder = new HeaderViewHolder(headerView);
+                break;
+            case VIEW_TYPE_LOADING:
+                View loadingView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.listitem_loading, parent, false);
+                viewHolder = new LoadingViewHolder(loadingView);
+                break;
+            case VIEW_TYPE_EMPTY_STATE:
+                View emptyStateView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.listitem_empty_state, parent, false);
+                viewHolder = new EmptyStateViewHolder(emptyStateView);
                 break;
         }
         return viewHolder;
@@ -51,7 +66,7 @@ public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         final ListModel listModel = listModelList.get(holder.getAdapterPosition());
 
         switch (listModel.getViewType()) {
-            case 0:
+            case VIEW_TYPE_SOLUTION:
                 ((SolutionViewHolder) holder).fillView(listModel, context);
                 ((SolutionViewHolder) holder).setClickListener(new SolutionViewHolder.ClickListener() {
                     @Override
@@ -60,8 +75,8 @@ public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                     }
                 });
                 break;
-            case 1:
-                ((HeaderViewHolder) holder).fillView();
+            case VIEW_TYPE_EMPTY_STATE:
+                ((EmptyStateViewHolder) holder).fillView(listModel);
                 break;
         }
     }

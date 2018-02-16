@@ -21,9 +21,6 @@ import java.util.Map;
  * Copyright \u00a9 2018 Kisio. All rights reserved.
  */
 public class Configuration {
-    public static final String TIME_FORMAT = "HH:mm";
-    public static final String LONG_DATE_TIME_FORMAT = "EEE d MMM - HH:mm";
-
     public static String getToken(Context context) {
         try {
             ApplicationInfo ai = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);

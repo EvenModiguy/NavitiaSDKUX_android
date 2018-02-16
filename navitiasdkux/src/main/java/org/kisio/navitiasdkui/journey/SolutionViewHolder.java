@@ -61,7 +61,7 @@ public class SolutionViewHolder extends RecyclerView.ViewHolder implements View.
      */
     public void fillView(ListModel model, Context context) {
         gTravelTime.setText(model.getTravelTime());
-        gTravelDuration.setText(model.getTravelDuration());
+        gTravelDuration.setText(model.getTravelDuration()); // if it's less than a hour, show "min"
         gWalkInfo.setText(model.getWalkInfo());
     }
 }
