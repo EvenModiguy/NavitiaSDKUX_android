@@ -10,9 +10,27 @@
     <color name="colorDeparture">#00BB75</color>
     <color name="colorArrival">#B00353</color>
     <color name="colorRed">#ff0000</color>
-
+    
     <color name="disruptionBlocking">#A94442</color>
     <color name="disruptionNonNlocking">#8A6D3B</color>
     <color name="disruptionInformation">#31708F</color>
     <color name="disruptionDefault">#888888</color>
+
+    <color name="primary">#666666</color>
+    <color name="primaryText">#ffffff</color>
+    <color name="secondary">#f1f1f1</color>
+    <color name="secondaryText">#ffffff</color>
+    <color name="tertiary">#40958e</color>
+    <color name="tertiaryText">#ffffff</color>
+    <color name="brightText">#ffffff</color>
+    <color name="darkText">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="lighterGray">#f1f1f1</color>
+    <color name="lightGray">#cdcdcd</color>
+    <color name="gray">#9a9a9a</color>
+    <color name="darkGray">#404040</color>
+    <color name="darkerGray">#202020</color>
+    <color name="origin">#00bb75</color>
+    <color name="destination">#b00353</color>
+    <color name="transparentBlack">#bb000000</color>
 </resources>
