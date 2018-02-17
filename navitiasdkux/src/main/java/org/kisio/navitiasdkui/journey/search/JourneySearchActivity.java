@@ -27,6 +27,7 @@ import org.kisio.navitiasdkui.util.Helper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_EMPTY_STATE;
 import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_HEADER;
@@ -34,6 +35,8 @@ import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_LOADING;
 
 public class JourneySearchActivity extends AppCompatActivity implements ResultAdapter.ClickListener {
     public final static String INTENT_PARAM = JourneySearchActivity.class.getSimpleName();
+    public final static String JOURNEY = "JOURNEY";
+    public final static String ORIGIN_KEY = "KEY";
 
     private RecyclerView gSolutions;
 
@@ -68,26 +71,14 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
                 intent.setData(Uri.parse(href));
             }
         } else {
+            String fromJourneySearch = UUID.randomUUID().toString();
+
             intent = new Intent(this, RoadmapActivity.class);
+            //intent.putExtra(JOURNEY, solution);
+            intent.putExtra(ORIGIN_KEY, fromJourneySearch);
+            intent.putExtra(fromJourneySearch, "");
         }
         startActivity(intent);
-    }
-
-    private String getCarpoolDeepLink(Journey journey) {
-        for (Section section : journey.getSections()) {
-            if (section.getType().equalsIgnoreCase("street_network") && section.getMode().equalsIgnoreCase("ridesharing")) {
-                for (Section ridesharingSection : section.getRidesharingJourneys().get(0).getSections()) {
-                    if (ridesharingSection.getType().equalsIgnoreCase("ridesharing")) {
-                        for (LinkSchema linkSchema : ridesharingSection.getLinks()) {
-                            if (linkSchema.getType().equalsIgnoreCase("ridesharing_ad")) {
-                                return linkSchema.getHref();
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return null;
     }
 
     private void launchRequest(JourneysRequest request) {
@@ -225,6 +216,7 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
                         .isTravelDurationIsLessThanAHour(duration.isLessThanAnHour())
                         .hasArrow(true)
                         .isCarpool(false)
+                        .setHref(getCarpoolDeepLink(journey))
                 ;
                 if (sections.size() > 1 || walkingDuration > 0) {
                     carpoolingJourney.setWalkInfo(Helper.formatWalkInfo(this, sections, walkingDuration));
@@ -241,5 +233,22 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
         }
 
         gSolutions.setAdapter(new ResultAdapter(resultListModel, this));
+    }
+
+    private String getCarpoolDeepLink(Journey journey) {
+        for (Section section : journey.getSections()) {
+            if (section.getType().equalsIgnoreCase("street_network") && section.getMode().equalsIgnoreCase("ridesharing")) {
+                for (Section ridesharingSection : section.getRidesharingJourneys().get(0).getSections()) {
+                    if (ridesharingSection.getType().equalsIgnoreCase("ridesharing")) {
+                        for (LinkSchema linkSchema : ridesharingSection.getLinks()) {
+                            if (linkSchema.getType().equalsIgnoreCase("ridesharing_ad")) {
+                                return linkSchema.getHref();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return null;
     }
 }

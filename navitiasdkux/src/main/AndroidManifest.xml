@@ -11,21 +11,18 @@
 
     <instrumentation
         android:name="com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
-        android:targetPackage="org.kisio.NavitiaSDKUX" />
+        android:targetPackage="org.kisio.navitiasdkui" />
 
-    <application android:name=".NavitiaSDKUX">
-        <activity android:name=".controller.JourneySolutionsActivity" />
-        <activity android:name=".controller.JourneySolutionRoadmapActivity" />
+    <application android:name="org.kisio.navitiasdkui">
+        <activity
+            android:name=".journey.search.JourneySearchActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".journey.roadmap.RoadmapActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
-        <activity
-            android:name=".journey.search.JourneySearchActivity"
-            android:label="@string/title_activity_journey_search"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".journey.roadmap.RoadmapActivity"/>
     </application>
 
 </manifest>

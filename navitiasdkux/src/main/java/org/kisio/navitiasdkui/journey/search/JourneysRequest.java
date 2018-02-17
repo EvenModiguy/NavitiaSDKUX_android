@@ -10,15 +10,15 @@ import java.util.List;
 
 public class JourneysRequest implements Parcelable {
     private String originId;
-    private String originLabel = "";
+    private String originLabel;
     private String destinationId;
-    private String destinationLabel = "";
+    private String destinationLabel;
     private DateTime datetime;
     private String datetimeRepresents;
-    private List<String> allowedId = new ArrayList<>();
-    private List<String> forbiddenUris = new ArrayList<>();
-    private List<String> firstSectionModes = new ArrayList<>();
-    private List<String> lastSectionModes = new ArrayList<>();
+    private List<String> allowedId;
+    private List<String> forbiddenUris;
+    private List<String> firstSectionModes;
+    private List<String> lastSectionModes;
     private Integer count;
     private Integer minNbJourneys;
     private Integer maxNbJourneys;
@@ -26,6 +26,12 @@ public class JourneysRequest implements Parcelable {
     public JourneysRequest(String originId, String destinationId) {
         this.originId = originId;
         this.destinationId = destinationId;
+        this.originLabel = "";
+        this.destinationLabel = "";
+        this.allowedId = new ArrayList<>();
+        this.forbiddenUris = new ArrayList<>();
+        this.firstSectionModes = new ArrayList<>();
+        this.lastSectionModes = new ArrayList<>();
     }
 
     public String getOriginId() {
