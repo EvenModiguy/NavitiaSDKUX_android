@@ -4,6 +4,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import org.kisio.NavitiaSDK.models.Journey;
 import org.kisio.NavitiaSDK.models.Section;
+import org.kisio.navitiasdkui.journey.roadmap.SectionPolyline;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.kisio.navitiasdkui.business;
+package org.kisio.navitiasdkui.journey.roadmap;
 
 import android.graphics.Color;
 

@@ -39,7 +39,7 @@ import org.kisio.navitiasdkui.component.journey.roadmap.JourneyMapViewComponentP
 import org.kisio.navitiasdkui.util.Configuration;
 import org.kisio.navitiasdkui.R;
 import org.kisio.navitiasdkui.business.JourneyPathElements;
-import org.kisio.navitiasdkui.business.SectionPolyline;
+import org.kisio.navitiasdkui.journey.roadmap.SectionPolyline;
 
 import java.util.ArrayList;
 import java.util.Arrays;

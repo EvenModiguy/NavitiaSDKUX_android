@@ -1,4 +1,4 @@
-package org.kisio.navitiasdkui.business;
+package org.kisio.navitiasdkui.journey.roadmap;
 
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.LinkSchema;

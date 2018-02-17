@@ -9,7 +9,7 @@ import com.facebook.litho.annotations.PropDefault;
 
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Section;
-import org.kisio.navitiasdkui.business.SectionMatcher;
+import org.kisio.navitiasdkui.journey.roadmap.SectionMatcher;
 import org.kisio.navitiasdkui.component.journey.result.Parts.SeparatorPart;
 import org.kisio.navitiasdkui.component.primitive.BaseViewComponent;
 import org.kisio.navitiasdkui.component.primitive.HorizontalViewComponent;
