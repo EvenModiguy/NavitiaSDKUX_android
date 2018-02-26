@@ -5,7 +5,6 @@ import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
 import android.text.style.StyleSpan;
 import android.util.TypedValue;
@@ -16,15 +15,11 @@ import android.widget.TextView;
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.navitiasdkui.R;
-import org.kisio.navitiasdkui.business.Modes;
 import org.kisio.navitiasdkui.journey.roadmap.SectionMatcher;
-import org.kisio.navitiasdkui.util.Color;
 import org.kisio.navitiasdkui.util.Helper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.kisio.navitiasdkui.util.Constant.PUBLIC_TRANSPORT_KEY;
 import static org.kisio.navitiasdkui.util.Constant.STREET_NETWORK_KEY;
@@ -90,7 +85,7 @@ public class SolutionViewHolder extends RecyclerView.ViewHolder implements View.
         for (Section section : model.getSections()) {
             int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, context.getResources().getDisplayMetrics());
 
-            String modeLogo = Modes.getModeIcon(section);
+            String modeLogo = Helper.Mode.getModeIcon(section);
             SpannableString modeLogoSpannable = new SpannableString(modeLogo);
             modeLogoSpannable.setSpan(new AbsoluteSizeSpan(size, true), 0, modeLogo.length(), 0);
             //stringBuilder.append(modeLogoSpannable);
@@ -107,7 +102,7 @@ public class SolutionViewHolder extends RecyclerView.ViewHolder implements View.
                     }
                 }
                 // TODO : Handle Disruptions
-                
+
                 TextView line = new TextView(context);
                 line.setText(section.getDisplayInformations().getCode());
                 line.setBackgroundColor(Helper.Color.getColorFromHexadecimal(section.getDisplayInformations().getColor()));

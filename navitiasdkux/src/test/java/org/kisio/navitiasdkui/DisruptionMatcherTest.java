@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.kisio.NavitiaSDK.models.Disruption;
 import org.kisio.NavitiaSDK.models.Severity;
 import org.kisio.navitiasdkui.business.DisruptionLevel;
-import org.kisio.navitiasdkui.business.DisruptionMatcher;
+import org.kisio.navitiasdkui.util.DisruptionMatcher;
 
 import java.util.ArrayList;
 import java.util.List;

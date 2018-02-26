@@ -5,12 +5,20 @@ import android.text.TextUtils;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
+import org.kisio.NavitiaSDK.models.LinkSchema;
 import org.kisio.NavitiaSDK.models.Path;
 import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.navitiasdkui.R;
 
 import java.util.List;
 import java.util.Locale;
+
+import static org.kisio.navitiasdkui.util.Constant.BIKE_KEY;
+import static org.kisio.navitiasdkui.util.Constant.NETWORK_KEY;
+import static org.kisio.navitiasdkui.util.Constant.PUBLIC_TRANSPORT_KEY;
+import static org.kisio.navitiasdkui.util.Constant.STREET_NETWORK_KEY;
+import static org.kisio.navitiasdkui.util.Constant.TRANSFER_KEY;
+import static org.kisio.navitiasdkui.util.Constant.WAITING_KEY;
 
 public abstract class Helper {
 
@@ -212,4 +220,47 @@ public abstract class Helper {
             return (Math.max(r1, r2) - Math.min(r1, r2)) + (Math.max(g1, g2) - Math.min(g1, g2)) + (Math.max(b1, b2) - Math.min(b1, b2));
         }
     }
+
+    public static class Mode {
+        public static String getModeIcon(Section section) {
+            switch (section.getType()) {
+                case PUBLIC_TRANSPORT_KEY:
+                    return getPhysicalMode(section).toLowerCase();
+                case STREET_NETWORK_KEY:
+                    return getStreetNetworkMode(section).toLowerCase();
+                case TRANSFER_KEY:
+                    return section.getTransferType();
+                case WAITING_KEY:
+                    return section.getType();
+                default:
+                    return section.getMode();
+            }
+        }
+
+        public static String getPhysicalMode(Section section) {
+            final String id = getPhysicalModeId(section.getLinks());
+            final String[] modeData = id.split(":");
+            return (modeData.length > 1) ? modeData[1] : "";
+        }
+
+        private static String getStreetNetworkMode(Section section) {
+            if (section.getMode().equals(BIKE_KEY)) {
+                if (section.getFrom().getPoi() != null && section.getFrom().getPoi().getProperties().containsKey(NETWORK_KEY)) {
+                    return "bss";
+                }
+            }
+
+            return section.getMode();
+        }
+
+        private static String getPhysicalModeId(List<LinkSchema> links) {
+            for (LinkSchema link : links) {
+                if (link.getType().equals("physical_mode")) {
+                    return link.getId();
+                }
+            }
+            return "<not_found>";
+        }
+    }
+
 }
