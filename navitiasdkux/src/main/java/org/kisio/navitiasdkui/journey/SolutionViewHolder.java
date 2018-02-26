@@ -6,12 +6,28 @@ import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.AbsoluteSizeSpan;
 import android.text.style.StyleSpan;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.kisio.NavitiaSDK.models.Disruption;
+import org.kisio.NavitiaSDK.models.Section;
 import org.kisio.navitiasdkui.R;
+import org.kisio.navitiasdkui.business.Modes;
+import org.kisio.navitiasdkui.journey.roadmap.SectionMatcher;
+import org.kisio.navitiasdkui.util.Color;
+import org.kisio.navitiasdkui.util.Helper;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.kisio.navitiasdkui.util.Constant.PUBLIC_TRANSPORT_KEY;
+import static org.kisio.navitiasdkui.util.Constant.STREET_NETWORK_KEY;
 
 /**
  * View holder for a view representing an journey result.
@@ -19,6 +35,7 @@ import org.kisio.navitiasdkui.R;
 public class SolutionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     private final TextView gTravelTime;
     private final TextView gTravelDuration;
+    private final LinearLayout gFrieze;
     private final TextView gWalkInfo;
     private ClickListener mListener;
 
@@ -38,6 +55,7 @@ public class SolutionViewHolder extends RecyclerView.ViewHolder implements View.
         super(v);
         gTravelTime = v.findViewById(R.id.listitem_solution_travel_time);
         gTravelDuration = v.findViewById(R.id.listitem_solution_travel_duration);
+        gFrieze = v.findViewById(R.id.listitem_solution_frieze);
         gWalkInfo = v.findViewById(R.id.listitem_solution_walk_info);
         v.setOnClickListener(this);
     }
@@ -67,7 +85,40 @@ public class SolutionViewHolder extends RecyclerView.ViewHolder implements View.
      */
     public void fillView(ListModel model, Context context) {
         gTravelTime.setText(model.getTravelTime());
-        gTravelDuration.setText(model.getTravelDuration()); // if it's less than a hour, show "min"
+        gTravelDuration.setText(String.format("%1$s%2$s", model.getTravelDuration(), context.getResources().getString(R.string.arrow_right)));
+
+        for (Section section : model.getSections()) {
+            int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, context.getResources().getDisplayMetrics());
+
+            String modeLogo = Modes.getModeIcon(section);
+            SpannableString modeLogoSpannable = new SpannableString(modeLogo);
+            modeLogoSpannable.setSpan(new AbsoluteSizeSpan(size, true), 0, modeLogo.length(), 0);
+            //stringBuilder.append(modeLogoSpannable);
+            TextView mode = new TextView(context);
+            mode.setText(modeLogoSpannable);
+
+            gFrieze.addView(mode);
+
+            if (section.getDisplayInformations() != null && section.getDisplayInformations().getCode() != null) {
+                if (section.getType().equals(PUBLIC_TRANSPORT_KEY) || section.getType().equals(STREET_NETWORK_KEY)) {
+                    List<Disruption> sectionDisruptions = new ArrayList<>();
+                    if (section.getType().equals(PUBLIC_TRANSPORT_KEY) && Helper.arrayIsEmpty(model.getDisruptions())) {
+                        sectionDisruptions = SectionMatcher.getMatchingDisruptions(section, model.getDisruptions());
+                    }
+                }
+                // TODO : Handle Disruptions
+                
+                TextView line = new TextView(context);
+                line.setText(section.getDisplayInformations().getCode());
+                line.setBackgroundColor(Helper.Color.getColorFromHexadecimal(section.getDisplayInformations().getColor()));
+                line.setTextColor(Helper.Color.getLineCodeTextColor(
+                        context,
+                        section.getDisplayInformations().getTextColor(),
+                        section.getDisplayInformations().getColor()
+                ));
+                gFrieze.addView(line);
+            }
+        }
 
         String[] walkInfo = model.getWalkInfo();
         SpannableStringBuilder walkInfoStringBuilder = new SpannableStringBuilder();
@@ -76,7 +127,6 @@ public class SolutionViewHolder extends RecyclerView.ViewHolder implements View.
         walkInfoStringBuilder.append(walkInfo[0]);
         walkInfoStringBuilder.append(styledWalkTime);
         walkInfoStringBuilder.append(walkInfo[2]);
-
         gWalkInfo.setText(walkInfoStringBuilder);
     }
 }

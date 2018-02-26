@@ -1,12 +1,16 @@
 package org.kisio.navitiasdkui.journey;
 
+import org.kisio.NavitiaSDK.models.Disruption;
+import org.kisio.NavitiaSDK.models.Section;
+
 import java.util.List;
 
 public class ListModel {
     private int viewType;
     private String travelTime;
     private String travelDuration;
-    private boolean travelDurationIsLessThanAHour;
+    private List<Section> sections;
+    private List<Disruption> disruptions;
     private String[] walkInfo;
     private String time;
     private String type;
@@ -61,12 +65,21 @@ public class ListModel {
         return this;
     }
 
-    public boolean isTravelDurationIsLessThanAHour() {
-        return travelDurationIsLessThanAHour;
+    public List<Section> getSections() {
+        return sections;
     }
 
-    public ListModel isTravelDurationIsLessThanAHour(boolean travelDurationIsLessThanAHour) {
-        this.travelDurationIsLessThanAHour = travelDurationIsLessThanAHour;
+    public ListModel setSections(List<Section> sections) {
+        this.sections = sections;
+        return this;
+    }
+
+    public List<Disruption> getDisruptions() {
+        return disruptions;
+    }
+
+    public ListModel setDisruptions(List<Disruption> disruptions) {
+        this.disruptions = disruptions;
         return this;
     }
 

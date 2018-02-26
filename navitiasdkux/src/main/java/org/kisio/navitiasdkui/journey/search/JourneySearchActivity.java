@@ -178,15 +178,15 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
         if (!classicJourneys.isEmpty()) {
             for (Journey journey : classicJourneys) {
                 ListModel classicJourney = new ListModel();
-                Helper.Duration duration = Helper.formatTravelDuration(this, journey.getDurations().getTotal());
                 List<Section> sections = journey.getSections();
                 Integer walkingDuration = journey.getDurations().getWalking();
 
                 classicJourney
                         .setTravelTime(Helper.formatTravelTime(journey.getDepartureDateTime(), journey.getArrivalDateTime()))
-                        .setTravelDuration(duration.getValue())
-                        .isTravelDurationIsLessThanAHour(duration.isLessThanAnHour())
+                        .setTravelDuration(Helper.formatTravelDuration(this, journey.getDurations().getTotal()))
                         .hasArrow(true)
+                        .setSections(journey.getSections())
+                        .setDisruptions(disruptions)
                         .isCarpool(false)
                 ;
                 if (sections.size() > 1 || walkingDuration > 0) {
@@ -206,15 +206,15 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
         if (!carpoolingJourneys.isEmpty()) {
             for (Journey journey : carpoolingJourneys) {
                 ListModel carpoolingJourney = new ListModel();
-                Helper.Duration duration = Helper.formatTravelDuration(this, journey.getDurations().getTotal());
                 List<Section> sections = journey.getSections();
                 Integer walkingDuration = journey.getDurations().getWalking();
 
                 carpoolingJourney
                         .setTravelTime(Helper.formatTravelTime(journey.getDepartureDateTime(), journey.getArrivalDateTime()))
-                        .setTravelDuration(duration.getValue())
-                        .isTravelDurationIsLessThanAHour(duration.isLessThanAnHour())
+                        .setTravelDuration(Helper.formatTravelDuration(this, journey.getDurations().getTotal()))
                         .hasArrow(true)
+                        .setSections(journey.getSections())
+                        .setDisruptions(disruptions)
                         .isCarpool(false)
                         .setHref(getCarpoolDeepLink(journey))
                 ;

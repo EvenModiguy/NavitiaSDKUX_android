@@ -32,6 +32,7 @@
     <string name="units_meters">meters</string>
     <string name="units_minute">minute</string>
     <string name="units_minutes">minutes</string>
+    <string name="units_minutes_short">min</string>
     <string name="until_further_notice">until further notice</string>
     <string name="wait">Wait</string>
     <string name="walking">walking</string>
