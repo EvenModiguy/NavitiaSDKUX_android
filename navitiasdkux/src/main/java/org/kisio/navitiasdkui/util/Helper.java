@@ -53,6 +53,7 @@ public abstract class Helper {
 
     public static String[] formatWalkInfo(Context context, List<Section> sections, Integer distance) {
         return new String[] {
+                context.getResources().getString(R.string.with),
                 formatDuration(context, formatWalkingDistance(sections), false), // bold
                 String.format(" %1$s (%2$s)", context.getString(R.string.walking), formatDistance(context, distance))
         };

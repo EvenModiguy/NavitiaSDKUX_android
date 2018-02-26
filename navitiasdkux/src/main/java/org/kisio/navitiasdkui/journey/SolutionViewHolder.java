@@ -1,7 +1,13 @@
 package org.kisio.navitiasdkui.journey;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.text.style.StyleSpan;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.TextView;
 
@@ -62,6 +68,15 @@ public class SolutionViewHolder extends RecyclerView.ViewHolder implements View.
     public void fillView(ListModel model, Context context) {
         gTravelTime.setText(model.getTravelTime());
         gTravelDuration.setText(model.getTravelDuration()); // if it's less than a hour, show "min"
-        gWalkInfo.setText(model.getWalkInfo());
+
+        String[] walkInfo = model.getWalkInfo();
+        SpannableStringBuilder walkInfoStringBuilder = new SpannableStringBuilder();
+        SpannableString styledWalkTime = new SpannableString(walkInfo[1]);
+        styledWalkTime.setSpan(new StyleSpan(Typeface.BOLD), 0, walkInfo[1].length(), 0);
+        walkInfoStringBuilder.append(walkInfo[0]);
+        walkInfoStringBuilder.append(styledWalkTime);
+        walkInfoStringBuilder.append(walkInfo[2]);
+
+        gWalkInfo.setText(walkInfoStringBuilder);
     }
 }
