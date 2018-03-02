@@ -29,9 +29,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import static org.kisio.navitiasdkui.util.Constant.RIDESHARING_AD_KEY;
+import static org.kisio.navitiasdkui.util.Constant.RIDESHARING_KEY;
+import static org.kisio.navitiasdkui.util.Constant.STREET_NETWORK_KEY;
 import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_EMPTY_STATE;
 import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_HEADER;
 import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_LOADING;
+import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_SOLUTION;
 
 public class JourneySearchActivity extends AppCompatActivity implements ResultAdapter.ClickListener {
     public final static String INTENT_PARAM = JourneySearchActivity.class.getSimpleName();
@@ -51,14 +55,14 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
         toolbar.setElevation(0);
         toolbar.setTitle(R.string.journeys);
 
+        gSolutions = findViewById(R.id.journey_search_solutions);
+        gSolutions.setLayoutManager(new LinearLayoutManager(this));
+        showLoading();
+
         final JourneysRequest request = getIntent().getParcelableExtra(INTENT_PARAM);
         if (request != null) {
             launchRequest(request);
         }
-
-        gSolutions = findViewById(R.id.journey_search_solutions);
-        gSolutions.setLayoutManager(new LinearLayoutManager(this));
-        showLoading();
     }
 
     @Override
@@ -152,7 +156,7 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
     }
 
     private void showError() {
-        List<ListModel> errorListModel = new ArrayList<>();
+        final List<ListModel> errorListModel = new ArrayList<>();
         ListModel classicEmptyState = new ListModel();
         ListModel carpoolEmptyState = new ListModel();
 
@@ -169,11 +173,17 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
         errorListModel.add(new ListModel(VIEW_TYPE_HEADER));
         errorListModel.add(carpoolEmptyState);
 
-        gSolutions.setAdapter(new ResultAdapter(errorListModel, this));
+        final JourneySearchActivity current = this;
+        runOnUiThread(new Runnable() {
+            public void run() {
+                gSolutions.setAdapter(new ResultAdapter(errorListModel, current));
+            }
+        });
+
     }
 
     private void showResult(List<Journey> classicJourneys, List<Journey> carpoolingJourneys, List<Disruption> disruptions) {
-        List<ListModel> resultListModel = new ArrayList<>();
+        final List<ListModel> resultListModel = new ArrayList<>();
 
         if (!classicJourneys.isEmpty()) {
             for (Journey journey : classicJourneys) {
@@ -188,6 +198,7 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
                         .setSections(journey.getSections())
                         .setDisruptions(disruptions)
                         .isCarpool(false)
+                        .setViewType(VIEW_TYPE_SOLUTION)
                 ;
                 if (sections.size() > 1 || walkingDuration > 0) {
                     classicJourney.setWalkInfo(Helper.formatWalkInfo(this, sections, walkingDuration));
@@ -217,6 +228,7 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
                         .setDisruptions(disruptions)
                         .isCarpool(false)
                         .setHref(getCarpoolDeepLink(journey))
+                        .setViewType(VIEW_TYPE_SOLUTION)
                 ;
                 if (sections.size() > 1 || walkingDuration > 0) {
                     carpoolingJourney.setWalkInfo(Helper.formatWalkInfo(this, sections, walkingDuration));
@@ -232,16 +244,21 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
             resultListModel.add(carpoolEmptyState);
         }
 
-        gSolutions.setAdapter(new ResultAdapter(resultListModel, this));
+        final JourneySearchActivity current = this;
+        runOnUiThread(new Runnable() {
+            public void run() {
+                gSolutions.setAdapter(new ResultAdapter(resultListModel, current));
+            }
+        });
     }
 
     private String getCarpoolDeepLink(Journey journey) {
         for (Section section : journey.getSections()) {
-            if (section.getType().equalsIgnoreCase("street_network") && section.getMode().equalsIgnoreCase("ridesharing")) {
+            if (section.getType().equalsIgnoreCase(STREET_NETWORK_KEY) && section.getMode().equalsIgnoreCase(RIDESHARING_KEY)) {
                 for (Section ridesharingSection : section.getRidesharingJourneys().get(0).getSections()) {
-                    if (ridesharingSection.getType().equalsIgnoreCase("ridesharing")) {
+                    if (ridesharingSection.getType().equalsIgnoreCase(RIDESHARING_KEY)) {
                         for (LinkSchema linkSchema : ridesharingSection.getLinks()) {
-                            if (linkSchema.getType().equalsIgnoreCase("ridesharing_ad")) {
+                            if (linkSchema.getType().equalsIgnoreCase(RIDESHARING_AD_KEY)) {
                                 return linkSchema.getHref();
                             }
                         }

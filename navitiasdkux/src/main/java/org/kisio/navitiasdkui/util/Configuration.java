@@ -1,5 +1,6 @@
 package org.kisio.navitiasdkui.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -21,17 +22,18 @@ import java.util.Map;
  * Copyright \u00a9 2018 Kisio. All rights reserved.
  */
 public class Configuration {
-    public static String getToken(Context context) {
+    public static String getToken(Activity activity) {
         try {
-            ApplicationInfo ai = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            ApplicationInfo ai = activity.getPackageManager().getApplicationInfo(activity.getPackageName(), PackageManager.GET_META_DATA);
             Bundle bundle = ai.metaData;
             String token = bundle.getString("org.kisio.navitia.API_KEY");
 
-            if (TextUtils.isEmpty(token) || token.equalsIgnoreCase("YOUR_API_KEY")) throw new Exception();
+            if (TextUtils.isEmpty(token) || token.equalsIgnoreCase("YOUR_API_KEY")) throw new RuntimeException();
 
             return token;
-        } catch (Exception e) {
+        } catch (PackageManager.NameNotFoundException | RuntimeException e) {
             Log.e("Navitia SDK UI", "Don't forget to configure <meta-data android:name=\"org.kisio.navitia.API_KEY\" android:value=\"YOUR_API_KEY\"/> in your AndroidManifest.xml file.");
+            activity.finish();
             return null;
         }
     }

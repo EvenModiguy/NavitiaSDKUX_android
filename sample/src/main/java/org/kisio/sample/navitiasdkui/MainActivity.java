@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import org.joda.time.DateTime;
-import org.kisio.navitiasdkui.util.Configuration;
 import org.kisio.navitiasdkui.journey.search.JourneySearchActivity;
 import org.kisio.navitiasdkui.journey.search.JourneysRequest;
 

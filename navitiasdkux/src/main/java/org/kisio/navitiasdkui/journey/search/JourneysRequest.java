@@ -158,10 +158,10 @@ public class JourneysRequest implements Parcelable {
         destinationLabel = in.readString();
         datetime = (DateTime) in.readSerializable();
         datetimeRepresents = in.readString();
-        in.readStringList(allowedId);
-        in.readStringList(forbiddenUris);
-        in.readStringList(firstSectionModes);
-        in.readStringList(lastSectionModes);
+        if (allowedId != null) in.readStringList(allowedId);
+        if (forbiddenUris != null) in.readStringList(forbiddenUris);
+        if (firstSectionModes != null) in.readStringList(firstSectionModes);
+        if (lastSectionModes != null) in.readStringList(lastSectionModes);
         count = in.readByte() == 0x00 ? null : in.readInt();
         minNbJourneys = in.readByte() == 0x00 ? null : in.readInt();
         maxNbJourneys = in.readByte() == 0x00 ? null : in.readInt();

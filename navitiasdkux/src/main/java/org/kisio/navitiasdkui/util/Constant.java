@@ -14,6 +14,8 @@ public abstract class Constant {
     public static final String NETWORK_KEY = "network";
     public static final String PHYSICAL_KEY = "physical_mode";
     public static final String PUBLIC_TRANSPORT_KEY = "public_transport";
+    public static final String RIDESHARING_KEY = "ridesharing";
+    public static final String RIDESHARING_AD_KEY = "ridesharing_ad";
     public static final String STREET_NETWORK_KEY = "street_network";
     public static final String TRANSFER_KEY = "transfer";
     public static final String WAITING_KEY = "waiting";

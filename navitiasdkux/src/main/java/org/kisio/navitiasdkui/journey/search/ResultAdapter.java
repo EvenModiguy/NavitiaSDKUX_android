@@ -82,6 +82,11 @@ public class ResultAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return listModelList.get(position).getViewType();
+    }
+
+    @Override
     public int getItemCount() {
         return listModelList.size();
     }
