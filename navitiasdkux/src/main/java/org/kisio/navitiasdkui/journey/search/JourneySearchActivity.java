@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import org.kisio.NavitiaSDK.NavitiaConfiguration;
 import org.kisio.NavitiaSDK.NavitiaSDK;
@@ -23,6 +24,7 @@ import org.kisio.navitiasdkui.journey.ListModel;
 import org.kisio.navitiasdkui.journey.roadmap.RoadmapActivity;
 import org.kisio.navitiasdkui.util.Configuration;
 import org.kisio.navitiasdkui.util.Helper;
+import org.kisio.navitiasdkui.util.VerticalSpaceItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +34,13 @@ import java.util.UUID;
 import static org.kisio.navitiasdkui.util.Constant.RIDESHARING_AD_KEY;
 import static org.kisio.navitiasdkui.util.Constant.RIDESHARING_KEY;
 import static org.kisio.navitiasdkui.util.Constant.STREET_NETWORK_KEY;
+import static org.kisio.navitiasdkui.util.Constant.TRANSFER_KEY;
 import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_EMPTY_STATE;
 import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_HEADER;
 import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_LOADING;
 import static org.kisio.navitiasdkui.util.Constant.VIEW_TYPE_SOLUTION;
+import static org.kisio.navitiasdkui.util.Constant.WAITING_KEY;
+import static org.kisio.navitiasdkui.util.Constant.WALKING_KEY;
 
 public class JourneySearchActivity extends AppCompatActivity implements ResultAdapter.ClickListener {
     public final static String INTENT_PARAM = JourneySearchActivity.class.getSimpleName();
@@ -50,13 +55,21 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
         setContentView(R.layout.activity_journey_search);
 
         Toolbar toolbar = findViewById(R.id.journey_search_toolbar);
-        setSupportActionBar(toolbar);
         toolbar.setBackgroundColor(Configuration.getColor(this, R.attr.colorPrimary));
         toolbar.setElevation(0);
         toolbar.setTitle(R.string.journeys);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         gSolutions = findViewById(R.id.journey_search_solutions);
         gSolutions.setLayoutManager(new LinearLayoutManager(this));
+        gSolutions.addItemDecoration(new VerticalSpaceItemDecoration(getResources(), 12));
         showLoading();
 
         final JourneysRequest request = getIntent().getParcelableExtra(INTENT_PARAM);
@@ -250,6 +263,24 @@ public class JourneySearchActivity extends AppCompatActivity implements ResultAd
                 gSolutions.setAdapter(new ResultAdapter(resultListModel, current));
             }
         });
+    }
+
+    private List<Section> cleanSections(List<Section> sections) {
+        List<Section> cleanedSections = new ArrayList<>();
+        int size = sections.size();
+
+        for (int i = 0; i < size; i++) {
+            Section section = sections.get(i);
+            String type = section.getType();
+            if ((type.equalsIgnoreCase(STREET_NETWORK_KEY) &&
+                    section.getMode().equalsIgnoreCase(WALKING_KEY) && i != 0 && i != size - 1) ||
+                    !type.equalsIgnoreCase(TRANSFER_KEY) ||
+                    !type.equalsIgnoreCase(WAITING_KEY)) {
+                cleanedSections.add(section);
+            }
+        }
+
+        return cleanedSections;
     }
 
     private String getCarpoolDeepLink(Journey journey) {

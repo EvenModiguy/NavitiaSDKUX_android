@@ -3,12 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:padding="16dp"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -33,11 +35,8 @@
                 android:layout_alignParentEnd="true"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
+                android:fontFamily="@font/sdk_icons"
                 tools:text="3h13"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
         </RelativeLayout>
 
@@ -46,14 +45,15 @@
             android:layout_height="1dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
-            android:background="@color/colorGrey"/>
+            android:background="@color/colorBackground"/>
 
         <LinearLayout
             android:id="@+id/listitem_solution_frieze"
             android:layout_width="match_parent"
-            android:layout_height="72dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:orientation="horizontal"/>
+            android:orientation="horizontal"
+            tools:layout_height="72dp"/>
 
         <TextView
             android:id="@+id/listitem_solution_walk_info"

@@ -35,7 +35,7 @@ public abstract class Helper {
     }
 
     public static String formatTravelTime(String startTime, String endTime) {
-        return String.format("%1$s - %2$s", startTime, endTime);
+        return String.format("%1$s - %2$s", formatTime(startTime), formatTime(endTime));
     }
 
     public static String formatTravelDuration(Context context, Integer seconds) {
@@ -222,6 +222,16 @@ public abstract class Helper {
     }
 
     public static class Mode {
+        public static String iconString(Context context, String name) {
+            if (name.equalsIgnoreCase("walking")) {
+                return context.getResources().getString(context.getResources().getIdentifier("walking_logo", "string", context.getPackageName()));
+            } else if (context.getResources().getIdentifier(name, "string", context.getPackageName()) == 0) {
+                return "\uffff";
+            } else {
+                return context.getResources().getString(context.getResources().getIdentifier(name, "string", context.getPackageName()));
+            }
+        }
+
         public static String getModeIcon(Section section) {
             switch (section.getType()) {
                 case PUBLIC_TRANSPORT_KEY:

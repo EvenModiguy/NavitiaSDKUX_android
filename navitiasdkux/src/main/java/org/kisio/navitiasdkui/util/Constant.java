@@ -19,4 +19,5 @@ public abstract class Constant {
     public static final String STREET_NETWORK_KEY = "street_network";
     public static final String TRANSFER_KEY = "transfer";
     public static final String WAITING_KEY = "waiting";
+    public static final String WALKING_KEY = "walking";
 }

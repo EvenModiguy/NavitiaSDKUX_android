@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">NavitiaSDKUX Sample App</string>
-    <string name="sdk_btn">Open SDK UX</string>
+    <string name="sdk_btn">Open SDK UI</string>
 </resources>

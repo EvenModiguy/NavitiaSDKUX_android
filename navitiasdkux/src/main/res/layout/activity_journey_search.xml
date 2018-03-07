@@ -5,12 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context="org.kisio.navitiasdkui.journey.search.JourneySearchActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:focusable="true">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/journey_search_toolbar"
@@ -26,24 +30,39 @@
             android:orientation="vertical"
             tools:background="@color/colorPrimary">
 
-            <!--depart-->
             <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/journey_search_departure"
                 android:layout_width="match_parent"
-                android:layout_height="32dp"/>
+                android:layout_height="48dp"
+                android:background="@color/colorWhite"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="20 Rue Hector Malot 75012 Paris"/>
 
-            <!--arrivée-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorBackground"/>
+
             <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/journey_search_arrival"
                 android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:layout_marginTop="4dp"/>
+                android:layout_height="48dp"
+                android:background="@color/colorWhite"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Ménilmontant 75020 Paris"/>
 
-            <!--label-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="4dp"
                 android:textStyle="bold"
                 android:textColor="@color/colorWhite"
+                android:textSize="16sp"
                 tools:text="Départ: ven. 9. févr. - 09:42"/>
 
         </LinearLayout>
@@ -59,8 +78,6 @@
             android:id="@+id/journey_search_solutions"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
             tools:listitem="@layout/listitem_solution"/>
 
     </android.support.constraint.ConstraintLayout>
